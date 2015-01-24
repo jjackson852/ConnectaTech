@@ -35,11 +35,7 @@ import butterknife.Views;
  */
 public class MainActivity extends BootstrapFragmentActivity {
 
-    //This is a test- Adam
-    //test
-    //test
-    //test again
-    //test
+    //Testing123
 
     @Inject protected BootstrapServiceProvider serviceProvider;
 
