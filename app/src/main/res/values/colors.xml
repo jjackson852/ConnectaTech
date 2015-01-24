@@ -25,8 +25,8 @@
     <color name="bootstrap_divider_bottom">#5A5A5A</color>
     <color name="main_background_start">#2E2E2E</color>
     <color name="main_background_end">#2C2C2C</color>
-    <color name="button_background_enabled_start">#1fb6ed</color>
-    <color name="button_background_enabled_end">#1c9ac8</color>
+    <color name="button_background_enabled_start">#B2B2B2</color>
+    <color name="button_background_enabled_end">#B2B2B2</color>
     <color name="button_background_pressed_start">#f76500</color>
     <color name="button_background_pressed_end">#fb812c</color>
     <color name="edit_text_background_start">#EFF6FF</color>

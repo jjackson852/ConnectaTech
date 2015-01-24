@@ -26,6 +26,7 @@
     <string name="label_email_address">Email Address</string>
     <string name="label_password">Password</string>
     <string name="label_sign_in">Sign In</string>
+    <string name="label_sign_in_as_guest">...Or Continue as Guest</string>
     <string name="message_signing_in">Signing in…</string>
     <string name="blank_field_warning">Please populate this field</string>
     <string name="signup_link">New to Bootstrap? &lt;a href=http://www.androidbootstrap.com>Click here&lt;/a> to learn more.</string>
