@@ -38,6 +38,8 @@ public class MainActivity extends BootstrapFragmentActivity {
     //This is a test- Adam
     //test
     //test
+    //test again
+
     @Inject protected BootstrapServiceProvider serviceProvider;
 
     private boolean userHasAuthenticated = false;
