@@ -39,6 +39,7 @@ public class MainActivity extends BootstrapFragmentActivity {
     //test
     //test
     //test again
+    //test
 
     @Inject protected BootstrapServiceProvider serviceProvider;
 
