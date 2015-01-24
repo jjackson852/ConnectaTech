@@ -6,18 +6,6 @@
     android:background="@drawable/main_background"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tv_signup"
-        style="@style/ShadowText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/stripe_repeat"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/text"
-        android:textColorLink="@color/text_link" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
