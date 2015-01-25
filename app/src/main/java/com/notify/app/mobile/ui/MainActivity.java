@@ -1,7 +1,6 @@
 
-
 package com.notify.app.mobile.ui;
-
+//comment
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
