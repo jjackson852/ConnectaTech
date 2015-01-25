@@ -6,18 +6,6 @@
     android:background="@drawable/main_background"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tv_signup"
-        style="@style/ShadowText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/stripe_repeat"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/text"
-        android:textColorLink="@color/text_link" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -84,6 +72,22 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <Button
+                style="@style/ShadowText"
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_background_states"
+                android:gravity="center"
+                android:onClick="handleLogin"
+                android:padding="10dp"
+                android:text="@string/label_sign_in_as_guest"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
 
