@@ -1,7 +1,6 @@
 
-
 package com.notify.app.mobile.ui;
-
+//james commit
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -35,8 +34,7 @@ import butterknife.Views;
  */
 public class MainActivity extends BootstrapFragmentActivity {
 
-    //Testing123
-    //testing 12
+    //This is a test- Adam
 
     @Inject protected BootstrapServiceProvider serviceProvider;
 
