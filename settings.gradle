@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':integration-tests'
 // include ':integration-tests'

@@ -75,13 +75,13 @@ android {
             // zipAlign false // this is default for debug
 			minifyEnabled false
         }
-        release {
+       // release {
             // runProguard true
             // proguardFile '..\proguard.cfg'
             // signingConfig signingConfigs.release
             // zipAlign true // this is default for release
             // testPackageName 'com.notify.app.mobile.tests'
             // testInstrumentationRunner 'android.test.InstrumentationTestRunner' // this is the default
-        }
+       // }
     }
 }
