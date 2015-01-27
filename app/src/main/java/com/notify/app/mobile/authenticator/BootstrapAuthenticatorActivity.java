@@ -362,20 +362,24 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
     public void handleRegister(View view) {
         ParseAnalytics.trackAppOpened(getIntent());
 
-        EditText regEmailText;
+        EditText regUserText;
         EditText regPasswordText;
+        EditText regFNameText;
+        EditText regLNameText;
 //
-            regEmailText = (EditText) findViewById(id.et_reg_email);
+            regUserText = (EditText) findViewById(id.et_reg_email);
             regPasswordText = (EditText) findViewById(id.et_reg_password);
+            regFNameText = (EditText) findViewById(id.et_reg_first_name);
+            regLNameText = (EditText) findViewById(id.et_reg_last_name);
 //
         ParseUser user = new ParseUser();
-            user.setUsername(String.valueOf(regEmailText.getText()));
+            user.setUsername(String.valueOf(regUserText.getText()));
         user.setPassword(String.valueOf(regPasswordText.getText()));
-        //user.setUsername(String.valueOf(regEmailText.getText()));
+        //user.setUsername(String.valueOf(regUserText.getText()));
 ////            user.put("Phone", String.valueOf(phoneText.getText()));
 ////            user.put("altPhone", String.valueOf(altPhoneText.getText()));
-////            user.put("firstName", String.valueOf(firstNameText.getText()));
-////            user.put("lastName", String.valueOf(lastNameText.getText()));
+       user.put("firstName", String.valueOf(regFNameText.getText()));
+       user.put("lastName", String.valueOf(regLNameText.getText()));
 //
         user.signUpInBackground(new SignUpCallback() {
 

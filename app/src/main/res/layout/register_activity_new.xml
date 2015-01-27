@@ -73,6 +73,50 @@
                 android:inputType="textPassword"
                 android:password="true" />
 
+            <TextView
+                style="@style/ShadowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/label_first_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+            <AutoCompleteTextView
+                style="@style/SignInEditText"
+                android:id="@+id/et_reg_first_name"
+                android:completionThreshold="1"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:nextFocusDown="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/ShadowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/label_last_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+
+            <AutoCompleteTextView
+                style="@style/SignInEditText"
+                android:id="@+id/et_reg_last_name"
+                android:completionThreshold="1"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:nextFocusDown="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/b_registerSub"
                 style="@style/ShadowText"
