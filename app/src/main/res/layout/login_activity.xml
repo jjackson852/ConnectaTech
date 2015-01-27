@@ -75,13 +75,29 @@
 
             <Button
                 style="@style/ShadowText"
-                android:id="@+id/button"
+                android:id="@+id/b_regAsNewUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_background_states"
                 android:gravity="center"
-                android:onClick="handleLogin"
+                android:onClick="registerNow"
+                android:padding="10dp"
+                android:text="@string/label_register"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                style="@style/ShadowText"
+                android:id="@+id/b_continueAsGuest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_background_states"
+                android:gravity="center"
+                android:onClick="handleLoginAsGuest"
                 android:padding="10dp"
                 android:text="@string/label_sign_in_as_guest"
                 android:textColor="@color/text"

@@ -16,9 +16,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -42,6 +40,10 @@ import com.notify.app.mobile.ui.TextWatcherAdapter;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.github.kevinsawicki.wishlist.Toaster;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -86,7 +88,11 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
     @InjectView(id.et_email) protected AutoCompleteTextView emailText;
     @InjectView(id.et_password) protected EditText passwordText;
+//    @InjectView(id.et_reg_email) protected EditText regEmailText;
+//    @InjectView(id.et_reg_password) protected EditText regPasswordText;
+
     @InjectView(id.b_signin) protected Button signInButton;
+
 
     private final TextWatcher watcher = validationTextWatcher();
 
@@ -120,6 +126,11 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "ZoLfhGYjXZyhZsMzCOUiKojKEmNpVHOtommTCMgD", "Ekt2HIFo6KhnE5DfOWycWUphwo1p8mOYl8Z9hr5B");
 
         Injector.inject(this);
 
@@ -170,6 +181,14 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 //        signUpText.setMovementMethod(LinkMovementMethod.getInstance());
 //        signUpText.setText(Html.fromHtml(getString(string.signup_link)));
     }
+
+    public void registerNow(final View view){
+
+        setContentView(layout.register_activity);
+
+    }
+
+
 
     private List<String> userEmailAccounts() {
         final Account[] accounts = accountManager.getAccountsByType("com.google");
@@ -290,6 +309,92 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         authenticationTask.execute();
     }
 
+    public void handleLoginAsGuest(final View view) {
+        if (authenticationTask != null) {
+            return;
+        }
+
+//        if (requestNewAccount) {
+//            email = emailText.getText().toString();
+//        }
+
+        email = Constants.Auth.GUEST_USERNAME;
+
+//        password = passwordText.getText().toString();
+
+        password = Constants.Auth.GUEST_PASSWORD;
+
+        showProgress();
+
+        authenticationTask = new SafeAsyncTask<Boolean>() {
+            public Boolean call() throws Exception {
+
+                final String query = String.format("%s=%s&%s=%s",
+                        PARAM_USERNAME, email, PARAM_PASSWORD, password);
+
+                User loginResponse = bootstrapService.authenticate(email, password);
+                token = loginResponse.getSessionToken();
+
+                return true;
+            }
+
+            @Override
+            protected void onException(final Exception e) throws RuntimeException {
+                // Retrofit Errors are handled inside of the {
+                if(!(e instanceof RetrofitError)) {
+                    final Throwable cause = e.getCause() != null ? e.getCause() : e;
+                    if(cause != null) {
+                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onSuccess(final Boolean authSuccess) {
+                onAuthenticationResult(authSuccess);
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                hideProgress();
+                authenticationTask = null;
+            }
+        };
+        authenticationTask.execute();
+    }
+    public void handleRegister(View view) {
+        ParseAnalytics.trackAppOpened(getIntent());
+
+        EditText regEmailText;
+        EditText regPasswordText;
+//
+            regEmailText = (EditText) findViewById(id.et_reg_email);
+            regPasswordText = (EditText) findViewById(id.et_reg_password);
+//
+        ParseUser user = new ParseUser();
+            user.setUsername(String.valueOf(regEmailText.getText()));
+        user.setPassword(String.valueOf(regPasswordText.getText()));
+        //user.setUsername(String.valueOf(regEmailText.getText()));
+////            user.put("Phone", String.valueOf(phoneText.getText()));
+////            user.put("altPhone", String.valueOf(altPhoneText.getText()));
+////            user.put("firstName", String.valueOf(firstNameText.getText()));
+////            user.put("lastName", String.valueOf(lastNameText.getText()));
+//
+        user.signUpInBackground(new SignUpCallback() {
+
+            public void done(com.parse.ParseException e) {
+                if (e == null) {
+                    // Hooray! Let them use the app now.
+                } else {
+                    // Sign up didn't succeed. Look at the ParseException
+                    // to figure out what went wrong
+                }
+            }
+
+        });
+    }
+
+
     /**
      * Called when response is received from the server for confirm credentials
      * request. See onAuthenticationResult(). Sets the
@@ -379,4 +484,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             }
         }
     }
+
+
 }

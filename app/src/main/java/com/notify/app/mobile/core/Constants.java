@@ -19,7 +19,7 @@ public final class Constants {
         /**
          * Account name
          */
-        public static final String BOOTSTRAP_ACCOUNT_NAME = "connectatech";
+        public static final String BOOTSTRAP_ACCOUNT_NAME = "ConnectaTech";
 
         /**
          * Provider id
@@ -30,6 +30,12 @@ public final class Constants {
          * Auth token type
          */
         public static final String AUTHTOKEN_TYPE = BOOTSTRAP_ACCOUNT_TYPE;
+
+        /**
+         * Continue as Guest Credentials *Needs additional security implemented.*
+         */
+        public static final String GUEST_USERNAME = "demo@connectatech.org";
+        public static final String GUEST_PASSWORD = "abc12345";
     }
 
     /**

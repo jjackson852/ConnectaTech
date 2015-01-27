@@ -6,6 +6,7 @@
     <color name="text_light">#999999</color>
     <color name="text_inverted">#FFFFFF</color>
     <color name="text_title">#DFDFDF</color>
+    <color name="text_activity_header">#75D1FF</color>
     <color name="pager_footer">#1fb6ed</color>
     <color name="pager_selected_text">#FFFFFF</color>
     <color name="pager_background">#F4F4F4</color>
