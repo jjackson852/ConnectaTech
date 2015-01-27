@@ -166,9 +166,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         emailText.addTextChangedListener(watcher);
         passwordText.addTextChangedListener(watcher);
 
-//        final TextView signUpText = (TextView) findViewById(id.tv_signup);
-//        signUpText.setMovementMethod(LinkMovementMethod.getInstance());
-//        signUpText.setText(Html.fromHtml(getString(string.signup_link)));
     }
 
     private List<String> userEmailAccounts() {
