@@ -14,6 +14,7 @@ repositories {
     maven { url 'https://github.com/donnfelker/mvn-repo/raw/master/' }
     mavenLocal()
     mavenCentral()
+    maven { url 'C:\\Users\\AppleJacks\\Desktop\\ConnectaTech\\libs\\Parse-1.7.0.jar' }
 }
 
 dependencies {
