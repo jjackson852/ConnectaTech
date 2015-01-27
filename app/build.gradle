@@ -35,6 +35,7 @@ dependencies {
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
     androidTestCompile 'org.mockito:mockito-core:1.9.5'
     compile files('C:/Users/AppleJacks/Desktop/ConnectaTech/libs/Parse-1.7.0.jar')
+    compile files('C:/Users/theblackfu/Downloads/ConnectaTech/libs/Parse-1.7.0.jar')
 }
 
 android {
