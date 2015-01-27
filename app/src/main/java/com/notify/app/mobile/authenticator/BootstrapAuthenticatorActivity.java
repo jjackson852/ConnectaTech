@@ -184,7 +184,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
     public void registerNow(final View view){
 
-        setContentView(layout.register_activity);
+        setContentView(layout.register_activity_new);
 
     }
 
