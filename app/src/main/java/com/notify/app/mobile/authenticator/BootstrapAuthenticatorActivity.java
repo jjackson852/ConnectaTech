@@ -360,42 +360,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         };
         authenticationTask.execute();
     }
-//    public void handleRegister(View view) {
-//        ParseAnalytics.trackAppOpened(getIntent());
-//
-//        EditText regUserText;
-//        EditText regPasswordText;
-//        EditText regFNameText;
-//        EditText regLNameText;
-////
-//            regUserText = (EditText) findViewById(id.et_reg_email);
-//            regPasswordText = (EditText) findViewById(id.et_reg_password);
-//            regFNameText = (EditText) findViewById(id.et_reg_first_name);
-//            regLNameText = (EditText) findViewById(id.et_reg_last_name);
-////
-//        ParseUser user = new ParseUser();
-//            user.setUsername(String.valueOf(regUserText.getText()));
-//        user.setPassword(String.valueOf(regPasswordText.getText()));
-//        //user.setUsername(String.valueOf(regUserText.getText()));
-//////            user.put("Phone", String.valueOf(phoneText.getText()));
-//////            user.put("altPhone", String.valueOf(altPhoneText.getText()));
-//       user.put("firstName", String.valueOf(regFNameText.getText()));
-//       user.put("lastName", String.valueOf(regLNameText.getText()));
-////
-//        user.signUpInBackground(new SignUpCallback() {
-//
-//            public void done(com.parse.ParseException e) {
-//                if (e == null) {
-//                    // Hooray! Let them use the app now.
-//                } else {
-//                    // Sign up didn't succeed. Look at the ParseException
-//                    // to figure out what went wrong
-//                }
-//            }
-//
-//        });
-//    }
-
 
     /**
      * Called when response is received from the server for confirm credentials
@@ -486,12 +450,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             }
         }
     }
-//
-//    public void registerNow(final View view){
-//
-//        setContentView(layout.register_activity_new);
-//
-//    }
 
     private void navigateToRegister() {
         final Intent i = new Intent(this, RegisterActivity.class);
