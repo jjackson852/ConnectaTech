@@ -41,9 +41,6 @@ import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.github.kevinsawicki.wishlist.Toaster;
 import com.parse.Parse;
-import com.parse.ParseAnalytics;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -88,8 +85,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
     @InjectView(id.et_email) protected AutoCompleteTextView emailText;
     @InjectView(id.et_password) protected EditText passwordText;
-//    @InjectView(id.et_reg_email) protected EditText regEmailText;
-//    @InjectView(id.et_reg_password) protected EditText regPasswordText;
+
 
     @InjectView(id.b_signin) protected Button signInButton;
 
@@ -123,14 +119,20 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      */
     protected boolean requestNewAccount = false;
 
+    /**
+     * Button listener for the Register button.
+     */
+    private View.OnClickListener regButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            navigateToRegister();
+
+        }
+    };
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        Parse.initialize(this, "ZoLfhGYjXZyhZsMzCOUiKojKEmNpVHOtommTCMgD", "Ekt2HIFo6KhnE5DfOWycWUphwo1p8mOYl8Z9hr5B");
 
         Injector.inject(this);
 
@@ -144,6 +146,13 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         requestNewAccount = email == null;
 
         setContentView(layout.login_activity);
+
+        /**
+         * Attaches the Register button listener to the xml button
+         */
+        Button regNewUserButton = (Button)findViewById(id.b_regAsNewUser);
+        regNewUserButton.setOnClickListener(regButtonListener);
+
 
         Views.inject(this);
 
@@ -178,14 +187,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         passwordText.addTextChangedListener(watcher);
 
     }
-
-    public void registerNow(final View view){
-
-        setContentView(layout.register_activity_new);
-
-    }
-
-
 
     private List<String> userEmailAccounts() {
         final Account[] accounts = accountManager.getAccountsByType("com.google");
@@ -359,41 +360,41 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         };
         authenticationTask.execute();
     }
-    public void handleRegister(View view) {
-        ParseAnalytics.trackAppOpened(getIntent());
-
-        EditText regUserText;
-        EditText regPasswordText;
-        EditText regFNameText;
-        EditText regLNameText;
+//    public void handleRegister(View view) {
+//        ParseAnalytics.trackAppOpened(getIntent());
 //
-            regUserText = (EditText) findViewById(id.et_reg_email);
-            regPasswordText = (EditText) findViewById(id.et_reg_password);
-            regFNameText = (EditText) findViewById(id.et_reg_first_name);
-            regLNameText = (EditText) findViewById(id.et_reg_last_name);
+//        EditText regUserText;
+//        EditText regPasswordText;
+//        EditText regFNameText;
+//        EditText regLNameText;
+////
+//            regUserText = (EditText) findViewById(id.et_reg_email);
+//            regPasswordText = (EditText) findViewById(id.et_reg_password);
+//            regFNameText = (EditText) findViewById(id.et_reg_first_name);
+//            regLNameText = (EditText) findViewById(id.et_reg_last_name);
+////
+//        ParseUser user = new ParseUser();
+//            user.setUsername(String.valueOf(regUserText.getText()));
+//        user.setPassword(String.valueOf(regPasswordText.getText()));
+//        //user.setUsername(String.valueOf(regUserText.getText()));
+//////            user.put("Phone", String.valueOf(phoneText.getText()));
+//////            user.put("altPhone", String.valueOf(altPhoneText.getText()));
+//       user.put("firstName", String.valueOf(regFNameText.getText()));
+//       user.put("lastName", String.valueOf(regLNameText.getText()));
+////
+//        user.signUpInBackground(new SignUpCallback() {
 //
-        ParseUser user = new ParseUser();
-            user.setUsername(String.valueOf(regUserText.getText()));
-        user.setPassword(String.valueOf(regPasswordText.getText()));
-        //user.setUsername(String.valueOf(regUserText.getText()));
-////            user.put("Phone", String.valueOf(phoneText.getText()));
-////            user.put("altPhone", String.valueOf(altPhoneText.getText()));
-       user.put("firstName", String.valueOf(regFNameText.getText()));
-       user.put("lastName", String.valueOf(regLNameText.getText()));
+//            public void done(com.parse.ParseException e) {
+//                if (e == null) {
+//                    // Hooray! Let them use the app now.
+//                } else {
+//                    // Sign up didn't succeed. Look at the ParseException
+//                    // to figure out what went wrong
+//                }
+//            }
 //
-        user.signUpInBackground(new SignUpCallback() {
-
-            public void done(com.parse.ParseException e) {
-                if (e == null) {
-                    // Hooray! Let them use the app now.
-                } else {
-                    // Sign up didn't succeed. Look at the ParseException
-                    // to figure out what went wrong
-                }
-            }
-
-        });
-    }
+//        });
+//    }
 
 
     /**
@@ -485,6 +486,16 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             }
         }
     }
+//
+//    public void registerNow(final View view){
+//
+//        setContentView(layout.register_activity_new);
+//
+//    }
 
+    private void navigateToRegister() {
+        final Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+    }
 
 }

@@ -15,10 +15,12 @@ import android.view.Window;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.core.BootstrapService;
+import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
+import com.parse.Parse;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -52,6 +54,13 @@ public class MainActivity extends BootstrapFragmentActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        //Initialize the connection to the parse database.
+        Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
+
 
         if(isTablet()) {
             setContentView(R.layout.main_activity_tablet);
