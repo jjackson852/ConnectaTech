@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
 
     <string name="app_name">ConnectaTech</string>
@@ -42,15 +41,20 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="title_timer">Timer</string>
+    <string name="title_test">Test</string>
     <string name="home">Home</string>
     <string name="navigation_drawer_open">Drawer Open</string>
     <string name="navigation_drawer_close">Drawer Close</string>
     <string name="title_home">Home</string>
-
+    <string name="title_activity_test_">Test_Activity</string>
 
     <!-- RegisterActivity -->
     <string name="register_header">Create your profile.</string>
     <string name="label_submit">Submit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

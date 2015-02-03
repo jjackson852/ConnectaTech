@@ -72,6 +72,8 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
                 return resources.getString(R.string.page_checkins);
             case 3:
                 return resources.getString(R.string.trial_news);
+            case 4:
+                return resources.getString(R.string.title_test);
             default:
                 return null;
         }

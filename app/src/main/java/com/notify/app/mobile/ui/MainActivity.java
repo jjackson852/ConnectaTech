@@ -16,6 +16,7 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
+import com.notify.app.mobile.core.News;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
@@ -56,7 +57,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         super.onCreate(savedInstanceState);
 
         // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
+        //Parse.enableLocalDatastore(this);
 
         //Initialize the connection to the parse database.
         Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
@@ -193,7 +194,12 @@ public class MainActivity extends BootstrapFragmentActivity {
                 //menuDrawer.toggleMenu();
                 return true;
             case R.id.timer:
-                navigateToTimer();
+                //navigateToTimer();
+                startActivity(new Intent(this, BootstrapTimerActivity.class));
+                return true;
+            case R.id.test:
+                startActivity(new Intent(this, Test_Activity.class));
+                //navigateToTest();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -201,9 +207,18 @@ public class MainActivity extends BootstrapFragmentActivity {
     }
 
     private void navigateToTimer() {
-        final Intent i = new Intent(this, BootstrapTimerActivity.class);
-        startActivity(i);
+        // final Intent i = new Intent(this, BootstrapTimerActivity.class);
+        //startActivity(i);
+        //startActivity(new Intent(this, BootstrapTimerActivity.class));
     }
+
+    private void navigateToTest() {
+        //     final Intent i = new Intent(this, Test_Activity.class);
+        //     startActivity(i);
+        //     startActivity(new Intent(this, Test_Activity.class));
+    }
+
+
 
     @Subscribe
     public void onNavigationItemSelected(NavItemSelectedEvent event) {
@@ -217,7 +232,13 @@ public class MainActivity extends BootstrapFragmentActivity {
                 break;
             case 1:
                 // Timer
-                navigateToTimer();
+                startActivity(new Intent(this, BootstrapTimerActivity.class));
+                //navigateToTimer();
+                break;
+            case 2:
+                // Test
+                // navigateToTest();
+                startActivity(new Intent(this, Test_Activity.class));
                 break;
         }
     }
