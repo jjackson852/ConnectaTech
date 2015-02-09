@@ -16,7 +16,6 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.core.News;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
@@ -198,7 +197,7 @@ public class MainActivity extends BootstrapFragmentActivity {
                 startActivity(new Intent(this, BootstrapTimerActivity.class));
                 return true;
             case R.id.test:
-                startActivity(new Intent(this, Test_Activity.class));
+                startActivity(new Intent(this, TestActivity.class));
                 //navigateToTest();
                 return true;
             default:
@@ -238,7 +237,7 @@ public class MainActivity extends BootstrapFragmentActivity {
             case 2:
                 // Test
                 // navigateToTest();
-                startActivity(new Intent(this, Test_Activity.class));
+                startActivity(new Intent(this, TestActivity.class));
                 break;
         }
     }

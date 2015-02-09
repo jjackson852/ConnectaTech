@@ -89,7 +89,7 @@
             android:name=".ui.UserActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".ui.Test_Activity"
+            android:name=".ui.TestActivity"
             android:label="@string/title_activity_test_"
             android:parentActivityName=".ui.MainActivity" >
         </activity>
