@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -40,11 +41,18 @@ import com.notify.app.mobile.ui.TextWatcherAdapter;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.github.kevinsawicki.wishlist.Toaster;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,11 +87,12 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
 
     private AccountManager accountManager;
+    private ParseUser emailUser;
 
     @Inject BootstrapService bootstrapService;
     @Inject Bus bus;
 
-    @InjectView(id.et_email) protected AutoCompleteTextView emailText;
+    @InjectView(id.et_login_email_or_username) protected AutoCompleteTextView emailOrUsernameText;
     @InjectView(id.et_password) protected EditText passwordText;
 
 
@@ -102,7 +111,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      */
     private Boolean confirmCredentials = false;
 
-    private String email;
+    private String emailOrUsername;
 
     private String password;
 
@@ -139,11 +148,11 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         accountManager = AccountManager.get(this);
 
         final Intent intent = getIntent();
-        email = intent.getStringExtra(PARAM_USERNAME);
+        emailOrUsername = intent.getStringExtra(PARAM_USERNAME);
         authTokenType = intent.getStringExtra(PARAM_AUTHTOKEN_TYPE);
         confirmCredentials = intent.getBooleanExtra(PARAM_CONFIRM_CREDENTIALS, false);
 
-        requestNewAccount = email == null;
+        requestNewAccount = emailOrUsername == null;
 
         setContentView(layout.login_activity);
 
@@ -156,7 +165,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         Views.inject(this);
 
-        emailText.setAdapter(new ArrayAdapter<String>(this,
+        emailOrUsernameText.setAdapter(new ArrayAdapter<String>(this,
                 simple_dropdown_item_1line, userEmailAccounts()));
 
         passwordText.setOnKeyListener(new OnKeyListener() {
@@ -183,7 +192,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             }
         });
 
-        emailText.addTextChangedListener(watcher);
+        emailOrUsernameText.addTextChangedListener(watcher);
         passwordText.addTextChangedListener(watcher);
 
     }
@@ -220,7 +229,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
     }
 
     private void updateUIWithValidation() {
-        final boolean populated = populated(emailText) && populated(passwordText);
+        final boolean populated = populated(emailOrUsernameText) && populated(passwordText);
         signInButton.setEnabled(populated);
     }
 
@@ -264,8 +273,32 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         }
 
         if (requestNewAccount) {
-            email = emailText.getText().toString();
+            emailOrUsername = emailOrUsernameText.getText().toString();
         }
+
+        /**
+         * Checks to see if the account name entered is an email address or username.
+         */
+//        if (emailOrUsername.contains("@")){
+//            ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+//            userQuery.whereEqualTo("email", emailOrUsername);
+//
+//            userQuery.getFirstInBackground(new GetCallback<ParseUser>() {
+//                @Override
+//                public void done(ParseUser user, com.parse.ParseException e) {
+//                    if (user == null) {
+//                        Log.d("score", "The getFirst request failed.");
+//
+//                    } else {
+//                        Log.d("score", "Retrieved the object.");
+//
+//                    }
+//                    emailUser = user;
+//
+//                }
+//            });
+//            emailOrUsername = emailUser.getUsername().toString();
+//        }
 
         password = passwordText.getText().toString();
         showProgress();
@@ -274,9 +307,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             public Boolean call() throws Exception {
 
                 final String query = String.format("%s=%s&%s=%s",
-                        PARAM_USERNAME, email, PARAM_PASSWORD, password);
+                        PARAM_USERNAME, emailOrUsername, PARAM_PASSWORD, password);
 
-                User loginResponse = bootstrapService.authenticate(email, password);
+                User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
                 token = loginResponse.getSessionToken();
 
                 return true;
@@ -313,10 +346,10 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         }
 
 //        if (requestNewAccount) {
-//            email = emailText.getText().toString();
+//            emailOrUsername = emailOrUsernameText.getText().toString();
 //        }
 
-        email = Constants.Auth.GUEST_USERNAME;
+        emailOrUsername = Constants.Auth.GUEST_USERNAME;
 
 //        password = passwordText.getText().toString();
 
@@ -328,9 +361,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             public Boolean call() throws Exception {
 
                 final String query = String.format("%s=%s&%s=%s",
-                        PARAM_USERNAME, email, PARAM_PASSWORD, password);
+                        PARAM_USERNAME, emailOrUsername, PARAM_PASSWORD, password);
 
-                User loginResponse = bootstrapService.authenticate(email, password);
+                User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
                 token = loginResponse.getSessionToken();
 
                 return true;
@@ -369,7 +402,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      * @param result
      */
     protected void finishConfirmCredentials(final boolean result) {
-        final Account account = new Account(email, Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
+        final Account account = new Account(emailOrUsername, Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
         accountManager.setPassword(account, password);
 
         final Intent intent = new Intent();
@@ -387,7 +420,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      */
 
     protected void finishLogin() {
-        final Account account = new Account(email, Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
+        final Account account = new Account(emailOrUsername, Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
 
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
@@ -398,7 +431,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         authToken = token;
 
         final Intent intent = new Intent();
-        intent.putExtra(KEY_ACCOUNT_NAME, email);
+        intent.putExtra(KEY_ACCOUNT_NAME, emailOrUsername);
         intent.putExtra(KEY_ACCOUNT_TYPE, Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
 
         if (authTokenType != null

@@ -54,6 +54,7 @@
     <string name="label_submit">Submit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
+    <string name="label_username">Username</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

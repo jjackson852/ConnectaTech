@@ -1,5 +1,7 @@
 package com.notify.app.mobile.authenticator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,12 @@ import com.parse.SignUpCallback;
 public class CustomerRegisterFragment extends Fragment implements View.OnClickListener {
 
     View view;
+
+    private String regUsernameText;
+    private String regPasswordText;
+    private String regEmailText;
+    private String regFNameText;
+    private String regLNameText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +45,6 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
                 //Create the user.
                 handleRegister();
 
-                //Go back to login activity.
-                getActivity().finish();
                 break;
 
             // Different Button Pressed
@@ -55,22 +61,70 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
      */
     public void handleRegister() {
 
-        EditText regUserText;
-        EditText regPasswordText;
-        EditText regFNameText;
-        EditText regLNameText;
+        regUsernameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_username)).getText());
+        regPasswordText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_password)).getText());
+        regEmailText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_email)).getText());
+        regFNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_first_name)).getText());
+        regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText());
 
-        regUserText = (EditText) view.findViewById(R.id.et_reg_email);
-        regPasswordText = (EditText) view.findViewById(R.id.et_reg_password);
-        regFNameText = (EditText) view.findViewById(R.id.et_reg_first_name);
-        regLNameText = (EditText) view.findViewById(R.id.et_reg_last_name);
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
+        dlgAlert.setTitle("Invalid Input");
+        dlgAlert.setCancelable(true);
+
+        dlgAlert.setPositiveButton("Ok",
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //dismiss the dialog
+                }
+            });
+
+        /**
+         * Checks to ensure the Username contains only letters
+         * and numbers and is between 8 and 16 characters.
+         */
+        if (regUsernameText.matches("^[a-zA-Z0-9]{8,16}$")){
+
+            if (isEmailValid(regEmailText)) {
+
+                if (regFNameText.matches("^[a-zA-Z]{1,25}$") && regLNameText.matches("^[a-zA-Z]{1,30}$")){
+
+                    completeRegistration();
+
+                    //Go back to login activity.
+                    getActivity().finish();
+
+                }
+                else{
+                    // Present Dialog Box and do NOT register.
+                    dlgAlert.setMessage("Please revise your First or Last name entry.");
+                    dlgAlert.create().show();
+                }
+
+            }
+            else{
+                // Present Dialog Box and do NOT register.
+                dlgAlert.setMessage("Please enter a valid email address.");
+                dlgAlert.create().show();
+            }
+
+        }
+        else{
+            // Present Dialog Box and do NOT register.
+            dlgAlert.setMessage("Please choose a username with 8-16 characters which contains" +
+                    " only numbers and letters.");
+            dlgAlert.create().show();
+        }
+    }
+
+    public void completeRegistration(){
 
         ParseUser user = new ParseUser();
-        user.setUsername(String.valueOf(regUserText.getText()));
-        user.setPassword(String.valueOf(regPasswordText.getText()));
+        user.setUsername(regUsernameText);
+        user.setPassword(regPasswordText);
+        user.setEmail(regEmailText);
 
-        user.put("firstName", String.valueOf(regFNameText.getText()));
-        user.put("lastName", String.valueOf(regLNameText.getText()));
+        user.put("firstName", regFNameText);
+        user.put("lastName", regLNameText);
 
         user.signUpInBackground(new SignUpCallback() {
 
@@ -84,5 +138,13 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
             }
 
         });
+
+    }
+
+    public final static boolean isEmailValid(CharSequence emailAddr) {
+        if (emailAddr == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddr).matches();
     }
 }

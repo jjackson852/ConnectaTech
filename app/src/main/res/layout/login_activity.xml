@@ -39,7 +39,7 @@
                 android:textColor="@color/text" />
 
             <AutoCompleteTextView
-                android:id="@+id/et_email"
+                android:id="@+id/et_login_email_or_username"
                 style="@style/SignInEditText"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
