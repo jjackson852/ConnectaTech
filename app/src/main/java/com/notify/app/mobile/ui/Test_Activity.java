@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
-import android.view.Menu;
+//import android.view.Menu;
 
 
 import com.notify.app.mobile.R;
@@ -22,7 +22,30 @@ public class Test_Activity extends BootstrapFragmentActivity {
         setTitle(R.string.title_test);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (findViewById(R.id.test) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create a new Fragment to be placed in the activity layout
+            TestActivityFragment firstFragment = new TestActivityFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.test, firstFragment).commit();
+        }
+
     }
+
 
 
     @Override

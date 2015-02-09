@@ -12,7 +12,7 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.CustomerRegisterFragment;
 import com.notify.app.mobile.authenticator.TimerTestFragment;
 
-import dagger.Module;
+//import dagger.Module;
 
 /**
  * Pager adapter
@@ -34,7 +34,7 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -55,6 +55,9 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
                 break;
             case 4:
                 result = new CustomerRegisterFragment();
+                break;
+            case 5:
+                result = new TestActivityFragment();
                 break;
             default:
                 result = null;
@@ -79,6 +82,8 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
                 return resources.getString(R.string.trial_news);
             case 4:
                 return resources.getString(R.string.register_tab_title);
+            case 5:
+                return resources.getString(R.string.title_activity_test_);
             default:
                 return null;
         }
