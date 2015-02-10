@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.layout;
+import com.notify.app.mobile.ui.TestActivityFragment;
 
 /**
  * Activity to create a new account on the parse database.

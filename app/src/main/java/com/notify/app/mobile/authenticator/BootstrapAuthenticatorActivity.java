@@ -111,7 +111,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      */
     private Boolean confirmCredentials = false;
 
-    private String emailOrUsername;
+    public static String emailOrUsername;
 
     private String password;
 
@@ -274,31 +274,25 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         if (requestNewAccount) {
             emailOrUsername = emailOrUsernameText.getText().toString();
+
+            /**
+             * Checks to see if the account name entered is an email address or username.
+             */
+            if (emailOrUsername.contains("@")){
+                ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+                userQuery.whereEqualTo("username", "jjackson");
+
+                try {
+                    List<ParseUser> results = userQuery.find();
+                    emailOrUsername = results.get(0).getUsername();
+                } catch (com.parse.ParseException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
 
-//        /**
-//         * Checks to see if the account name entered is an email address or username.
-//         */
-//        if (emailOrUsername.contains("@")){
-//            ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-//            userQuery.whereEqualTo("email", emailOrUsername);
-//
-//            userQuery.getFirstInBackground(new GetCallback<ParseUser>() {
-//                @Override
-//                public void done(ParseUser user, com.parse.ParseException e) {
-//                    if (user == null) {
-//                        Log.d("score", "The getFirst request failed.");
-//
-//                    } else {
-//                        Log.d("score", "Retrieved the object.");
-//
-//                    }
-//                    emailUser = user;
-//
-//                }
-//            });
-//            emailOrUsername = emailUser.getUsername().toString();
-//        }
+
 
         password = passwordText.getText().toString();
         showProgress();

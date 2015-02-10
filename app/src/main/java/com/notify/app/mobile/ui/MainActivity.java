@@ -56,7 +56,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         super.onCreate(savedInstanceState);
 
         // Enable Local Datastore.
-        //Parse.enableLocalDatastore(this);
+        Parse.enableLocalDatastore(this);
 
         //Initialize the connection to the parse database.
         Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
