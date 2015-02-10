@@ -24,7 +24,7 @@
     <string name="choose">Choose</string>
 
     <!-- AuthenticatorActivity -->
-    <string name="label_email_address">Email Address</string>
+    <string name="label_email_address_or_username">Username or Email Address</string>
     <string name="label_password">Password</string>
     <string name="label_sign_in">Sign In</string>
     <string name="label_register">Register</string>
@@ -55,6 +55,7 @@
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
     <string name="label_username">Username</string>
+    <string name="label_email_address">Email Address</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
