@@ -280,7 +280,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
              */
             if (emailOrUsername.contains("@")){
                 ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-                userQuery.whereEqualTo("username", "jjackson");
+                userQuery.whereEqualTo("email", emailOrUsername);
 
                 try {
                     List<ParseUser> results = userQuery.find();
