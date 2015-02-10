@@ -11,8 +11,7 @@ import android.view.MenuItem;
 import com.notify.app.mobile.R;
 
 
-public class Test_Activity extends BootstrapFragmentActivity {
-
+public class TestActivity extends BootstrapFragmentActivity {
 
 
     @Override
@@ -47,7 +46,6 @@ public class Test_Activity extends BootstrapFragmentActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
@@ -72,7 +70,7 @@ public class Test_Activity extends BootstrapFragmentActivity {
                     NavUtils.navigateUpTo(this, upIntent);
                 }
                 return true;
-                default:
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }
