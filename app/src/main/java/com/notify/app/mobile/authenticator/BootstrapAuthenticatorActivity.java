@@ -276,9 +276,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             emailOrUsername = emailOrUsernameText.getText().toString();
         }
 
-        /**
-         * Checks to see if the account name entered is an email address or username.
-         */
+//        /**
+//         * Checks to see if the account name entered is an email address or username.
+//         */
 //        if (emailOrUsername.contains("@")){
 //            ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
 //            userQuery.whereEqualTo("email", emailOrUsername);
