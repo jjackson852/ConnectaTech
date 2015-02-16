@@ -1,6 +1,6 @@
 
 package com.notify.app.mobile.ui;
-//james commit
+
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -27,7 +27,6 @@ import javax.inject.Inject;
 
 import butterknife.Views;
 
-
 /**
  * Initial activity for the application.
  *
@@ -35,8 +34,6 @@ import butterknife.Views;
  * {@link com.notify.app.mobile.authenticator.ApiKeyProvider#getAuthKey(android.app.Activity)}
  */
 public class MainActivity extends BootstrapFragmentActivity {
-
-    //This is a test- Adam
 
     @Inject protected BootstrapServiceProvider serviceProvider;
 
