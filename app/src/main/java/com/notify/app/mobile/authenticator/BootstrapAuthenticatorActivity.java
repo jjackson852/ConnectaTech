@@ -87,7 +87,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
 
     private AccountManager accountManager;
-    private ParseUser emailUser;
+    //private ParseUser emailUser;
+
+    private Boolean datastoreIsEnabled = false;
 
     @Inject BootstrapService bootstrapService;
     @Inject Bus bus;
@@ -147,6 +149,8 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         accountManager = AccountManager.get(this);
 
+
+
         final Intent intent = getIntent();
         emailOrUsername = intent.getStringExtra(PARAM_USERNAME);
         authTokenType = intent.getStringExtra(PARAM_AUTHTOKEN_TYPE);
@@ -155,6 +159,17 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         requestNewAccount = emailOrUsername == null;
 
         setContentView(layout.login_activity);
+
+        if (datastoreIsEnabled = false) {
+            //Enable Local Datastore.
+            Parse.enableLocalDatastore(this.getApplication());
+
+
+            //Initialize the connection to the parse database.
+            Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
+
+            datastoreIsEnabled = true;
+        }
 
         /**
          * Attaches the Register button listener to the xml button

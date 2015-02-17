@@ -39,6 +39,8 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     private boolean userHasAuthenticated = false;
 
+    private boolean isProvider = false;
+
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private CharSequence drawerTitle;
@@ -51,13 +53,6 @@ public class MainActivity extends BootstrapFragmentActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         super.onCreate(savedInstanceState);
-
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        //Initialize the connection to the parse database.
-        Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
-
 
         if(isTablet()) {
             setContentView(R.layout.main_activity_tablet);
@@ -140,11 +135,16 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     private void initScreen() {
         if (userHasAuthenticated) {
+            Bundle carouselArgs = new Bundle();
+            carouselArgs.putBoolean("isProvider", isProvider);
+
+            CarouselFragment carousel = new CarouselFragment();
+            carousel.setArguments(carouselArgs);
 
             Ln.d("Foo");
             final FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, new CarouselFragment())
+                    .replace(R.id.container, carousel)
                     .commit();
         }
 
