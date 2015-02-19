@@ -31,6 +31,7 @@ public class NewsActivity extends BootstrapActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         setTitle(newsItem.getTitle());
+        setTitle(R.string.trial_news);
 
         title.setText(newsItem.getTitle());
         content.setText(newsItem.getContent());

@@ -1,15 +1,10 @@
 package com.notify.app.mobile.authenticator;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.notify.app.mobile.R.id;
+import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.layout;
-import com.parse.ParseAnalytics;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
+import com.notify.app.mobile.ui.TestActivityFragment;
 
 /**
  * Activity to create a new account on the parse database.
@@ -17,68 +12,33 @@ import com.parse.SignUpCallback;
 public class RegisterActivity extends ActionBarAccountAuthenticatorActivity {
 
 
-    private View.OnClickListener submitUserListener = new View.OnClickListener() {
-        public void onClick(View v) {
-
-            //Create the user.
-            handleRegister();
-
-            //Go back to login activity.
-            finish();
-
-        }
-    };
-
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        setContentView(layout.register_activity_new);
+        setContentView(layout.register_pages);
 
-        /**
-         * Attaches the SubmitUser button listener to the xml button.
-         */
-        Button submitUserButton = (Button)findViewById(id.b_registerSub);
-        submitUserButton.setOnClickListener(submitUserListener);
+        if (findViewById(R.id.fragment_container) != null) {
 
-    }
-
-    /**
-     * Handles onClick event on the Submit button. Sends username/password to
-     * the server for account creation.
-     */
-    public void handleRegister() {
-        ParseAnalytics.trackAppOpened(getIntent());
-
-        EditText regUserText;
-        EditText regPasswordText;
-        EditText regFNameText;
-        EditText regLNameText;
-
-        regUserText = (EditText) findViewById(id.et_reg_email);
-        regPasswordText = (EditText) findViewById(id.et_reg_password);
-        regFNameText = (EditText) findViewById(id.et_reg_first_name);
-        regLNameText = (EditText) findViewById(id.et_reg_last_name);
-
-        ParseUser user = new ParseUser();
-        user.setUsername(String.valueOf(regUserText.getText()));
-        user.setPassword(String.valueOf(regPasswordText.getText()));
-
-        user.put("firstName", String.valueOf(regFNameText.getText()));
-        user.put("lastName", String.valueOf(regLNameText.getText()));
-
-        user.signUpInBackground(new SignUpCallback() {
-
-            public void done(com.parse.ParseException e) {
-                if (e == null) {
-                    // Hooray! Let them use the app now.
-                } else {
-                    // Sign up didn't succeed. Look at the ParseException
-                    // to figure out what went wrong
-                }
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (bundle != null) {
+                return;
             }
 
-        });
+            // Create a new Fragment to be placed in the activity layout
+            CustomerRegisterFragment firstFragment = new CustomerRegisterFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, firstFragment).commit();
+        }
+
     }
 
 }

@@ -83,7 +83,7 @@ public class BootstrapTimerActivity extends BootstrapFragmentActivity implements
             case android.R.id.home:
                 final Intent upIntent = NavUtils.getParentActivityIntent(this);
                 // If parent is not properly defined in AndroidManifest.xml upIntent will be null
-                // TODO hanlde upIntent == null
+                // TODO handle upIntent == null
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
                     // This activity is NOT part of this app's task, so create a new task
                     // when navigating up, with a synthesized back stack.
@@ -99,7 +99,7 @@ public class BootstrapTimerActivity extends BootstrapFragmentActivity implements
                 }
                 return true;
                 default:
-                return super.onOptionsItemSelected(item);
+                    return super.onOptionsItemSelected(item);
         }
     }
 

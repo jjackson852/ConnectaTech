@@ -2,6 +2,7 @@ package com.notify.app.mobile.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,10 @@ public class CarouselFragment extends Fragment {
     @InjectView(R.id.vp_pages)
     protected ViewPager pager;
 
+    public CarouselFragment(){
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_carousel, container, false);
@@ -35,7 +40,18 @@ public class CarouselFragment extends Fragment {
 
         Views.inject(this, getView());
 
-        pager.setAdapter(new BootstrapPagerAdapter(getResources(), getChildFragmentManager()));
+        Boolean isProvider = getArguments().getBoolean("isProvider");
+
+        FragmentPagerAdapter custOrProviderLanding;
+
+        if (isProvider) {
+            custOrProviderLanding = new BootstrapPagerAdapter(getResources(), getChildFragmentManager());
+        }
+        else{
+            custOrProviderLanding = new BootstrapPagerAdapter_Cust(getResources(), getChildFragmentManager());
+        }
+
+        pager.setAdapter(custOrProviderLanding);
         indicator.setViewPager(pager);
         pager.setCurrentItem(1);
 

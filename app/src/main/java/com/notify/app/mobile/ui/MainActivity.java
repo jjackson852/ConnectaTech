@@ -1,6 +1,6 @@
 
 package com.notify.app.mobile.ui;
-//james commit
+
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -27,7 +27,6 @@ import javax.inject.Inject;
 
 import butterknife.Views;
 
-
 /**
  * Initial activity for the application.
  *
@@ -36,11 +35,11 @@ import butterknife.Views;
  */
 public class MainActivity extends BootstrapFragmentActivity {
 
-    //This is a test- Adam
-
     @Inject protected BootstrapServiceProvider serviceProvider;
 
     private boolean userHasAuthenticated = false;
+
+    private boolean isProvider = false;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -54,13 +53,6 @@ public class MainActivity extends BootstrapFragmentActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         super.onCreate(savedInstanceState);
-
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        //Initialize the connection to the parse database.
-        Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
-
 
         if(isTablet()) {
             setContentView(R.layout.main_activity_tablet);
@@ -143,11 +135,16 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     private void initScreen() {
         if (userHasAuthenticated) {
+            Bundle carouselArgs = new Bundle();
+            carouselArgs.putBoolean("isProvider", isProvider);
+
+            CarouselFragment carousel = new CarouselFragment();
+            carousel.setArguments(carouselArgs);
 
             Ln.d("Foo");
             final FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, new CarouselFragment())
+                    .replace(R.id.container, carousel)
                     .commit();
         }
 
@@ -193,7 +190,12 @@ public class MainActivity extends BootstrapFragmentActivity {
                 //menuDrawer.toggleMenu();
                 return true;
             case R.id.timer:
-                navigateToTimer();
+                //navigateToTimer();
+                startActivity(new Intent(this, BootstrapTimerActivity.class));
+                return true;
+            case R.id.test:
+                startActivity(new Intent(this, TestActivity.class));
+                //navigateToTest();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -201,9 +203,18 @@ public class MainActivity extends BootstrapFragmentActivity {
     }
 
     private void navigateToTimer() {
-        final Intent i = new Intent(this, BootstrapTimerActivity.class);
-        startActivity(i);
+        // final Intent i = new Intent(this, BootstrapTimerActivity.class);
+        //startActivity(i);
+        //startActivity(new Intent(this, BootstrapTimerActivity.class));
     }
+
+    private void navigateToTest() {
+        //     final Intent i = new Intent(this, Test_Activity.class);
+        //     startActivity(i);
+        //     startActivity(new Intent(this, Test_Activity.class));
+    }
+
+
 
     @Subscribe
     public void onNavigationItemSelected(NavItemSelectedEvent event) {
@@ -217,7 +228,13 @@ public class MainActivity extends BootstrapFragmentActivity {
                 break;
             case 1:
                 // Timer
-                navigateToTimer();
+                startActivity(new Intent(this, BootstrapTimerActivity.class));
+                //navigateToTimer();
+                break;
+            case 2:
+                // Test
+                // navigateToTest();
+                startActivity(new Intent(this, TestActivity.class));
                 break;
         }
     }
