@@ -61,6 +61,7 @@ public class UserListFragment extends ItemListFragment<User> {
     public Loader<List<User>> onCreateLoader(final int id, final Bundle args) {
         final List<User> initialItems = items;
         return new ThrowableLoader<List<User>>(getActivity(), items) {
+
             @Override
             public List<User> loadData() throws Exception {
 
@@ -85,7 +86,6 @@ public class UserListFragment extends ItemListFragment<User> {
                 }
             }
         };
-
     }
 
     public void onListItemClick(final ListView l, final View v, final int position, final long id) {

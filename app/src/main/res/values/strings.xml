@@ -18,6 +18,7 @@
     <string name="error_loading_users">Loading users failed</string>
     <string name="error_loading_news">Loading news failed</string>
     <string name="error_loading_checkins">Loading check-ins failed</string>
+    <string name="error_loading_experiment">Loading experiment failed</string>
     <string name="no_users">No Users</string>
     <string name="no_news">No News</string>
     <string name="avatar">Avatar</string>
