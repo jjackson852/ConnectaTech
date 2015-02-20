@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.authenticator.CustomerRegisterFragment;
 import com.notify.app.mobile.authenticator.TimerTestFragment;
 
 //import dagger.Module;
@@ -75,7 +76,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_checkins);
             case 3:
-                return resources.getString(R.string.title_test);
+                return resources.getString(R.string.trial_news);
             case 4:
                 return "Experiment";
             default:
