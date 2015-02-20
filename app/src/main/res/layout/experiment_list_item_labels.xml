@@ -18,4 +18,11 @@
         android:textColor="@color/table_text_header"
         android:textStyle="bold" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Experimental Button"
+        android:id="@+id/stupidbtn"
+        android:layout_gravity="center_vertical" />
+
 </LinearLayout>
