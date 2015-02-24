@@ -12,8 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+
 import com.notify.app.mobile.R;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -26,7 +25,7 @@ public class ExperimentListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View rootView = inflater.inflate(R.layout.experiment_list_item_labels, container, false);
+        View rootView = inflater.inflate(R.layout.experiment_items, container, false);
         button = (Button) rootView.findViewById(R.id.experimentbtn);
 
         // Capture button clicks
