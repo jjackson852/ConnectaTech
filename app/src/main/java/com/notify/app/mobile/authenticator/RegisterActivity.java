@@ -1,5 +1,6 @@
 package com.notify.app.mobile.authenticator;
 
+import android.app.Fragment;
 import android.os.Bundle;
 
 import com.notify.app.mobile.R;
@@ -27,18 +28,34 @@ public class RegisterActivity extends ActionBarAccountAuthenticatorActivity {
                 return;
             }
 
+
             // Create a new Fragment to be placed in the activity layout
-            CustomerRegisterFragment firstFragment = new CustomerRegisterFragment();
+
+            CustomerRegisterFragment custFragment = new CustomerRegisterFragment();
+            ProviderRegisterFragment provFragment = new ProviderRegisterFragment();
+
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
-            firstFragment.setArguments(getIntent().getExtras());
+            if(getIntent().getExtras().getBoolean("isProvider") == true){
+                provFragment.setArguments(getIntent().getExtras());
 
-            // Add the fragment to the 'fragment_container' FrameLayout
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, firstFragment).commit();
+                // Add the fragment to the 'fragment_container' FrameLayout
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container, provFragment).commit();
+            }
+            else{
+                custFragment.setArguments(getIntent().getExtras());
+
+                // Add the fragment to the 'fragment_container' FrameLayout
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container, custFragment).commit();
+            }
+
         }
 
+
     }
+
 
 }

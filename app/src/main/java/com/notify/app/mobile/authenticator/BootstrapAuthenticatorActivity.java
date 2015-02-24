@@ -5,6 +5,8 @@ import static android.accounts.AccountManager.KEY_ACCOUNT_NAME;
 import static android.accounts.AccountManager.KEY_ACCOUNT_TYPE;
 import static android.accounts.AccountManager.KEY_AUTHTOKEN;
 import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static android.view.KeyEvent.ACTION_DOWN;
 import static android.view.KeyEvent.KEYCODE_ENTER;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
@@ -17,7 +19,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -27,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
@@ -37,14 +39,14 @@ import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.core.User;
 import com.notify.app.mobile.events.UnAuthorizedErrorEvent;
+import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.TextWatcherAdapter;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.github.kevinsawicki.wishlist.Toaster;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
+import com.parse.LogInCallback;
 import com.parse.Parse;
-import com.parse.ParseObject;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.squareup.otto.Bus;
@@ -52,7 +54,6 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,12 +85,13 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      * PARAM_AUTHTOKEN_TYPE
      */
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
-
+    public static ParseUser user2 = null;
 
     private AccountManager accountManager;
     //private ParseUser emailUser;
 
     private Boolean datastoreIsEnabled = false;
+    private Boolean isProvider = false;
 
     @Inject BootstrapService bootstrapService;
     @Inject Bus bus;
@@ -133,9 +135,19 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
     /**
      * Button listener for the Register button.
      */
-    private View.OnClickListener regButtonListener = new View.OnClickListener() {
+    private View.OnClickListener regCustButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
 
+            isProvider = false;
+            navigateToRegister();
+
+        }
+    };
+
+    private View.OnClickListener regProvButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            isProvider = true;
             navigateToRegister();
 
         }
@@ -160,22 +172,19 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         setContentView(layout.login_activity);
 
-        if (datastoreIsEnabled = false) {
-            //Enable Local Datastore.
-            Parse.enableLocalDatastore(this.getApplication());
+       // if (datastoreIsEnabled == false) {
 
 
-            //Initialize the connection to the parse database.
-            Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
-
-            datastoreIsEnabled = true;
-        }
+          //  datastoreIsEnabled = true;
+       // }
 
         /**
          * Attaches the Register button listener to the xml button
          */
-        Button regNewUserButton = (Button)findViewById(id.b_regAsNewUser);
-        regNewUserButton.setOnClickListener(regButtonListener);
+        Button regNewCustButton = (Button)findViewById(id.b_regAsNewCust);
+        Button regNewProvButton = (Button)findViewById(id.b_regAsNewProv);
+        regNewCustButton.setOnClickListener(regCustButtonListener);
+        regNewProvButton.setOnClickListener(regProvButtonListener);
 
 
         Views.inject(this);
@@ -305,6 +314,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                 }
 
             }
+
         }
 
 
@@ -418,7 +428,14 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         intent.putExtra(KEY_BOOLEAN_RESULT, result);
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
+
+        final Intent homeIntent = new Intent(this, MainActivity.class);
         finish();
+
+        homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(homeIntent);
+
+
     }
 
     /**
@@ -450,7 +467,43 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
-        finish();
+
+        final Intent homeIntent = new Intent(this, MainActivity.class);//
+
+        ParseUser.logInInBackground(emailOrUsername, password,
+                new LogInCallback() {
+                    public void done(ParseUser user, ParseException e) {
+                        if (user != null) {
+                            // If user exist and authenticated, send user to Welcome.class
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Successfully Logged in",
+                                    Toast.LENGTH_LONG).show();
+                                    user2 = user;
+
+                                    finish();
+
+                                    homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(homeIntent);
+                        } else {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "No such user exist, please signup",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        //user = ParseUser.getCurrentUser();
+        user2.pinInBackground();
+//        //if (user == null){
+        //final Intent homeIntent = new Intent(this, MainActivity.class);
+       // homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+         //   finish();
+
+       // startActivity(homeIntent);
+//        //}
+
     }
 
     /**
@@ -495,6 +548,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
     private void navigateToRegister() {
         final Intent i = new Intent(this, RegisterActivity.class);
+        i.putExtra("isProvider", isProvider);
         startActivity(i);
     }
 

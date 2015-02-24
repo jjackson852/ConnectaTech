@@ -2,6 +2,7 @@
 package com.notify.app.mobile.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
+import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.github.kevinsawicki.wishlist.Toaster;
@@ -31,6 +33,9 @@ import com.github.kevinsawicki.wishlist.ViewUtils;
 
 import java.util.Collections;
 import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 
 
 /**
@@ -161,6 +166,7 @@ public abstract class ItemListFragment<E> extends Fragment
                 return true;
             case R.id.logout:
                 logout();
+                getActivity().finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -170,6 +176,7 @@ public abstract class ItemListFragment<E> extends Fragment
     protected abstract LogoutService getLogoutService();
 
     private void logout() {
+
         getLogoutService().logout(new Runnable() {
             @Override
             public void run() {
@@ -177,7 +184,10 @@ public abstract class ItemListFragment<E> extends Fragment
                 // and when it finds none the user will be requested to log in again.
                 forceRefresh();
             }
+
         });
+
+
     }
 
     /**

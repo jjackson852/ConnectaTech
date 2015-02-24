@@ -27,8 +27,9 @@
     <string name="label_email_address_or_username">Username or Email Address</string>
     <string name="label_password">Password</string>
     <string name="label_sign_in">Sign In</string>
-    <string name="label_register">Register</string>
-    <string name="label_sign_in_as_guest">...Or Continue as Guest</string>
+    <string name="label_register_cust">Register as Customer</string>
+    <string name="label_register_prov">Register as Provider</string>
+    <string name="label_sign_in_as_guest">Continue as Guest</string>
     <string name="message_signing_in">Signing in…</string>
     <string name="blank_field_warning">Please populate this field</string>
     <string name="signup_link">New to Bootstrap? &lt;a href=http://www.androidbootstrap.com>Click here&lt;/a> to learn more.</string>
@@ -48,9 +49,11 @@
     <string name="navigation_drawer_close">Drawer Close</string>
     <string name="title_home">Home</string>
     <string name="title_activity_test_">Test Activity</string>
+    <string name="title_activity_providerheck">You are a provider!</string>
 
     <!-- RegisterActivity -->
-    <string name="register_header">Create your profile.</string>
+    <string name="register_header_cust">Create your profile.</string>
+    <string name="register_header_prov">Become a provider.</string>
     <string name="label_submit">Submit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>

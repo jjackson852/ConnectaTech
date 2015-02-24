@@ -17,7 +17,7 @@ import com.notify.app.mobile.authenticator.TimerTestFragment;
 /**
  * Pager adapter
  */
-public class BootstrapPagerAdapter extends FragmentPagerAdapter {
+public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
 
     private final Resources resources;
 
@@ -27,7 +27,7 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
      * @param resources
      * @param fragmentManager
      */
-    public BootstrapPagerAdapter(final Resources resources, final FragmentManager fragmentManager) {
+    public BootstrapPagerAdapter_Prov(final Resources resources, final FragmentManager fragmentManager) {
         super(fragmentManager);
         this.resources = resources;
     }
@@ -83,7 +83,7 @@ public class BootstrapPagerAdapter extends FragmentPagerAdapter {
             case 4:
                 return resources.getString(R.string.register_tab_title);
             case 5:
-                return resources.getString(R.string.title_activity_test_);
+                return resources.getString(R.string.title_activity_providerheck);
             default:
                 return null;
         }

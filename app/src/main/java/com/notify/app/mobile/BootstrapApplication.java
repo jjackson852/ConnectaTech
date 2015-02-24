@@ -6,6 +6,9 @@ import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
 
+import com.notify.app.mobile.core.Constants;
+import com.parse.Parse;
+
 /**
  * connectatech application
  */
@@ -37,6 +40,13 @@ public class BootstrapApplication extends Application {
 
         // Perform injection
         Injector.init(getRootModule(), this);
+
+        //Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+
+        //Initialize the connection to the parse database.
+        Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
 
     }
 
