@@ -28,7 +28,7 @@
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="@string/register_header"
+                android:text="@string/register_header_cust"
                 android:id="@+id/registerTitle"
                 android:background="@drawable/alternate_background_1"
                 android:textColor="@color/text_activity_header"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/b_registerSub"
+                android:id="@+id/b_registerSub_cust"
                 style="@style/ShadowText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

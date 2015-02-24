@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
@@ -21,7 +23,10 @@ import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.Parse;
+import com.parse.ParseUser;
 import com.squareup.otto.Subscribe;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,7 +44,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     private boolean userHasAuthenticated = false;
 
-    private boolean isProvider = false;
+    private boolean isProvider = true;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -135,9 +140,24 @@ public class MainActivity extends BootstrapFragmentActivity {
 
     private void initScreen() {
         if (userHasAuthenticated) {
-            Bundle carouselArgs = new Bundle();
-            carouselArgs.putBoolean("isProvider", isProvider);
+           // try {
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                isProvider = currentUser.getBoolean("isProvider");
+                ParseUser.unpinAllInBackground();
+           // } catch (com.parse.ParseException e) {
+          //      e.printStackTrace();
+            //}
 
+            //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
+
+
+
+
+//
+            Bundle carouselArgs = new Bundle();
+//
+            carouselArgs.putBoolean("isProvider", isProvider);
+//
             CarouselFragment carousel = new CarouselFragment();
             carousel.setArguments(carouselArgs);
 

@@ -14,7 +14,7 @@ import com.notify.app.mobile.R;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-public class CustomerRegisterFragment extends Fragment implements View.OnClickListener {
+public class ProviderRegisterFragment extends Fragment implements View.OnClickListener {
 
     View view;
 
@@ -28,9 +28,9 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.register_activity_cust, container, false);
+        view = inflater.inflate(R.layout.register_activity_prov, container, false);
 
-        Button submitUserButton = (Button) view.findViewById(R.id.b_registerSub_cust);
+        Button submitUserButton = (Button) view.findViewById(R.id.b_registerSub_prov);
         submitUserButton.setOnClickListener(this);
 
         // Inflate the layout for this fragment
@@ -41,7 +41,7 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         //do what you want to do when button is clicked
         switch (v.getId()) {
-            case R.id.b_registerSub_cust:
+            case R.id.b_registerSub_prov:
                 //Create the user.
                 handleRegister();
 
@@ -125,6 +125,7 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
 
         user.put("firstName", regFNameText);
         user.put("lastName", regLNameText);
+        user.put("isProvider", true);
 
         user.signUpInBackground(new SignUpCallback() {
 

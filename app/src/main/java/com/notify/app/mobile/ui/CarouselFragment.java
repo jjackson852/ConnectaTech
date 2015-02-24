@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +43,17 @@ public class CarouselFragment extends Fragment {
 
         Boolean isProvider = getArguments().getBoolean("isProvider");
 
-        FragmentPagerAdapter custOrProviderLanding;
+        BootstrapPagerAdapter_Cust custLanding = new BootstrapPagerAdapter_Cust(getResources(), getChildFragmentManager());
+        BootstrapPagerAdapter_Prov provLanding = new BootstrapPagerAdapter_Prov(getResources(), getChildFragmentManager());
 
-        if (isProvider) {
-            custOrProviderLanding = new BootstrapPagerAdapter(getResources(), getChildFragmentManager());
+        if (isProvider == true) {
+            pager.setAdapter(provLanding);
+
         }
         else{
-            custOrProviderLanding = new BootstrapPagerAdapter_Cust(getResources(), getChildFragmentManager());
+            pager.setAdapter(custLanding);
         }
 
-        pager.setAdapter(custOrProviderLanding);
         indicator.setViewPager(pager);
         pager.setCurrentItem(1);
 

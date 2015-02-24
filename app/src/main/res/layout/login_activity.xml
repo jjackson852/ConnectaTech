@@ -7,8 +7,8 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:layout_width="188dp"
-        android:layout_height="163dp"
+        android:layout_width="168dp"
+        android:layout_height="143dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo_full_alpha" />
@@ -80,20 +80,42 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Button
-                style="@style/ShadowText"
-                android:id="@+id/b_regAsNewUser"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button_background_states"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/label_register"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+                <Button
+                    style="@style/ShadowText"
+                    android:id="@+id/b_regAsNewCust"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/button_background_states"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/label_register_cust"
+                    android:textColor="@color/text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"/>
+
+                <Button
+                    style="@style/ShadowText"
+                    android:id="@+id/b_regAsNewProv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background_states"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/label_register_prov"
+                    android:textColor="@color/text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"/>
+            </LinearLayout>
 
             <Button
                 style="@style/ShadowText"
@@ -109,7 +131,8 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"/>/>
         </LinearLayout>
     </ScrollView>
 
