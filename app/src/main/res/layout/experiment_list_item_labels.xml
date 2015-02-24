@@ -7,22 +7,14 @@
     android:paddingBottom="5dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="5dp" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="@string/user_column"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/table_text_header"
-        android:textStyle="bold" />
+    android:paddingTop="5dp"
+    android:weightSum="1">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Experimental Button"
         android:id="@+id/experimentbtn"
-        android:layout_gravity="center_vertical" />
+        android:layout_weight="0.85" />
 
 </LinearLayout>

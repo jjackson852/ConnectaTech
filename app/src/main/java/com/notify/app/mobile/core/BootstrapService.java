@@ -40,10 +40,6 @@ public class BootstrapService {
         return getRestAdapter().create(CheckInService.class);
     }
 
-    private ExperimentService getExperimentService() {
-        return getRestAdapter().create(ExperimentService.class);
-    }
-
     private RestAdapter getRestAdapter() {
         return restAdapter;
     }
@@ -67,10 +63,6 @@ public class BootstrapService {
      */
     public List<CheckIn> getCheckIns() {
        return getCheckInService().getCheckIns().getResults();
-    }
-
-    public List<Experiment> getExperiment(){
-        return getExperimentService().getExperiment().getResults();
     }
 
     public User authenticate(String email, String password) {
