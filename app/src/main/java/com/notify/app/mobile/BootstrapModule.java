@@ -6,6 +6,7 @@ import android.content.Context;
 import com.notify.app.mobile.authenticator.ApiKeyProvider;
 import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.authenticator.TimerTestFragment;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.core.PostFromAnyThreadBus;
@@ -54,7 +55,8 @@ import retrofit.converter.GsonConverter;
                 TrialListFragment.class,
                 UserActivity.class,
                 UserListFragment.class,
-                TimerService.class
+                TimerService.class,
+                TimerTestFragment.class
         }
 )
 public class BootstrapModule {
