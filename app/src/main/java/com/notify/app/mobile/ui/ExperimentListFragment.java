@@ -1,10 +1,16 @@
 package com.notify.app.mobile.ui;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -13,27 +19,32 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import java.io.ByteArrayOutputStream;
 
-public class ExperimentListFragment extends Fragment {
+public class ExperimentListFragment extends Fragment{
 
     Button button;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Get the view from main.xml
-        setContentView(R.layout.experiment_list_item_labels);
-
-        // Locate the button in main.xml
-        button = (Button) findViewById(R.id.stupidbtn);
+        View rootView = inflater.inflate(R.layout.experiment_list_item_labels, container, false);
+        button = (Button) rootView.findViewById(R.id.experimentbtn);
 
         // Capture button clicks
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View arg0) {
-                // Locate the image from internal storage
-                ImageView imageView = (ImageView) findViewById(R.id.imgView);
-                Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
-                imageView.setImageBitmap(bitmap);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                Uri selectedImage = intent.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String filePath = cursor.getString(columnIndex);
+                cursor.close();
+                //ImageView imageView = (ImageView) findViewById(R.id.imgView);
+                Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                //imageView.setImageBitmap(bitmap);
                 // Convert it to byte
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 // Compress image to lower quality scale 1 - 100
@@ -59,4 +70,6 @@ public class ExperimentListFragment extends Fragment {
 
             }
         });
+        return rootView;
+    }
 }

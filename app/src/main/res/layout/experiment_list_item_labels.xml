@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Experimental Button"
-        android:id="@+id/stupidbtn"
+        android:id="@+id/experimentbtn"
         android:layout_gravity="center_vertical" />
 
 </LinearLayout>
