@@ -35,6 +35,9 @@ public class BootstrapService {
     private NewsService getNewsService() {
         return getRestAdapter().create(NewsService.class);
     }
+    private ExampleService getExampleService() {
+        return getRestAdapter().create(ExampleService.class);
+    }
 
     private CheckInService getCheckInService() {
         return getRestAdapter().create(CheckInService.class);
@@ -63,6 +66,13 @@ public class BootstrapService {
      */
     public List<CheckIn> getCheckIns() {
        return getCheckInService().getCheckIns().getResults();
+    }
+
+    /**
+     * Get all bootstrap Home Data that exists on Parse.com
+     */
+    public List<Example> getExample() {
+        return  getExampleService().getExample().getResults();
     }
 
     public User authenticate(String email, String password) {

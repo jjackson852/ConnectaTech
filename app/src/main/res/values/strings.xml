@@ -62,6 +62,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_rating">Rating</string>
     <string name="rating_title">Rating</string>
+    <string name="title_example">Example</string>
+    <string name="example_news">example_news</string>
+    <string name="rating_activity">rating_activity</string>
+
 </resources>

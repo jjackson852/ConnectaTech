@@ -25,6 +25,12 @@
     </item>
 
     <item
+        android:id="@+id/test"
+        bootstrap:showAsAction="always"
+        android:title="@string/title_test">
+    </item>
+
+    <item
         android:id="@+id/logout"
         bootstrap:showAsAction="never"
         android:title="@string/logout_action" >

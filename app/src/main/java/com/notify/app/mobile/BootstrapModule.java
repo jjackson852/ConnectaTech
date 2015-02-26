@@ -6,9 +6,9 @@ import android.content.Context;
 import com.notify.app.mobile.authenticator.ApiKeyProvider;
 import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
-import com.notify.app.mobile.authenticator.TimerTestFragment;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
+import com.notify.app.mobile.core.Example;
 import com.notify.app.mobile.core.PostFromAnyThreadBus;
 import com.notify.app.mobile.core.RestAdapterRequestInterceptor;
 import com.notify.app.mobile.core.RestErrorHandler;
@@ -16,6 +16,8 @@ import com.notify.app.mobile.core.TimerService;
 import com.notify.app.mobile.core.UserAgentProvider;
 import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
+import com.notify.app.mobile.ui.ExampleActivity;
+import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
 import com.notify.app.mobile.ui.NewsActivity;
@@ -49,16 +51,17 @@ import retrofit.converter.GsonConverter;
                 MainActivity.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,
+                ExampleActivity.class,
+                ExampleListFragment.class,
+                RatingActivity.class,
                 NavigationDrawerFragment.class,
                 NewsActivity.class,
                 NewsListFragment.class,
                 TestActivity.class,
-                RatingActivity.class,
                 TrialListFragment.class,
                 UserActivity.class,
                 UserListFragment.class,
-                TimerService.class,
-                TimerTestFragment.class
+                TimerService.class
         }
 )
 public class BootstrapModule {

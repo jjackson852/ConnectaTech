@@ -8,6 +8,7 @@ import static org.mockito.Mockito.doReturn;
 
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.CheckIn;
+import com.notify.app.mobile.core.Example;
 import com.notify.app.mobile.core.News;
 import com.notify.app.mobile.core.User;
 import com.notify.app.mobile.core.UserAgentProvider;
@@ -82,9 +83,17 @@ public class BootstrapServiceTest {
      * @throws IOException
      */
     @Test
-    public void getContentEmptyResponse() throws IOException {
+     public void getContentEmptyResponse() throws IOException {
         doReturn(createReader("")).when(request).bufferedReader();
         List<News> content = service.getNews();
+        assertNotNull(content);
+        assertTrue(content.isEmpty());
+    }
+
+    @Test
+    public void getExampleEmptyResponse() throws IOException {
+        doReturn(createReader("")).when(request).bufferedReader();
+        List<Example> content = service.getExample();
         assertNotNull(content);
         assertTrue(content.isEmpty());
     }
