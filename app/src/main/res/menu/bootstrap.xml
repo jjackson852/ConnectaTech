@@ -19,9 +19,9 @@
     </item>
 
     <item
-        android:id="@+id/test"
+        android:id="@+id/rating"
         bootstrap:showAsAction="always"
-        android:title="@string/title_test">
+        android:title="@string/rating_title">
     </item>
 
     <item

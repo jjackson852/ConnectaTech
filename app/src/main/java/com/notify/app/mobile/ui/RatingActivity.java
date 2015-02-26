@@ -1,36 +1,83 @@
 package com.notify.app.mobile.ui;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
-//import android.view.Menu;
-import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.notify.app.mobile.R;
-import com.notify.app.mobile.core.News;
-
-
+import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 
+/**
+ * Created by theblackfu on 2/25/2015.
+ */
+public class RatingActivity extends BootstrapActivity{
 
-public class TestActivity extends BootstrapActivity {
+    private RatingBar ratingBar;
+    private TextView txtRatingValue;
+    private Button btnSubmit;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_activity);
-        setTitle(R.string.title_test);
+        setContentView(R.layout.rating_actvity);
+
+        Injector.inject(this);
+        setTitle(R.string.rating_title);
+        addListenerOnRatingBar();
+        addListenerOnButton();
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
     }
 
+    public void addListenerOnRatingBar() {
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        txtRatingValue = (TextView) findViewById(R.id.txtRatingValue);
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+
+                txtRatingValue.setText(String.valueOf(rating));
+
+            }
+        });
+    }
+
+    public void addListenerOnButton() {
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+
+        //if click on me, then display the current rating value.
+        btnSubmit.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(RatingActivity.this,
+                        String.valueOf(ratingBar.getRating()),
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
@@ -61,4 +108,3 @@ public class TestActivity extends BootstrapActivity {
         }
     }
 }
-

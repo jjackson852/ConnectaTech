@@ -110,7 +110,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[] {
                         getString(R.string.title_home),
                         getString(R.string.title_timer),
-                        getString(R.string.title_test)
+                        getString(R.string.rating_title)
                 }));
         drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;

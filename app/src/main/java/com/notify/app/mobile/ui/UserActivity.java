@@ -17,6 +17,7 @@ public class UserActivity extends BootstrapActivity {
     @InjectView(R.id.iv_avatar) protected ImageView avatar;
     @InjectView(R.id.tv_name) protected TextView name;
 
+
     private User user;
 
     @Override
@@ -37,6 +38,7 @@ public class UserActivity extends BootstrapActivity {
                 .into(avatar);
 
         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+
 
     }
 
