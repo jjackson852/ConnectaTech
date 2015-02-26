@@ -189,8 +189,9 @@ Button button;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LayoutInflater inflater = (LayoutInflater) getS(Context.LAYOUT_INFLATER_SERVICE);
-        View theInflatedView = inflater.inflate(R.layout.experiment_items);
+        //LayoutInflater inflater = (LayoutInflater) getLayoutInflater(getActivity());
+        //View theInflatedView = inflater.inflate(R.layout.experiment_items);
+        view.inflate();
         setContentView(R.layout.experiment_list_item);
         btnClick();
     }
