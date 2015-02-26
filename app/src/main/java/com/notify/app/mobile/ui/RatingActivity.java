@@ -25,7 +25,7 @@ public class RatingActivity extends BootstrapActivity{
     private TextView txtRatingValue;
     private Button btnSubmit;
 
-//test
+//test1
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
