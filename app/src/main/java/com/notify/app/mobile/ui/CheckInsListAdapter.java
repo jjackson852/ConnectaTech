@@ -7,7 +7,6 @@ import com.notify.app.mobile.core.CheckIn;
 
 import java.util.List;
 
-
 public class CheckInsListAdapter extends AlternatingColorListAdapter<CheckIn> {
     /**
      * @param inflater

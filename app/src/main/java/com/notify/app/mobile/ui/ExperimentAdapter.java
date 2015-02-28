@@ -7,9 +7,6 @@ import com.notify.app.mobile.core.Experiment;
 
 import java.util.List;
 
-/**
- * Created by Martinez on 2/28/2015.
- */
 public class ExperimentAdapter extends AlternatingColorListAdapter<Experiment> {
 
     public ExperimentAdapter(final LayoutInflater inflater, final List<Experiment> items) {
