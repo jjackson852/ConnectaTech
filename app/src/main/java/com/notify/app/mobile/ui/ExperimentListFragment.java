@@ -1,30 +1,65 @@
 package com.notify.app.mobile.ui;
 
+import android.accounts.OperationCanceledException;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.support.v4.content.Loader;
 
+import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
+import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.Date;
+import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.core.Experiment;
+import com.notify.app.mobile.ui.ExperimentAdapter;
+import com.notify.app.mobile.ui.ItemListFragment;
+import com.notify.app.mobile.ui.ThrowableLoader;
 
-public class ExperimentListFragment extends Fragment{
+import java.util.Collections;
+import java.util.List;
+
+import javax.inject.Inject;
+
+public class ExperimentListFragment extends ItemListFragment<Experiment> {
+
+    @Inject protected LogoutService logoutService;
+    @Inject protected BootstrapServiceProvider serviceProvider;
+
+    @Override
+    protected SingleTypeAdapter<Experiment> createAdapter(List<Experiment> items) {
+        return new ExperimentAdapter(getActivity().getLayoutInflater(), items);
+    }
+
+    @Override
+    protected int getErrorMessage(final Exception exception) {
+        return R.string.error_loading_experiment;
+    }
+
+    @Override
+    protected LogoutService getLogoutService() {
+        return logoutService;
+    }
+
+    @Override
+    public Loader<List<Experiment>> onCreateLoader(final int id, final Bundle args) {
+        final List<Experiment> initialItems = items;
+        return new ThrowableLoader<List<Experiment>>(getActivity(), items) {
+            @Override
+            public List<Experiment> loadData() throws Exception {
+                try {
+                    if (getActivity() != null) {
+                        return serviceProvider.getService(getActivity()).getExperiment();
+                    } else {
+                        return Collections.emptyList();
+                    }
+                } catch (OperationCanceledException e) {
+                    Activity activity = getActivity();
+                    if (activity != null)
+                        activity.finish();
+                    return initialItems;
+                }
+            }
+         };
+     }
 //    private static final int PICK_IMAGE = 1;
 //    Button button;
 //
@@ -185,25 +220,25 @@ public class ExperimentListFragment extends Fragment{
 //            return null;
 //    }
 //}
-Button button;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //LayoutInflater inflater = (LayoutInflater) getLayoutInflater(getActivity());
-        //View theInflatedView = inflater.inflate(R.layout.experiment_items);
-        view.inflate();
-        setContentView(R.layout.experiment_list_item);
-        btnClick();
-    }
-    public void btnClick() {
-        button = (Button) findViewById(R.id.experimentbtn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent browserIntent =
-                        new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.howtosolvenow.com"));
-                startActivity(browserIntent);
-            }
-        });
-    }
+//Button button;
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        //LayoutInflater inflater = (LayoutInflater) getLayoutInflater(getActivity());
+//        //View theInflatedView = inflater.inflate(R.layout.experiment_items);
+//        view.inflate();
+//        setContentView(R.layout.experiment_list_item);
+//        btnClick();
+//    }
+//    public void btnClick() {
+//        button = (Button) findViewById(R.id.experimentbtn);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                Intent browserIntent =
+//                        new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.howtosolvenow.com"));
+//                startActivity(browserIntent);
+//            }
+//        });
+//    }
 }

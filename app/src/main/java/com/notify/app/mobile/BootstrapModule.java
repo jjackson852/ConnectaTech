@@ -15,7 +15,6 @@ import com.notify.app.mobile.core.TimerService;
 import com.notify.app.mobile.core.UserAgentProvider;
 import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
-import com.notify.app.mobile.ui.ExperimentActivity;
 import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
 import com.notify.app.mobile.ui.NewsActivity;
@@ -53,7 +52,6 @@ import retrofit.converter.GsonConverter;
                 NewsListFragment.class,
                 TestActivity.class,
                 TrialListFragment.class,
-                ExperimentActivity.class,
                 UserActivity.class,
                 UserListFragment.class,
                 TimerService.class
