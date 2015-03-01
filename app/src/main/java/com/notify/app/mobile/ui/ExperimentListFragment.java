@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.parse.ParseFile;
@@ -59,8 +60,8 @@ public class ExperimentListFragment extends Fragment {
             // Compress image to lower quality scale 1 - 100
             thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-//            byte[] image = stream.toByteArray();
-            ParseFile file = new ParseFile("androidbegin.png", stream.toByteArray());
+            byte[] image = stream.toByteArray();
+            ParseFile file = new ParseFile("androidbegin.png", image);
 
             file.saveInBackground();
 
@@ -71,6 +72,8 @@ public class ExperimentListFragment extends Fragment {
             imgupload.put("ImageFile", file);
 
             imgupload.saveInBackground();
+
+            //Toast.makeText(getActivity().this, "Image Uploaded", Toast.LENGTH_SHORT).show();
         }
     }
 }
