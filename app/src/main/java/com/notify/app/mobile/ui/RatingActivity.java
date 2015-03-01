@@ -15,6 +15,29 @@ import android.widget.Toast;
 
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.notify.app.mobile.core.News;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import butterknife.InjectView;
+
+import static com.notify.app.mobile.core.Constants.Extra.USER;
 
 /**
  * Created by theblackfu on 2/25/2015.
@@ -24,6 +47,9 @@ public class RatingActivity extends BootstrapActivity{
     private RatingBar ratingBar;
     private TextView txtRatingValue;
     private Button btnSubmit;
+
+    Button button;
+    private ProgressDialog progressDialog;
 
 //test1
     @Override
@@ -39,7 +65,71 @@ public class RatingActivity extends BootstrapActivity{
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Button for Parse Submit
+        button = (Button) findViewById(R.id.button);
+
+        button.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+
+                progressDialog = ProgressDialog.show(RatingActivity.this, "",
+                        "Downloading Image...", true);
+
+// Locate the class table named "ImageUpload" in Parse.com
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+                        "ImageUpload");
+
+// Locate the objectId from the class
+                query.getInBackground("KDKWQRTwRE",
+                        new GetCallback<ParseObject>() {
+
+                            public void done(ParseObject object,
+                                             ParseException e) {
+// TODO Auto-generated method stub
+
+// Locate the column named "ImageName" and set
+// the string
+                                ParseFile fileObject = (ParseFile) object
+                                        .get("ImageFile");
+                                fileObject
+                                        .getDataInBackground(new GetDataCallback() {
+
+                                            public void done(byte[] data,
+                                                             ParseException e) {
+                                                if (e == null) {
+                                                    Log.d("test",
+                                                            "We've got data in data.");
+// Decode the Byte[] into
+// Bitmap
+                                                    Bitmap bmp = BitmapFactory
+                                                            .decodeByteArray(
+                                                                    data, 0,
+                                                                    data.length);
+
+// Get the ImageView from
+// main.xml
+                                                    ImageView image = (ImageView) findViewById(R.id.image);
+
+// Set the Bitmap into the
+// ImageView
+                                                    image.setImageBitmap(bmp);
+
+// Close progress dialog
+                                                    progressDialog.dismiss();
+
+                                                } else {
+                                                    Log.d("test",
+                                                            "There was a problem downloading the data.");
+                                                }
+                                            }
+                                        });
+                            }
+                        });
+            }
+
+        });
     }
+
+
 
     public void addListenerOnRatingBar() {
 
