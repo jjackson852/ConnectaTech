@@ -8,16 +8,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="@string/meal_label"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:background="#ff2f4bff"
+        android:textColor="#ff060606" />
     <EditText
         android:id="@+id/meal_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColor="#ff0d040c" />
     <Spinner
         android:id="@+id/rating_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#ff1c13ff" />
     <ImageButton
         android:id="@+id/photo_button"
         android:layout_width="match_parent"
