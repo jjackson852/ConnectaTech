@@ -3,12 +3,13 @@ package com.notify.app.mobile;
 import android.accounts.AccountManager;
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.notify.app.mobile.authenticator.ApiKeyProvider;
 import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.core.Example;
 import com.notify.app.mobile.core.PostFromAnyThreadBus;
 import com.notify.app.mobile.core.RestAdapterRequestInterceptor;
 import com.notify.app.mobile.core.RestErrorHandler;
@@ -19,6 +20,7 @@ import com.notify.app.mobile.ui.CheckInsListFragment;
 import com.notify.app.mobile.ui.ExampleActivity;
 import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.MainActivity;
+import com.notify.app.mobile.ui.MealListActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
 import com.notify.app.mobile.ui.NewsActivity;
 import com.notify.app.mobile.ui.NewsListFragment;
@@ -27,8 +29,6 @@ import com.notify.app.mobile.ui.TestActivity;
 import com.notify.app.mobile.ui.TrialListFragment;
 import com.notify.app.mobile.ui.UserActivity;
 import com.notify.app.mobile.ui.UserListFragment;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -54,6 +54,7 @@ import retrofit.converter.GsonConverter;
                 ExampleActivity.class,
                 ExampleListFragment.class,
                 RatingActivity.class,
+                MealListActivity.class,
                 NavigationDrawerFragment.class,
                 NewsActivity.class,
                 NewsListFragment.class,

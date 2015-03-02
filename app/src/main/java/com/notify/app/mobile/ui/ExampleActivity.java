@@ -8,11 +8,11 @@ import com.notify.app.mobile.core.Example;
 
 import butterknife.InjectView;
 
-import static com.notify.app.mobile.core.Constants.Extra.NEWS_ITEM;
+import static com.notify.app.mobile.core.Constants.Extra.EXAMPLE_ITEM;
 
 public class ExampleActivity extends BootstrapActivity {
 
-    private Example newsItem;
+    private Example exampleItem;
 
     @InjectView(R.id.tv_title) protected TextView title;
     @InjectView(R.id.tv_content) protected TextView content;
@@ -24,17 +24,17 @@ public class ExampleActivity extends BootstrapActivity {
         setContentView(R.layout.example);
 
         if (getIntent() != null && getIntent().getExtras() != null) {
-            newsItem = (Example) getIntent().getExtras().getSerializable(NEWS_ITEM);
+            exampleItem = (Example) getIntent().getExtras().getSerializable(EXAMPLE_ITEM);
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        setTitle(newsItem.getTitle());
+        setTitle(exampleItem.getTitle());
         setTitle(R.string.example_news);
 
-        title.setText(newsItem.getTitle());
-        content.setText(newsItem.getContent());
+        title.setText(exampleItem.getTitle());
+        content.setText(exampleItem.getContent());
 
     }
 

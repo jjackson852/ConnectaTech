@@ -24,7 +24,7 @@ public class NewsActivity extends BootstrapActivity {
         setContentView(R.layout.news);
 
         if (getIntent() != null && getIntent().getExtras() != null) {
-//            newsItem = (News) getIntent().getExtras().getSerializable(NEWS_ITEM);
+            newsItem = (News) getIntent().getExtras().getSerializable(NEWS_ITEM);
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

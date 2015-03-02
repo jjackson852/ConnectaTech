@@ -1,6 +1,5 @@
 package com.notify.app.mobile.ui;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -111,7 +110,8 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_home),
                         getString(R.string.title_timer),
                         getString(R.string.title_activity_test_),
-                        getString(R.string.rating_title)
+                        getString(R.string.rating_title),
+                        getString(R.string.meal_title)
                 }));
         drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;

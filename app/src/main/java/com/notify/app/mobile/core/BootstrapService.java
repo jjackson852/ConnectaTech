@@ -1,6 +1,8 @@
 
 package com.notify.app.mobile.core;
 
+import android.media.Image;
+
 import java.util.List;
 
 import retrofit.RestAdapter;
@@ -24,6 +26,8 @@ public class BootstrapService {
      *
      * @param restAdapter The RestAdapter that allows HTTP Communication.
      */
+
+
     public BootstrapService(RestAdapter restAdapter) {
         this.restAdapter = restAdapter;
     }
@@ -35,6 +39,7 @@ public class BootstrapService {
     private NewsService getNewsService() {
         return getRestAdapter().create(NewsService.class);
     }
+
     private ExampleService getExampleService() {
         return getRestAdapter().create(ExampleService.class);
     }
@@ -65,14 +70,14 @@ public class BootstrapService {
      * Get all bootstrap Checkins that exists on Parse.com
      */
     public List<CheckIn> getCheckIns() {
-       return getCheckInService().getCheckIns().getResults();
+        return getCheckInService().getCheckIns().getResults();
     }
 
     /**
      * Get all bootstrap Home Data that exists on Parse.com
      */
     public List<Example> getExample() {
-        return  getExampleService().getExample().getResults();
+        return getExampleService().getExample().getResults();
     }
 
     public User authenticate(String email, String password) {
