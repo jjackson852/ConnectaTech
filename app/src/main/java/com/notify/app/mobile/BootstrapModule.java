@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.notify.app.mobile.authenticator.ApiKeyProvider;
 import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.authenticator.TimerTestFragment;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.core.PostFromAnyThreadBus;
@@ -24,6 +25,7 @@ import com.notify.app.mobile.ui.MealListActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
 import com.notify.app.mobile.ui.NewsActivity;
 import com.notify.app.mobile.ui.NewsListFragment;
+import com.notify.app.mobile.ui.ProviderProfileFragment;
 import com.notify.app.mobile.ui.RatingActivity;
 import com.notify.app.mobile.ui.TestActivity;
 import com.notify.app.mobile.ui.TrialListFragment;
@@ -62,7 +64,9 @@ import retrofit.converter.GsonConverter;
                 TrialListFragment.class,
                 UserActivity.class,
                 UserListFragment.class,
-                TimerService.class
+                TimerService.class,
+                TimerTestFragment.class,
+                ProviderProfileFragment.class
         }
 )
 public class BootstrapModule {

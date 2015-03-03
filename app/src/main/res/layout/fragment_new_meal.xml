@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:text="@string/meal_label"
+        android:text="@string/image_upload"
         android:textSize="20sp"
         android:background="#ff2f4bff"
         android:textColor="#ff060606" />

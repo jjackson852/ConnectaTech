@@ -21,7 +21,7 @@ public class MealListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.meal_title);
+        setTitle(R.string.image_upload_title);
         getListView().setClickable(false);
         mainAdapter = new ParseQueryAdapter<Meal>(this, Meal.class);
         mainAdapter.setTextKey("title");

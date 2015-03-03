@@ -13,7 +13,9 @@ import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.core.Example;
 import com.notify.app.mobile.core.News;
+import com.notify.app.mobile.ui.ItemListFragment;
 import com.notify.app.mobile.ui.ItemListFragment2;
 import com.notify.app.mobile.ui.ThrowableLoader;
 
@@ -53,13 +55,13 @@ public class TimerTestFragment extends ItemListFragment2 {
 
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
-        final List<News> initialItems = items;
-        return new ThrowableLoader<List<News>>(getActivity(), items) {
+        final List<Example> initialItems = items;
+        return new ThrowableLoader<List<Example>>(getActivity(), items) {
             @Override
-            public List<News> loadData() throws Exception {
+            public List<Example> loadData() throws Exception {
             try {
                 if (getActivity() != null) {
-                    return serviceProvider.getService(getActivity()).getNews();
+                    return serviceProvider.getService(getActivity()).getExample();
                 } else {
                     return Collections.emptyList();
                 }

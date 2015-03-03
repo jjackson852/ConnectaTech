@@ -297,7 +297,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         }
 
         if (requestNewAccount) {
-            emailOrUsername = emailOrUsernameText.getText().toString();
+            emailOrUsername = emailOrUsernameText.getText().toString().toLowerCase();
 
             /**
              * Checks to see if the account name entered is an email address or username.
@@ -365,10 +365,10 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         }
 
 //        if (requestNewAccount) {
-//            emailOrUsername = emailOrUsernameText.getText().toString();
+//            emailOrUsername = emailOrUsernameText.getText().toString().toLowerCase();
 //        }
 
-        emailOrUsername = Constants.Auth.GUEST_USERNAME;
+        emailOrUsername = Constants.Auth.GUEST_USERNAME.toLowerCase();
 
 //        password = passwordText.getText().toString();
 
