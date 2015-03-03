@@ -75,7 +75,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 * Learn more about the ParseUser class:
 * https://www.parse.com/docs/android_guide#users
 */
-        ParseUser.enableAutomaticUser();
+        //ParseUser.enableAutomaticUser();
 /*
 * For more information on app security and Parse ACL:
 * https://www.parse.com/docs/android_guide#security-recommendations

@@ -125,6 +125,7 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
 
         user.put("firstName", regFNameText);
         user.put("lastName", regLNameText);
+        user.put("isProvider", false);
 
         user.signUpInBackground(new SignUpCallback() {
 

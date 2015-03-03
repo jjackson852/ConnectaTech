@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.notify.app.mobile.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
@@ -112,7 +113,7 @@ public class CameraFragment extends Fragment {
         rotatedScaledMealImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         byte[] scaledData = bos.toByteArray();
 // Save the scaled image to Parse
-        photoFile = new ParseFile("meal_photo.jpg", scaledData);
+        photoFile = new ParseFile("profile_photo.jpg", scaledData);
         photoFile.saveInBackground(new SaveCallback() {
             public void done(ParseException e) {
                 if (e != null) {
@@ -133,8 +134,11 @@ public class CameraFragment extends Fragment {
     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void addPhotoToMealAndReturn(ParseFile photoFile) {
-        ((NewMealActivity) getActivity()).getCurrentMeal().setPhotoFile(
-                photoFile);
+//        ((NewMealActivity) getActivity()).getCurrentMeal().setPhotoFile(
+//                photoFile);
+        ParseUser cameraCurrentUser = ParseUser.getCurrentUser();
+        cameraCurrentUser.put("ImageFile", photoFile);
+        cameraCurrentUser.saveInBackground();
         FragmentManager fm = getActivity().getFragmentManager();
         fm.popBackStack("NewMealFragment",
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
