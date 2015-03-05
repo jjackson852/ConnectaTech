@@ -57,7 +57,7 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
                 result = new CustomerRegisterFragment();
                 break;
             case 5:
-                result = new TestActivityFragment();
+                result = new ProviderProfileFragment();
                 break;
             default:
                 result = null;

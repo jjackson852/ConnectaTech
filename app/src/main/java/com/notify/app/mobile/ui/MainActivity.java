@@ -8,25 +8,22 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.squareup.otto.Subscribe;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -55,9 +52,41 @@ public class MainActivity extends BootstrapFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
+
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+
+        ParseObject.registerSubclass(Meal.class);
+/*
+* Fill in this section with your Parse credentials
+*/
+        Parse.initialize(this, "ZoLfhGYjXZyhZsMzCOUiKojKEmNpVHOtommTCMgD", "Ekt2HIFo6KhnE5DfOWycWUphwo1p8mOYl8Z9hr5B");
+/*
+* This app lets an anonymous user create and save photos of meals
+* they've eaten. An anonymous user is a user that can be created
+* without a username and password but still has all of the same
+* capabilities as any other ParseUser.
+*
+* After logging out, an anonymous user is abandoned, and its data is no
+* longer accessible. In your own app, you can convert anonymous users
+* to regular users so that data persists.
+*
+* Learn more about the ParseUser class:
+* https://www.parse.com/docs/android_guide#users
+*/
+        //ParseUser.enableAutomaticUser();
+/*
+* For more information on app security and Parse ACL:
+* https://www.parse.com/docs/android_guide#security-recommendations
+*/
+        ParseACL defaultACL = new ParseACL();
+/*
+* If you would like all objects to be private by default, remove this
+* line
+*/
+        defaultACL.setPublicReadAccess(true);
+        ParseACL.setDefaultACL(defaultACL, true);
 
         if(isTablet()) {
             setContentView(R.layout.main_activity_tablet);
@@ -217,6 +246,14 @@ public class MainActivity extends BootstrapFragmentActivity {
                 startActivity(new Intent(this, TestActivity.class));
                 //navigateToTest();
                 return true;
+            case R.id.rating:
+                startActivity(new Intent(this, RatingActivity.class));
+                //navigateToTest();
+                return true;
+            case R.id.meal_name:
+                startActivity(new Intent(this, MealListActivity.class));
+                //navigateToTest();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -256,6 +293,19 @@ public class MainActivity extends BootstrapFragmentActivity {
                 // navigateToTest();
                 startActivity(new Intent(this, TestActivity.class));
                 break;
+            case 3:
+                // Test
+                // navigateToTest();
+                startActivity(new Intent(this, RatingActivity.class));
+                break;
+
+            case 4:
+                // Test
+                // navigateToTest();
+                startActivity(new Intent(this, MealListActivity.class));
+                break;
         }
+        }
+
     }
-}
+

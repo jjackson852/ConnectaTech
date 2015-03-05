@@ -52,6 +52,9 @@ public final class Constants {
         public static final String URL_BASE = "https://api.parse.com";
 
 
+        public static final String URL_IMAGE_FRAG = "/1/ImageUpload";
+        public static final String URL_IMAGE = URL_BASE + URL_IMAGE_FRAG;
+
         /**
          * Authentication URL
          */
@@ -71,6 +74,11 @@ public final class Constants {
         public static final String URL_NEWS_FRAG = "/1/classes/News";
         public static final String URL_NEWS = URL_BASE + URL_NEWS_FRAG;
 
+        /**
+         * List News URL
+         */
+        public static final String EXAMPLE_NEWS_FRAG = "/1/classes/Home";
+        public static final String EXAMPLE_NEWS = URL_BASE + EXAMPLE_NEWS_FRAG;
 
         /**
          * List Checkin's URL
@@ -105,6 +113,10 @@ public final class Constants {
         public static final String NEWS_ITEM = "news_item";
 
         public static final String USER = "user";
+
+        public static final String EXAMPLE_ITEM = "news_item";
+
+        public static final String RATING ="image";
 
     }
 

@@ -61,11 +61,11 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
      */
     public void handleRegister() {
 
-        regUsernameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_username)).getText());
-        regPasswordText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_password)).getText());
-        regEmailText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_email)).getText());
-        regFNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_first_name)).getText());
-        regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText());
+        regUsernameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_username)).getText()).toLowerCase();
+        regPasswordText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_password)).getText()).toLowerCase();
+        regEmailText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_email)).getText()).toLowerCase();
+        regFNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_first_name)).getText()).toLowerCase();
+        regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText()).toLowerCase();
 
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");

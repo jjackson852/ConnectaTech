@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -100,6 +102,26 @@
             android:name=".ui.TestActivity"
             android:label="@string/title_activity_test_"
             android:parentActivityName=".ui.MainActivity" >
+        </activity>
+
+        <activity
+            android:name=".ui.RatingActivity"
+            android:label="@string/rating_activity"
+            android:parentActivityName=".ui.MainActivity" >
+        </activity>
+        <activity
+            android:name=".ui.ExampleActivity"
+            android:label="@string/title_example" >
+        </activity>
+
+        <activity
+            android:name=".ui.MealListActivity"
+            android:label="@string/title_activity_meal_list"  >
+        </activity>
+
+        <activity
+            android:name=".ui.NewMealActivity"
+            android:label="@string/title_activity_new_meal" >
         </activity>
 
     </application>

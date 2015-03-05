@@ -19,6 +19,12 @@
     </item>
 
     <item
+        android:id="@+id/rating"
+        bootstrap:showAsAction="always"
+        android:title="@string/rating_title">
+    </item>
+
+    <item
         android:id="@+id/test"
         bootstrap:showAsAction="always"
         android:title="@string/title_test">

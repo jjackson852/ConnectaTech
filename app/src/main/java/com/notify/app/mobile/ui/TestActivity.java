@@ -8,16 +8,18 @@ import android.view.MenuItem;
 //import android.view.Menu;
 
 
+import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 
 
-public class TestActivity extends BootstrapFragmentActivity {
+public class TestActivity extends BootstrapActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity);
+        Injector.inject(this);
         setTitle(R.string.title_test);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

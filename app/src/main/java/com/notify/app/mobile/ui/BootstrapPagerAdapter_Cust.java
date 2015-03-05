@@ -34,7 +34,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -51,10 +51,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
                 result = new CheckInsListFragment();
                 break;
             case 3:
-                result = new TimerTestFragment();
-                break;
-            case 4:
-                result = new ExperimentListFragment();
+                result = new ExampleListFragment();
                 break;
             default:
                 result = null;
@@ -76,9 +73,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_checkins);
             case 3:
-                return resources.getString(R.string.trial_news);
-            case 4:
-                return "Experiment";
+                return resources.getString(R.string.title_example);
             default:
                 return null;
         }
