@@ -124,6 +124,11 @@
             android:label="@string/title_activity_new_meal" >
         </activity>
 
+        <activity
+            android:name=".ui.AnywallActivity"
+            android:label="Anywall">
+         </activity>
+
     </application>
 
 </manifest>
