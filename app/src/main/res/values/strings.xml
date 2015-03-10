@@ -65,6 +65,9 @@
     <string name="rating_title">Rating</string>
     <string name="title_example">Example</string>
     <string name="example_news">example_news</string>
+    <string name="title_techservices">Offered Services</string>
+    <string name="techservice_news">example_news</string>
+
     <string name="rating_activity">rating_activity</string>
 
     <string name="app_name1">Parse Image Download</string>
@@ -93,7 +96,7 @@
         <item>1</item>
         <item></item>
     </string-array>
-
-
+    <!-- TechServicesFrag -->
+    <string name="add_services">+ Add a Service</string>
 
 </resources>

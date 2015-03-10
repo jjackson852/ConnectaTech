@@ -1,8 +1,6 @@
 
 package com.notify.app.mobile.core;
 
-import android.media.Image;
-
 import java.util.List;
 
 import retrofit.RestAdapter;
@@ -40,6 +38,10 @@ public class BootstrapService {
         return getRestAdapter().create(NewsService.class);
     }
 
+    private TechServService getTechServService() {
+        return getRestAdapter().create(TechServService.class);
+    }
+
     private ExampleService getExampleService() {
         return getRestAdapter().create(ExampleService.class);
     }
@@ -57,6 +59,13 @@ public class BootstrapService {
      */
     public List<News> getNews() {
         return getNewsService().getNews().getResults();
+    }
+
+    /**
+     * Get all bootstrap News that exists on Parse.com
+     */
+    public List<TechService> getTechService() {
+        return getTechServService().getTechService().getResults();
     }
 
     /**
