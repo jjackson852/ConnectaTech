@@ -51,7 +51,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
                 result = new CheckInsListFragment();
                 break;
             case 3:
-                result = new ExampleListFragment();
+                result = new TechServiceListFragment();
                 break;
             default:
                 result = null;
@@ -73,7 +73,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_checkins);
             case 3:
-                return resources.getString(R.string.title_example);
+                return resources.getString(R.string.title_techservices);
             default:
                 return null;
         }

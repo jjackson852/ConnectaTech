@@ -115,6 +115,11 @@
         </activity>
 
         <activity
+            android:name=".ui.TechServiceActivity"
+            android:label="@string/title_techservices" >
+        </activity>
+
+        <activity
             android:name=".ui.MealListActivity"
             android:label="@string/title_activity_meal_list"  >
         </activity>
