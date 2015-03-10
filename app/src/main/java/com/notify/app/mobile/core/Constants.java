@@ -36,6 +36,12 @@ public final class Constants {
          */
         public static final String GUEST_USERNAME = "demo@connectatech.org";
         public static final String GUEST_PASSWORD = "abc12345";
+
+        /**
+         * Continue as Provider Credentials *Needs additional security implemented.*
+         */
+        public static final String PROVIDER_USERNAME = "developer";
+        public static final String PROVIDER_PASSWORD = "12345";
     }
 
     /**

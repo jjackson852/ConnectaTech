@@ -413,6 +413,59 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         authenticationTask.execute();
     }
 
+    public void handleLoginAsProvider(final View view) {
+        if (authenticationTask != null) {
+            return;
+        }
+
+//        if (requestNewAccount) {
+//            emailOrUsername = emailOrUsernameText.getText().toString().toLowerCase();
+//        }
+
+        emailOrUsername = Constants.Auth.PROVIDER_USERNAME.toLowerCase();
+
+//        password = passwordText.getText().toString();
+
+        password = Constants.Auth.PROVIDER_PASSWORD;
+
+        showProgress();
+
+        authenticationTask = new SafeAsyncTask<Boolean>() {
+            public Boolean call() throws Exception {
+
+                final String query = String.format("%s=%s&%s=%s",
+                        PARAM_USERNAME, emailOrUsername, PARAM_PASSWORD, password);
+
+                User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
+                token = loginResponse.getSessionToken();
+
+                return true;
+            }
+
+            @Override
+            protected void onException(final Exception e) throws RuntimeException {
+                // Retrofit Errors are handled inside of the {
+                if(!(e instanceof RetrofitError)) {
+                    final Throwable cause = e.getCause() != null ? e.getCause() : e;
+                    if(cause != null) {
+                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onSuccess(final Boolean authSuccess) {
+                onAuthenticationResult(authSuccess);
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                hideProgress();
+                authenticationTask = null;
+            }
+        };
+        authenticationTask.execute();
+    }
     /**
      * Called when response is received from the server for confirm credentials
      * request. See onAuthenticationResult(). Sets the

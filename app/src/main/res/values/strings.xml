@@ -98,5 +98,6 @@
     </string-array>
     <!-- TechServicesFrag -->
     <string name="add_services">+ Add a Service</string>
+    <string name="label_sign_in_as_provider">Continue as Provider</string>
 
 </resources>
