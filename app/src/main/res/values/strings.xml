@@ -55,11 +55,14 @@
     <!-- RegisterActivity -->
     <string name="register_header_cust">Create your profile.</string>
     <string name="register_header_prov">Become a provider.</string>
+    <string name="register_service">Create a service.</string>
     <string name="label_submit">Submit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
     <string name="label_username">Username</string>
     <string name="label_email_address">Email Address</string>
+    <string name="label_service_name">Service Name</string>
+    <string name="label_service_description">Service Description</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -93,7 +96,6 @@
         <item>3</item>
         <item>2</item>
         <item>1</item>
-        <item></item>
     </string-array>
 
     <!-- Strings related to login -->
