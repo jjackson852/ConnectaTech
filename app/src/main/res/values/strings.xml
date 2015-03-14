@@ -100,4 +100,12 @@
     <string name="add_services">+ Add a Service</string>
     <string name="label_sign_in_as_provider">Continue as Provider</string>
 
+    <!-- AddTechService Activity> -->
+    <string name="activity_title">Describe your Service.</string>
+    <string name="service_title">Title</string>
+    <string name="service_category">Category</string>
+    <string name="service_description">Description</string>
+    <string name="service_base_price">Base Price</string>
+    <string name="service_submit">Submit Service</string>
+
 </resources>

@@ -308,9 +308,8 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
     }
 
-    public void navigateToRegister2(final View view) {
-        final Intent i = new Intent(this, RegisterActivity.class);
-        i.putExtra("isProvider", false);
+    public void navigateToAddService(final View view) {
+        final Intent i = new Intent(this, AddServiceActivity.class);
         startActivity(i);
     }
 

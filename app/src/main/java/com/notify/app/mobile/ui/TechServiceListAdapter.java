@@ -38,7 +38,7 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
         super.update(position, item);
 
         setText(0, item.getTitle());
-        setText(1, item.getContent());
+        setText(1, item.getDescription());
         //setNumber(R.id.tv_date, item.getCreatedAt());
     }
 }

@@ -34,7 +34,7 @@ public class TechServiceActivity extends BootstrapActivity {
         ///setTitle(R.string.techservice_news);
 
         title.setText(techServiceItem.getTitle());
-        content.setText(techServiceItem.getContent());
+        content.setText(techServiceItem.getDescription());
 
     }
 
