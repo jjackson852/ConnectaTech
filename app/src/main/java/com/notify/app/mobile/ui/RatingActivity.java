@@ -51,7 +51,6 @@ public class RatingActivity extends BootstrapActivity{
     Button button;
     private ProgressDialog progressDialog;
 
-//test1
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,20 +73,20 @@ public class RatingActivity extends BootstrapActivity{
                 progressDialog = ProgressDialog.show(RatingActivity.this, "",
                         "Downloading Image...", true);
 
-// Locate the class table named "ImageUpload" in Parse.com
+                // Locate the class table named "ImageUpload" in Parse.com
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                         "ImageUpload");
 
-// Locate the objectId from the class
+                // Locate the objectId from the class
                 query.getInBackground("KDKWQRTwRE",
                         new GetCallback<ParseObject>() {
 
                             public void done(ParseObject object,
                                              ParseException e) {
-// TODO Auto-generated method stub
+                // TODO Auto-generated method stub
 
-// Locate the column named "ImageName" and set
-// the string
+                                // Locate the column named "ImageName" and set
+                                // the string
                                 ParseFile fileObject = (ParseFile) object
                                         .get("ImageFile");
                                 fileObject
@@ -98,22 +97,17 @@ public class RatingActivity extends BootstrapActivity{
                                                 if (e == null) {
                                                     Log.d("test",
                                                             "We've got data in data.");
-// Decode the Byte[] into
-// Bitmap
+                                                    // Decode the Byte[] into
+                                                    // Bitmap
                                                     Bitmap bmp = BitmapFactory
-                                                            .decodeByteArray(
-                                                                    data, 0,
-                                                                    data.length);
-
-// Get the ImageView from
-// main.xml
+                                                            .decodeByteArray(data, 0,data.length);
+                                                    // Get the ImageView from
+                                                    // main.xml
                                                     ImageView image = (ImageView) findViewById(R.id.image);
-
-// Set the Bitmap into the
-// ImageView
+                                                    // Set the Bitmap into the
+                                                    // ImageView
                                                     image.setImageBitmap(bmp);
-
-// Close progress dialog
+                                                    // Close progress dialog
                                                     progressDialog.dismiss();
 
                                                 } else {

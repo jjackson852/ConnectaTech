@@ -1,7 +1,7 @@
 
 package com.notify.app.mobile.core;
 
-import android.media.Image;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -13,6 +13,10 @@ import retrofit.RestAdapter;
 public class BootstrapService {
 
     private RestAdapter restAdapter;
+
+    private String curUserServConstraint = "{\"title\":\"test1\"}";
+
+   // private String curUserServConstraint = "{\"createdBy\":"+ String.valueOf(ParseUser.getCurrentUser()) +"}";
 
     /**
      * Create bootstrap service
@@ -40,6 +44,10 @@ public class BootstrapService {
         return getRestAdapter().create(NewsService.class);
     }
 
+    private TechServService getTechServService() {
+        return getRestAdapter().create(TechServService.class);
+    }
+
     private ExampleService getExampleService() {
         return getRestAdapter().create(ExampleService.class);
     }
@@ -61,6 +69,13 @@ public class BootstrapService {
      */
     public List<News> getNews() {
         return getNewsService().getNews().getResults();
+    }
+
+    /**
+     * Get all bootstrap News that exists on Parse.com
+     */
+    public List<TechService> getTechService() {
+        return getTechServService().getTechService(curUserServConstraint).getResults();
     }
 
     /**

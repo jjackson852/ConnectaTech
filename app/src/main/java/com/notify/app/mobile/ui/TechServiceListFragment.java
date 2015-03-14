@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
@@ -13,17 +14,20 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.authenticator.RegisterActivity;
 import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.core.TechService;
 
 import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.notify.app.mobile.core.Constants.Extra.EXAMPLE_ITEM;
-import static com.notify.app.mobile.core.Constants.Extra.NEWS_ITEM;
+import butterknife.InjectView;
 
-public class ExampleListFragment extends ItemListFragment<Example> {
+import static com.notify.app.mobile.core.Constants.Extra.TECHSERVICE_ITEM;
+
+public class TechServiceListFragment extends ItemListFragment<TechService> {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
@@ -39,6 +43,7 @@ public class ExampleListFragment extends ItemListFragment<Example> {
         super.onActivityCreated(savedInstanceState);
 
         setEmptyText(R.string.no_news);
+
     }
 
     @Override
@@ -50,7 +55,7 @@ public class ExampleListFragment extends ItemListFragment<Example> {
 
         getListAdapter()
                 .addHeader(activity.getLayoutInflater()
-                        .inflate(R.layout.example_list_label, null));
+                        .inflate(R.layout.techservice_list_label, null));
     }
 
     @Override
@@ -66,15 +71,15 @@ public class ExampleListFragment extends ItemListFragment<Example> {
     }
 
     @Override
-    public Loader<List<Example>> onCreateLoader(int id, Bundle args) {
-        final List<Example> initialItems = items;
-        return new ThrowableLoader<List<Example>>(getActivity(), items) {
+    public Loader<List<TechService>> onCreateLoader(int id, Bundle args) {
+        final List<TechService> initialItems = items;
+        return new ThrowableLoader<List<TechService>>(getActivity(), items) {
 
             @Override
-            public List<Example> loadData() throws Exception {
+            public List<TechService> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
-                        return serviceProvider.getService(getActivity()).getExample();
+                        return serviceProvider.getService(getActivity()).getTechService();
                     } else {
                         return Collections.emptyList();
                     }
@@ -90,18 +95,20 @@ public class ExampleListFragment extends ItemListFragment<Example> {
     }
 
     @Override
-    protected SingleTypeAdapter<Example> createAdapter(List<Example> items) {
-        return new ExampleListAdapter(getActivity().getLayoutInflater(), items);
+    protected SingleTypeAdapter<TechService> createAdapter(List<TechService> items) {
+        return new TechServiceListAdapter(getActivity().getLayoutInflater(), items);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Example example = ((Example) l.getItemAtPosition(position));
+        TechService techService = ((TechService) l.getItemAtPosition(position));
 
-        startActivity(new Intent(getActivity(), ExampleActivity.class).putExtra(EXAMPLE_ITEM, example));
+        startActivity(new Intent(getActivity(), TechServiceActivity.class).putExtra(TECHSERVICE_ITEM, techService));
     }
 
     @Override
     protected int getErrorMessage(Exception exception) {
         return R.string.error_loading_news;
     }
+
+
 }

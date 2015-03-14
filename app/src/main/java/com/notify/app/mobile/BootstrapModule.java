@@ -14,8 +14,10 @@ import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.core.PostFromAnyThreadBus;
 import com.notify.app.mobile.core.RestAdapterRequestInterceptor;
 import com.notify.app.mobile.core.RestErrorHandler;
+import com.notify.app.mobile.core.TechService;
 import com.notify.app.mobile.core.TimerService;
 import com.notify.app.mobile.core.UserAgentProvider;
+import com.notify.app.mobile.ui.AddServiceActivity;
 import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
 import com.notify.app.mobile.ui.ExampleActivity;
@@ -27,6 +29,8 @@ import com.notify.app.mobile.ui.NewsActivity;
 import com.notify.app.mobile.ui.NewsListFragment;
 import com.notify.app.mobile.ui.ProviderProfileFragment;
 import com.notify.app.mobile.ui.RatingActivity;
+import com.notify.app.mobile.ui.TechServiceActivity;
+import com.notify.app.mobile.ui.TechServiceListFragment;
 import com.notify.app.mobile.ui.TestActivity;
 import com.notify.app.mobile.ui.TrialListFragment;
 import com.notify.app.mobile.ui.UserActivity;
@@ -66,7 +70,10 @@ import retrofit.converter.GsonConverter;
                 UserListFragment.class,
                 TimerService.class,
                 TimerTestFragment.class,
-                ProviderProfileFragment.class
+                ProviderProfileFragment.class,
+                TechServiceActivity.class,
+                TechServiceListFragment.class,
+                AddServiceActivity.class
         }
 )
 public class BootstrapModule {

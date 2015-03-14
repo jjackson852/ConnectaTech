@@ -2,6 +2,8 @@
 
 package com.notify.app.mobile.core;
 
+import java.net.URLEncoder;
+
 /**
  * Bootstrap constants
  */
@@ -36,6 +38,12 @@ public final class Constants {
          */
         public static final String GUEST_USERNAME = "demo@connectatech.org";
         public static final String GUEST_PASSWORD = "abc12345";
+
+        /**
+         * Continue as Provider Credentials *Needs additional security implemented.*
+         */
+        public static final String PROVIDER_USERNAME = "developer";
+        public static final String PROVIDER_PASSWORD = "12345";
     }
 
     /**
@@ -81,6 +89,12 @@ public final class Constants {
         public static final String EXAMPLE_NEWS = URL_BASE + EXAMPLE_NEWS_FRAG;
 
         /**
+         * List TechService URL
+         */
+        public static final String URL_TECHSERVICE_FRAG = "/1/classes/TechService";
+        public static final String URL_TECHSERVICE = URL_BASE + URL_TECHSERVICE_FRAG;
+
+        /**
          * List Checkin's URL
          */
         public static final String URL_CHECKINS_FRAG = "/1/classes/Locations";
@@ -115,6 +129,8 @@ public final class Constants {
         public static final String USER = "user";
 
         public static final String EXAMPLE_ITEM = "news_item";
+
+        public static final String TECHSERVICE_ITEM = "techservice_item";
 
         public static final String RATING ="image";
 

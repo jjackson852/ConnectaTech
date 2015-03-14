@@ -132,7 +132,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"/>/>
+                android:layout_weight="1"/>
+
+            <Button
+                style="@style/ShadowText"
+                android:id="@+id/b_continueAsProvider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_background_states"
+                android:gravity="center"
+                android:onClick="handleLoginAsProvider"
+                android:padding="10dp"
+                android:text="@string/label_sign_in_as_provider"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />/>
         </LinearLayout>
     </ScrollView>
 

@@ -14,6 +14,7 @@ import android.view.Window;
 
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.authenticator.RegisterActivity;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
@@ -172,7 +173,7 @@ public class MainActivity extends BootstrapFragmentActivity {
            // try {
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 isProvider = currentUser.getBoolean("isProvider");
-                ParseUser.unpinAllInBackground();
+                //ParseUser.unpinAllInBackground();
            // } catch (com.parse.ParseException e) {
           //      e.printStackTrace();
             //}
@@ -305,7 +306,12 @@ public class MainActivity extends BootstrapFragmentActivity {
                 startActivity(new Intent(this, MealListActivity.class));
                 break;
         }
-        }
-
     }
+
+    public void navigateToAddService(final View view) {
+        final Intent i = new Intent(this, AddServiceActivity.class);
+        startActivity(i);
+    }
+
+}
 
