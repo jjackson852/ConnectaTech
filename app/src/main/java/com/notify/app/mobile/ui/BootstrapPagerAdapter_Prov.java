@@ -34,7 +34,7 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return 5;
     }
 
     @Override
@@ -51,12 +51,9 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
                 result = new CheckInsListFragment();
                 break;
             case 3:
-                result = new TimerTestFragment();
+                result = new TechServiceListFragment();
                 break;
             case 4:
-                result = new CustomerRegisterFragment();
-                break;
-            case 5:
                 result = new ProviderProfileFragment();
                 break;
             default:
@@ -79,10 +76,8 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_checkins);
             case 3:
-                return resources.getString(R.string.trial_news);
+                return resources.getString(R.string.title_techservices);
             case 4:
-                return resources.getString(R.string.register_tab_title);
-            case 5:
                 return resources.getString(R.string.title_activity_providerheck);
             default:
                 return null;

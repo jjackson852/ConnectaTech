@@ -7,8 +7,9 @@ public class TechService implements Serializable {
     private static final long serialVersionUID = -6641292855569752034L;
 
     private String title;
-    private String content;
+    private String description;
     private String objectId;
+    private String basePrice;
 
     public String getTitle() {
         return title;
@@ -18,12 +19,12 @@ public class TechService implements Serializable {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(final String content) {
-        this.content = content;
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     public String getObjectId() {
@@ -32,5 +33,13 @@ public class TechService implements Serializable {
 
     public void setObjectId(final String objectId) {
         this.objectId = objectId;
+    }
+
+    public String getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(final String basePrice) {
+        this.basePrice = basePrice;
     }
 }

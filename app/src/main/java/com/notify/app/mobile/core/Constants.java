@@ -2,6 +2,8 @@
 
 package com.notify.app.mobile.core;
 
+import java.net.URLEncoder;
+
 /**
  * Bootstrap constants
  */

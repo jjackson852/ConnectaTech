@@ -37,6 +37,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
 
             </intent-filter>
@@ -127,6 +128,10 @@
         <activity
             android:name=".ui.NewMealActivity"
             android:label="@string/title_activity_new_meal" >
+        </activity>
+
+        <activity
+            android:name=".ui.AddServiceActivity" >
         </activity>
 
     </application>

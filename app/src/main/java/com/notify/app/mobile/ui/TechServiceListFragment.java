@@ -32,8 +32,6 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
 
-    @InjectView(R.id.tv_addservice) protected Button addServiceTV;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +43,7 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
         super.onActivityCreated(savedInstanceState);
 
         setEmptyText(R.string.no_news);
+
     }
 
     @Override

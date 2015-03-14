@@ -19,7 +19,7 @@
             android:textColor="@color/table_text_header"
             android:textStyle="bold"
             android:id="@+id/tv_addservice"
-            android:onClick="navigateToRegister2"/>
+            android:onClick="navigateToAddService"/>
 
 
 </LinearLayout>

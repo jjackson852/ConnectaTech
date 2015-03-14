@@ -17,6 +17,7 @@ import com.notify.app.mobile.core.RestErrorHandler;
 import com.notify.app.mobile.core.TechService;
 import com.notify.app.mobile.core.TimerService;
 import com.notify.app.mobile.core.UserAgentProvider;
+import com.notify.app.mobile.ui.AddServiceActivity;
 import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
 import com.notify.app.mobile.ui.ExampleActivity;
@@ -71,7 +72,8 @@ import retrofit.converter.GsonConverter;
                 TimerTestFragment.class,
                 ProviderProfileFragment.class,
                 TechServiceActivity.class,
-                TechServiceListFragment.class
+                TechServiceListFragment.class,
+                AddServiceActivity.class
         }
 )
 public class BootstrapModule {

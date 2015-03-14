@@ -1,6 +1,10 @@
 package com.notify.app.mobile.core;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import retrofit.http.GET;
+import retrofit.http.Query;
 
 
 /**
@@ -9,6 +13,6 @@ import retrofit.http.GET;
 public interface TechServService {
 
     @GET(Constants.Http.URL_TECHSERVICE_FRAG)
-    TechServiceWrapper getTechService();
+    TechServiceWrapper getTechService(@Query("where") String contraint);
 
 }
