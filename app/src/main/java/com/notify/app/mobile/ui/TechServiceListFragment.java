@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -32,17 +34,30 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
 
+
+    private View.OnClickListener noTextClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+           navigateToAddService();
+
+        }
+    };
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Injector.inject(this);
     }
 
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setEmptyText(R.string.no_news);
+        setEmptyText(R.string.no_tech_services);
+        setEmptyTextIsClickable(true);
+        setEmptyTextOnClickMethod(noTextClickListener);
 
     }
 
@@ -69,6 +84,13 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
 
         super.onDestroyView();
     }
+
+//    @Override
+//    public void onStop() {
+//        setListAdapter(null);
+//
+//        super.onStop();
+//    }
 
     @Override
     public Loader<List<TechService>> onCreateLoader(int id, Bundle args) {
@@ -110,5 +132,15 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
         return R.string.error_loading_news;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        refresh();
+    }
+
+    public void navigateToAddService() {
+        final Intent i = new Intent(getActivity(), AddServiceActivity.class);
+        startActivity(i);
+    }
 
 }

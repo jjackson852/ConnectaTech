@@ -20,6 +20,7 @@
     <string name="error_loading_checkins">Loading check-ins failed</string>
     <string name="no_users">No Users</string>
     <string name="no_news">No News</string>
+    <string name="no_tech_services">No Services Found.\nTap here to add a Service.</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
 
