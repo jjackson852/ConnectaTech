@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
+import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.RegisterActivity;
@@ -22,8 +23,13 @@ import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -56,31 +62,13 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
+
+        ParseAnalytics.trackAppOpened(getIntent());
+
         super.onCreate(savedInstanceState);
 
         ParseObject.registerSubclass(Meal.class);
-/*
-* Fill in this section with your Parse credentials
-*/
-        Parse.initialize(this, "ZoLfhGYjXZyhZsMzCOUiKojKEmNpVHOtommTCMgD", "Ekt2HIFo6KhnE5DfOWycWUphwo1p8mOYl8Z9hr5B");
-/*
-* This app lets an anonymous user create and save photos of meals
-* they've eaten. An anonymous user is a user that can be created
-* without a username and password but still has all of the same
-* capabilities as any other ParseUser.
-*
-* After logging out, an anonymous user is abandoned, and its data is no
-* longer accessible. In your own app, you can convert anonymous users
-* to regular users so that data persists.
-*
-* Learn more about the ParseUser class:
-* https://www.parse.com/docs/android_guide#users
-*/
-        //ParseUser.enableAutomaticUser();
-/*
-* For more information on app security and Parse ACL:
-* https://www.parse.com/docs/android_guide#security-recommendations
-*/
+
         ParseACL defaultACL = new ParseACL();
 /*
 * If you would like all objects to be private by default, remove this
