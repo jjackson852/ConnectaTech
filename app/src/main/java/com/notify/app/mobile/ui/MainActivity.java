@@ -167,7 +167,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
     }
 
-
+public static String objID;
     private void initScreen() {
         if (userHasAuthenticated) {
            // try {

@@ -1,6 +1,7 @@
 
 package com.notify.app.mobile.core;
 
+import com.notify.app.mobile.ui.MainActivity;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -14,9 +15,15 @@ public class BootstrapService {
 
     private RestAdapter restAdapter;
 
-    private String curUserServConstraint = "{\"title\":\"test1\"}";
+//    private String curUserServConstraint = "{\"title\":\"test1\"}";
+
+//    private String curUserServConstraint = "{__type: \"Pointer\",className: \"_User\",objectId: "+ ParseUser.getCurrentUser().getObjectId() +"}";
 
    // private String curUserServConstraint = "{\"createdBy\":"+ String.valueOf(ParseUser.getCurrentUser()) +"}";
+
+//    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
+
+    private String curUserServConstraint;
 
     /**
      * Create bootstrap service
@@ -34,6 +41,10 @@ public class BootstrapService {
 
     public BootstrapService(RestAdapter restAdapter) {
         this.restAdapter = restAdapter;
+    }
+
+    private void setServConstraint() {
+        curUserServConstraint = "{\"createdBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+ ParseUser.getCurrentUser().getObjectId() +"\"}}";
     }
 
     private UserService getUserService() {
@@ -71,6 +82,7 @@ public class BootstrapService {
      * Get all bootstrap News that exists on Parse.com
      */
     public List<TechService> getTechService() {
+        setServConstraint();
         return getTechServService().getTechService(curUserServConstraint).getResults();
     }
 
