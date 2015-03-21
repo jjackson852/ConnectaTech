@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -59,9 +60,7 @@ public class MainActivity extends BootstrapFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
-
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
 
         ParseAnalytics.trackAppOpened(getIntent());
 
@@ -123,13 +122,11 @@ public class MainActivity extends BootstrapFragmentActivity {
                     (DrawerLayout) findViewById(R.id.drawer_layout));
         }
 
-
+        drawerLayout.closeDrawer(Gravity.LEFT);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         checkAuth();
-
     }
 
     private boolean isTablet() {
@@ -168,14 +165,10 @@ public static String objID;
 
             //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
 
-
-
-
-//
             Bundle carouselArgs = new Bundle();
-//
+
             carouselArgs.putBoolean("isProvider", isProvider);
-//
+
             CarouselFragment carousel = new CarouselFragment();
             carousel.setArguments(carouselArgs);
 

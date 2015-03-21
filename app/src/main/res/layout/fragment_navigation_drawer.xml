@@ -6,5 +6,5 @@
           android:choiceMode="singleChoice"
           android:divider="@color/navigation_drawer_item_separator"
           android:dividerHeight="1dp"
-          android:background="#1f1f1f"
+          android:background="@drawable/nav_menu_button_background_selector"
           tools:context="com.notify.app.mobile.ui.NavigationDrawerFragment" />

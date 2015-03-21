@@ -48,7 +48,6 @@ public class CarouselFragment extends Fragment {
 
         if (isProvider == true) {
             pager.setAdapter(provLanding);
-
         }
         else{
             pager.setAdapter(custLanding);

@@ -34,31 +34,26 @@
     <color name="main_background_start">#2E2E2E</color>
     <color name="main_background_end">#2C2C2C</color>
 
-    <color name="button_background_enabled_start">#B2B2B2</color>
-    <color name="button_background_enabled_end">#B2B2B2</color>
-    <color name="button_background_pressed_start">#f76500</color>
-    <color name="button_background_pressed_end">#fb812c</color>
+    <color name="button_background_pressed_start">#FF2E77FF</color>
+    <color name="button_background_pressed_end">#FF2E77FF</color>
+    <color name="button_background_disabled_start">#7b7b7b</color>
+    <color name="button_background_disabled_end">#7b7b7b</color>
+    <color name="button_background_enabled_start">#3f48cc</color>
+    <color name="button_background_enabled_end">#3f48cc</color>
 
     <color name="edit_text_background_start">#EFF6FF</color>
     <color name="edit_text_background_end">#FBFDFF</color>
 
-    <color name="button_background_disabled_start">#7b7b7b</color>
-    <color name="button_background_disabled_end">#646464</color>
-
     <color name="text_shadow">#000000</color>
 
-    <color name="background_selected">#3f48cc</color>
+    <color name="background_selected">#FF2E77FF</color>
 
     <color name="nav_button_text_light">#ffffff</color>
-    <color name="nav_button_pressed">#3f48cc</color>
-    <color name="nav_button_disabled">#646464</color>
     <color name="nav_button_text_disabled">#464646</color>
+    <color name="nav_button_pressed">#1A1A1A</color>
+    <color name="nav_button_disabled">#1A1A1A</color>
+    <color name="nav_button_enabled">#1A1A1A</color>
 
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
-
-    //default 1fb6ed;"background_selected" "nav_button_pressed" "pager_footer" "text_link"
-    //default 3f48cc; logo blue
-    //default 75D1FF; "text_activity_header"
-
 </resources>
