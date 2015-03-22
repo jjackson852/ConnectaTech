@@ -9,7 +9,7 @@
     <color name="text_title">#DFDFDF</color>
     <color name="text_activity_header">#FCFCFC</color>
 
-    <color name="pager_footer">#3f48cc</color>
+    <color name="pager_footer">#ff6c93ff</color>
     <color name="pager_selected_text">#FFFFFF</color>
     <color name="pager_background">#F4F4F4</color>
     <color name="pager_background_alternate">#E7E7E7</color>
@@ -33,8 +33,8 @@
     <color name="main_background_start">#1A1A1A</color>
     <color name="main_background_end">#1A1A1A</color>
 
-    <color name="button_background_pressed_start">#FF2E77FF</color>
-    <color name="button_background_pressed_end">#FF2E77FF</color>
+    <color name="button_background_pressed_start">#ff6c93ff</color>
+    <color name="button_background_pressed_end">#ff6c93ff</color>
     <color name="button_background_disabled_start">#7b7b7b</color>
     <color name="button_background_disabled_end">#7b7b7b</color>
     <color name="button_background_enabled_start">#3f48cc</color>
@@ -45,7 +45,7 @@
 
     <color name="text_shadow">#000000</color>
 
-    <color name="background_selected">#ffff3b47</color>
+    <color name="background_selected">#3f48cc</color>
 
     <color name="nav_button_text_light">#ffffff</color>
     <color name="nav_button_text_disabled">#464646</color>
