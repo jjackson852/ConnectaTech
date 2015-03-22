@@ -23,6 +23,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
     private String regEmailText;
     private String regFNameText;
     private String regLNameText;
+    private String regZipCodeText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +67,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         regEmailText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_email)).getText()).toLowerCase();
         regFNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_first_name)).getText()).toLowerCase();
         regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText()).toLowerCase();
+        regZipCodeText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_zipcode)).getText());
 
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");
@@ -88,10 +90,17 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
 
                 if (regFNameText.matches("^[a-zA-Z]{1,25}$") && regLNameText.matches("^[a-zA-Z]{1,30}$")){
 
-                    completeRegistration();
+                    if (regZipCodeText.matches("^[0-9]{5}$")) {
+                        completeRegistration();
 
-                    //Go back to login activity.
-                    getActivity().finish();
+                        //Go back to login activity.
+                        getActivity().finish();
+                    }
+                    else{
+                        // Present Dialog Box and do NOT register.
+                        dlgAlert.setMessage("A Zip Code must be 5 numerical digits");
+                        dlgAlert.create().show();
+                    }
 
                 }
                 else{
@@ -125,6 +134,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
 
         user.put("firstName", regFNameText);
         user.put("lastName", regLNameText);
+        user.put("zipCode", regZipCodeText);
         user.put("isProvider", true);
 
         user.signUpInBackground(new SignUpCallback() {

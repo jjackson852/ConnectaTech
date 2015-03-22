@@ -23,7 +23,7 @@ public class BootstrapService {
 
 //    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
 
-    private String curUserServConstraint;
+    private static String curUserServConstraint;
 
     /**
      * Create bootstrap service
@@ -43,8 +43,10 @@ public class BootstrapService {
         this.restAdapter = restAdapter;
     }
 
-    private void setServConstraint() {
-        curUserServConstraint = "{\"createdBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\""+ ParseUser.getCurrentUser().getObjectId() +"\"}}";
+    public static void setServConstraint(String constraint) {
+       // if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+       curUserServConstraint = constraint;
+
     }
 
     private UserService getUserService() {
@@ -63,6 +65,10 @@ public class BootstrapService {
         return getRestAdapter().create(ExampleService.class);
     }
 
+    private RequestService getRequestService() {
+        return getRestAdapter().create(RequestService.class);
+    }
+
     private CheckInService getCheckInService() {
         return getRestAdapter().create(CheckInService.class);
     }
@@ -79,11 +85,16 @@ public class BootstrapService {
     }
 
     /**
-     * Get all bootstrap News that exists on Parse.com
+     * Get Tech Services which meet the constraint applied.
      */
     public List<TechService> getTechService() {
-        setServConstraint();
+
+        if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+            setServConstraint("{\"createdBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
+        }
+
         return getTechServService().getTechService(curUserServConstraint).getResults();
+
     }
 
     /**
@@ -105,6 +116,13 @@ public class BootstrapService {
      */
     public List<Example> getExample() {
         return getExampleService().getExample().getResults();
+    }
+
+    /**
+     * Get all bootstrap Home Data that exists on Parse.com
+     */
+    public List<Request> getRequest() {
+        return getRequestService().getRequest().getResults();
     }
 
     public User authenticate(String email, String password) {

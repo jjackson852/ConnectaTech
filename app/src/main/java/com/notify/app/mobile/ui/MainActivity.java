@@ -294,5 +294,10 @@ public static String objID;
         startActivity(i);
     }
 
+
+    public void navigateToFilterServices(final View view) {
+        final Intent i = new Intent(this, FilterServicesActivity.class);
+        startActivity(i);
+    }
 }
 

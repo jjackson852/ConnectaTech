@@ -156,6 +156,10 @@
             android:name=".ui.AddServiceActivity" >
         </activity>
 
+        <activity
+            android:name=".ui.FilterServicesActivity" >
+        </activity>
+
 
 
 

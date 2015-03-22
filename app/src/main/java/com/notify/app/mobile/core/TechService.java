@@ -10,6 +10,7 @@ public class TechService implements Serializable {
     private String description;
     private String objectId;
     private String basePrice;
+    private String zipCode;
 
     public String getTitle() {
         return title;
@@ -41,5 +42,13 @@ public class TechService implements Serializable {
 
     public void setBasePrice(final String basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(final String basePrice) {
+        this.zipCode = zipCode;
     }
 }
