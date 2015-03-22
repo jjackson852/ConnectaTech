@@ -24,6 +24,4 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/table_text_selector" />
 
-
-
 </LinearLayout>
