@@ -28,6 +28,7 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.PushService;
 import com.parse.SaveCallback;
@@ -164,6 +165,13 @@ public static String objID;
             //}
 
             //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
+
+            if (isProvider ) {
+                ParsePush push = new ParsePush();
+                push.setChannel("Provider");
+                push.setMessage("You have 0 new Requests");
+                push.sendInBackground();
+            }
 
             Bundle carouselArgs = new Bundle();
 

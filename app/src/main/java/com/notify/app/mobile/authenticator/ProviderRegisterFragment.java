@@ -4,14 +4,26 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.core.Constants;
+import com.notify.app.mobile.ui.BootstrapFragmentActivity;
+import com.notify.app.mobile.ui.MainActivity;
+import com.notify.app.mobile.ui.ProviderProfileFragment;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 public class ProviderRegisterFragment extends Fragment implements View.OnClickListener {
@@ -123,6 +135,13 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
                     " only numbers and letters.");
             dlgAlert.create().show();
         }
+        ParsePush push = new ParsePush();
+        push.subscribeInBackground("Provider");
+        push.setChannel("Provider");
+        push.setMessage("Welcome Provider");
+        push.sendInBackground();
+
+
     }
 
     public void completeRegistration(){
@@ -137,6 +156,8 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         user.put("zipCode", regZipCodeText);
         user.put("isProvider", true);
 
+
+
         user.signUpInBackground(new SignUpCallback() {
 
             public void done(com.parse.ParseException e) {
@@ -149,7 +170,6 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
             }
 
         });
-
     }
 
     public final static boolean isEmailValid(CharSequence emailAddr) {
