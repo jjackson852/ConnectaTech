@@ -37,6 +37,9 @@ public class AddServiceActivity extends BootstrapActivity {
 
         setContentView(layout.add_tech_service);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         /**
          * Attaches the Submit New Service button listener to the xml button.
          */

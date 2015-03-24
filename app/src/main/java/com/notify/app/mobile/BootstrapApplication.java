@@ -14,6 +14,7 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
+import com.parse.ParseUser;
 import com.parse.PushService;
 import com.parse.SaveCallback;
 
@@ -55,23 +56,28 @@ public class BootstrapApplication extends Application {
         //Initialize the connection to the parse database.
         Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
 
-        ParsePush.subscribeInBackground("", new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
-                } else {
-                    Log.e("com.parse.push", "failed to subscribe for push", e);
+            ParsePush.subscribeInBackground("", new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+                    } else {
+                        Log.e("com.parse.push", "failed to subscribe for push", e);
+                    }
                 }
-            }
-        });
+            });
 
-        ParseInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                PushService.setDefaultPushCallback(BootstrapApplication.this, MainActivity.class);
-            }
-        });
+//        // Associate the device with a user
+//        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+//        installation.put("user", ParseUser.getCurrentUser());
+//        installation.saveInBackground();
+
+            ParseInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    PushService.setDefaultPushCallback(BootstrapApplication.this, MainActivity.class);
+                }
+            });
 
 
     }
