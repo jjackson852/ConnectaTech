@@ -47,6 +47,7 @@ import com.github.kevinsawicki.wishlist.Toaster;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.squareup.otto.Bus;
@@ -535,6 +536,14 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                                     user2 = user;
 
                                     finish();
+
+                            if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
+                                ParsePush push = new ParsePush();
+                                push.subscribeInBackground("Provider");
+                                push.setChannel("Provider");
+                                push.setMessage("You have 0 new Requests");
+                                push.sendInBackground();
+                            }
 
                                     homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(homeIntent);

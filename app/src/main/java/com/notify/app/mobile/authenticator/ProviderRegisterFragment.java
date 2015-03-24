@@ -136,13 +136,6 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
             dlgAlert.create().show();
         }
 
-        ParsePush push = new ParsePush();
-        push.subscribeInBackground("Provider");
-        push.setChannel("Provider");
-        push.setMessage("Welcome Provider");
-        push.sendInBackground();
-
-
     }
 
     public void completeRegistration(){
