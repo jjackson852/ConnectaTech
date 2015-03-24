@@ -135,6 +135,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
                     " only numbers and letters.");
             dlgAlert.create().show();
         }
+
         ParsePush push = new ParsePush();
         push.subscribeInBackground("Provider");
         push.setChannel("Provider");

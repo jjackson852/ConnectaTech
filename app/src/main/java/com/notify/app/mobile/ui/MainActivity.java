@@ -89,6 +89,11 @@ public class MainActivity extends BootstrapFragmentActivity {
         // Set up navigation drawer
         title = drawerTitle = getTitle();
 
+//        ParsePush push = new ParsePush();
+//        push.setChannel("Provider");
+//        push.setMessage("You have 0 new Requests");
+//        push.sendInBackground();
+
         if(!isTablet()) {
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerToggle = new ActionBarDrawerToggle(
@@ -166,12 +171,9 @@ public static String objID;
 
             //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
 
-            if (isProvider ) {
-                ParsePush push = new ParsePush();
-                push.setChannel("Provider");
-                push.setMessage("You have 0 new Requests");
-                push.sendInBackground();
-            }
+
+
+
 
             Bundle carouselArgs = new Bundle();
 
