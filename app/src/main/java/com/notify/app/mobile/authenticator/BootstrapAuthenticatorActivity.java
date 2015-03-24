@@ -548,6 +548,15 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                                 push.setMessage("You have 0 new Requests");
                                 push.sendInBackground();
                             }
+                            else {
+
+                                ParsePush push = new ParsePush();
+                                push.subscribeInBackground("Customer");
+//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+                                push.setChannel("Customer");
+                                push.setMessage("You have 0 new Services");
+                                push.sendInBackground();
+                            }
 
                                     homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(homeIntent);
