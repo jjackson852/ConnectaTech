@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
+import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.RegisterActivity;
@@ -22,8 +24,14 @@ import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -53,34 +61,14 @@ public class MainActivity extends BootstrapFragmentActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
-
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+        ParseAnalytics.trackAppOpened(getIntent());
 
         super.onCreate(savedInstanceState);
 
         ParseObject.registerSubclass(Meal.class);
-/*
-* Fill in this section with your Parse credentials
-*/
-        Parse.initialize(this, "ZoLfhGYjXZyhZsMzCOUiKojKEmNpVHOtommTCMgD", "Ekt2HIFo6KhnE5DfOWycWUphwo1p8mOYl8Z9hr5B");
-/*
-* This app lets an anonymous user create and save photos of meals
-* they've eaten. An anonymous user is a user that can be created
-* without a username and password but still has all of the same
-* capabilities as any other ParseUser.
-*
-* After logging out, an anonymous user is abandoned, and its data is no
-* longer accessible. In your own app, you can convert anonymous users
-* to regular users so that data persists.
-*
-* Learn more about the ParseUser class:
-* https://www.parse.com/docs/android_guide#users
-*/
-        //ParseUser.enableAutomaticUser();
-/*
-* For more information on app security and Parse ACL:
-* https://www.parse.com/docs/android_guide#security-recommendations
-*/
+
         ParseACL defaultACL = new ParseACL();
 /*
 * If you would like all objects to be private by default, remove this
@@ -100,6 +88,11 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         // Set up navigation drawer
         title = drawerTitle = getTitle();
+
+//        ParsePush push = new ParsePush();
+//        push.setChannel("Provider");
+//        push.setMessage("You have 0 new Requests");
+//        push.sendInBackground();
 
         if(!isTablet()) {
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,13 +128,11 @@ public class MainActivity extends BootstrapFragmentActivity {
                     (DrawerLayout) findViewById(R.id.drawer_layout));
         }
 
-
+        drawerLayout.closeDrawer(Gravity.LEFT);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         checkAuth();
-
     }
 
     private boolean isTablet() {
@@ -167,7 +158,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         }
     }
 
-
+public static String objID;
     private void initScreen() {
         if (userHasAuthenticated) {
            // try {
@@ -183,11 +174,11 @@ public class MainActivity extends BootstrapFragmentActivity {
 
 
 
-//
+
             Bundle carouselArgs = new Bundle();
-//
+
             carouselArgs.putBoolean("isProvider", isProvider);
-//
+
             CarouselFragment carousel = new CarouselFragment();
             carousel.setArguments(carouselArgs);
 
@@ -313,5 +304,10 @@ public class MainActivity extends BootstrapFragmentActivity {
         startActivity(i);
     }
 
+
+    public void navigateToFilterServices(final View view) {
+        final Intent i = new Intent(this, FilterServicesActivity.class);
+        startActivity(i);
+    }
 }
 

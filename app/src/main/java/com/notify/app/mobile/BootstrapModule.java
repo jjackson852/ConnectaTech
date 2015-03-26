@@ -22,6 +22,7 @@ import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
 import com.notify.app.mobile.ui.ExampleActivity;
 import com.notify.app.mobile.ui.ExampleListFragment;
+import com.notify.app.mobile.ui.FilterServicesActivity;
 import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.MealListActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
@@ -29,6 +30,8 @@ import com.notify.app.mobile.ui.NewsActivity;
 import com.notify.app.mobile.ui.NewsListFragment;
 import com.notify.app.mobile.ui.ProviderProfileFragment;
 import com.notify.app.mobile.ui.RatingActivity;
+import com.notify.app.mobile.ui.RequestActivity;
+import com.notify.app.mobile.ui.RequestListFragment;
 import com.notify.app.mobile.ui.TechServiceActivity;
 import com.notify.app.mobile.ui.TechServiceListFragment;
 import com.notify.app.mobile.ui.TestActivity;
@@ -73,7 +76,10 @@ import retrofit.converter.GsonConverter;
                 ProviderProfileFragment.class,
                 TechServiceActivity.class,
                 TechServiceListFragment.class,
-                AddServiceActivity.class
+                AddServiceActivity.class,
+                RequestActivity.class,
+                RequestListFragment.class,
+                FilterServicesActivity.class
         }
 )
 public class BootstrapModule {

@@ -83,7 +83,7 @@ public final class Constants {
         public static final String URL_NEWS = URL_BASE + URL_NEWS_FRAG;
 
         /**
-         * List News URL
+         * List Example URL
          */
         public static final String EXAMPLE_NEWS_FRAG = "/1/classes/Home";
         public static final String EXAMPLE_NEWS = URL_BASE + EXAMPLE_NEWS_FRAG;
@@ -93,6 +93,12 @@ public final class Constants {
          */
         public static final String URL_TECHSERVICE_FRAG = "/1/classes/TechService";
         public static final String URL_TECHSERVICE = URL_BASE + URL_TECHSERVICE_FRAG;
+
+        /**
+         * List TechService URL
+         */
+        public static final String URL_REQUEST_FRAG = "/1/classes/Request";
+        public static final String URL_REQUEST = URL_BASE + URL_REQUEST_FRAG;
 
         /**
          * List Checkin's URL
@@ -131,6 +137,8 @@ public final class Constants {
         public static final String EXAMPLE_ITEM = "news_item";
 
         public static final String TECHSERVICE_ITEM = "techservice_item";
+
+        public static final String REQUEST_ITEM = "request_item";
 
         public static final String RATING ="image";
 

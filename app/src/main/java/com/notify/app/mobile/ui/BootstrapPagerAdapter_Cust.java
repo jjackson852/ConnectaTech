@@ -73,7 +73,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_checkins);
             case 3:
-                return resources.getString(R.string.title_techservices);
+                return resources.getString(R.string.title_browse_techservices);
             default:
                 return null;
         }

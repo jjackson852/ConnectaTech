@@ -13,6 +13,6 @@ import retrofit.http.Query;
 public interface TechServService {
 
     @GET(Constants.Http.URL_TECHSERVICE_FRAG)
-    TechServiceWrapper getTechService(@Query("where") String contraint);
+    TechServiceWrapper getTechService(@Query("where") String constraint);
 
 }

@@ -14,12 +14,12 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 /**
- * Activity to create a new account on the parse database.
+ * Activity to create a new service on the parse database.
  */
 public class AddServiceActivity extends BootstrapActivity {
 
 
-    private View.OnClickListener submitUserListener = new View.OnClickListener() {
+    private View.OnClickListener addServiceListener = new View.OnClickListener() {
         public void onClick(View v) {
 
             //Create the user.
@@ -37,11 +37,14 @@ public class AddServiceActivity extends BootstrapActivity {
 
         setContentView(layout.add_tech_service);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         /**
-         * Attaches the SubmitUser button listener to the xml button.
+         * Attaches the Submit New Service button listener to the xml button.
          */
         Button submitServiceButton = (Button)findViewById(id.b_submit_new_service);
-        submitServiceButton.setOnClickListener(submitUserListener);
+        submitServiceButton.setOnClickListener(addServiceListener);
 
     }
 
@@ -65,6 +68,7 @@ public class AddServiceActivity extends BootstrapActivity {
         newTechService.put("basePrice", String.valueOf(addServPriceText.getText()));
         newTechService.put("description", String.valueOf(addServDescriptionText.getText()));
         newTechService.put("createdBy", ParseUser.getCurrentUser());
+        newTechService.put("zipCode", ParseUser.getCurrentUser().getString("zipCode"));
 
         newTechService.saveInBackground();
 

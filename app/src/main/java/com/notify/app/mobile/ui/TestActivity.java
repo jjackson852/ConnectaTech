@@ -1,18 +1,36 @@
 package com.notify.app.mobile.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 //import android.view.Menu;
 
 
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.util.Receiver;
+import com.parse.ParsePush;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class TestActivity extends BootstrapActivity {
+
+    private RatingBar ratingBar;
+    private TextView txtRatingValue;
+    private Button btnSubmit;
+
+    Button button;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -21,6 +39,9 @@ public class TestActivity extends BootstrapActivity {
         setContentView(R.layout.test_activity);
         Injector.inject(this);
         setTitle(R.string.title_test);
+
+
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -76,5 +97,8 @@ public class TestActivity extends BootstrapActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 }
 
