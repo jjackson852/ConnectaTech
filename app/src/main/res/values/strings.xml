@@ -20,6 +20,8 @@
     <string name="error_loading_checkins">Loading check-ins failed</string>
     <string name="no_users">No Users</string>
     <string name="no_news">No News</string>
+    <string name="no_tech_services">No Services Found.\nTap here to add a Service.</string>
+    <string name="no_tech_services_browse">No Services Found.\nTap here to filter results.</string>
     <string name="avatar">Avatar</string>
     <string name="choose">Choose</string>
 
@@ -49,7 +51,7 @@
     <string name="navigation_drawer_close">Drawer Close</string>
     <string name="title_home">Home</string>
     <string name="title_activity_test_">Test Activity</string>
-    <string name="title_activity_providerheck">You are a provider!</string>
+    <string name="title_activity_provider">Profile</string>
 
     <!-- RegisterActivity -->
     <string name="register_header_cust">Create your profile.</string>
@@ -57,6 +59,7 @@
     <string name="label_submit">Submit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
+    <string name="label_zipcode">Zip Code</string>
     <string name="label_username">Username</string>
     <string name="label_email_address">Email Address</string>
 
@@ -67,6 +70,7 @@
     <string name="example_news">example_news</string>
     <string name="title_techservices">Offered Services</string>
     <string name="techservice_news">example_news</string>
+    <string name="title_browse_techservices">Browse Services</string>
 
     <string name="rating_activity">rating_activity</string>
 
@@ -99,6 +103,8 @@
     <!-- TechServicesFrag -->
     <string name="add_services">+ Add a Service</string>
     <string name="label_sign_in_as_provider">Continue as Provider</string>
+    <string name="narrow_search">Narrow Your Search.</string>
+    <string name="search_services">Tap here to filter results.</string>
 
     <!-- AddTechService Activity> -->
     <string name="activity_title">Describe your Service.</string>
@@ -107,5 +113,9 @@
     <string name="service_description">Description</string>
     <string name="service_base_price">Base Price</string>
     <string name="service_submit">Submit Service</string>
+
+    <!--Request Activity -->
+    <string name="no_requests">You currently have no \nrequests for your services.</string>
+    <string name="provider_requests">Active Requests</string>
 
 </resources>

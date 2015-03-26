@@ -1,6 +1,7 @@
 
 package com.notify.app.mobile.core;
 
+import com.notify.app.mobile.ui.MainActivity;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -14,9 +15,15 @@ public class BootstrapService {
 
     private RestAdapter restAdapter;
 
-    private String curUserServConstraint = "{\"title\":\"test1\"}";
+//    private String curUserServConstraint = "{\"title\":\"test1\"}";
+
+//    private String curUserServConstraint = "{__type: \"Pointer\",className: \"_User\",objectId: "+ ParseUser.getCurrentUser().getObjectId() +"}";
 
    // private String curUserServConstraint = "{\"createdBy\":"+ String.valueOf(ParseUser.getCurrentUser()) +"}";
+
+//    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
+
+    private static String curUserServConstraint;
 
     /**
      * Create bootstrap service
@@ -36,6 +43,12 @@ public class BootstrapService {
         this.restAdapter = restAdapter;
     }
 
+    public static void setServConstraint(String constraint) {
+       // if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+       curUserServConstraint = constraint;
+
+    }
+
     private UserService getUserService() {
         return getRestAdapter().create(UserService.class);
     }
@@ -50,6 +63,10 @@ public class BootstrapService {
 
     private ExampleService getExampleService() {
         return getRestAdapter().create(ExampleService.class);
+    }
+
+    private RequestService getRequestService() {
+        return getRestAdapter().create(RequestService.class);
     }
 
     private CheckInService getCheckInService() {
@@ -68,10 +85,16 @@ public class BootstrapService {
     }
 
     /**
-     * Get all bootstrap News that exists on Parse.com
+     * Get Tech Services which meet the constraint applied.
      */
     public List<TechService> getTechService() {
+
+        if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+            setServConstraint("{\"createdBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
+        }
+
         return getTechServService().getTechService(curUserServConstraint).getResults();
+
     }
 
     /**
@@ -93,6 +116,13 @@ public class BootstrapService {
      */
     public List<Example> getExample() {
         return getExampleService().getExample().getResults();
+    }
+
+    /**
+     * Get all bootstrap Home Data that exists on Parse.com
+     */
+    public List<Request> getRequest() {
+        return getRequestService().getRequest().getResults();
     }
 
     public User authenticate(String email, String password) {

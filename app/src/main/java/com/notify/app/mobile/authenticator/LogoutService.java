@@ -5,6 +5,7 @@ import android.accounts.AccountManager;
 import android.accounts.AccountManagerFuture;
 import android.content.Context;
 
+import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.core.Constants;
 import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.util.Ln;
@@ -73,7 +74,7 @@ public class LogoutService {
             onSuccess.run();
 
            // ParseUser.unpinAllInBackground();
-
+            BootstrapService.setServConstraint(null);
 
 
         }

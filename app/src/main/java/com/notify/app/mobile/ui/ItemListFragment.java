@@ -444,6 +444,20 @@ public abstract class ItemListFragment<E> extends Fragment
         return this;
     }
 
+    protected ItemListFragment<E> setEmptyTextIsClickable(boolean bool) {
+        if (emptyView != null) {
+            emptyView.setClickable(bool);
+        }
+        return this;
+    }
+
+    protected ItemListFragment<E> setEmptyTextOnClickMethod(View.OnClickListener listener) {
+        if (emptyView != null) {
+            emptyView.setOnClickListener(listener);
+        }
+        return this;
+    }
+
     /**
      * Callback when a list view item is clicked
      *
@@ -464,4 +478,5 @@ public abstract class ItemListFragment<E> extends Fragment
     protected boolean isUsable() {
         return getActivity() != null;
     }
+
 }
