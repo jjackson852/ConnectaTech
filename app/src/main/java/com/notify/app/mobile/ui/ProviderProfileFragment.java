@@ -139,10 +139,10 @@ public class ProviderProfileFragment extends ItemListFragment2 {
          return view;
      }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        refresh();
-    }
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        refresh();
+//    }
 }
 
