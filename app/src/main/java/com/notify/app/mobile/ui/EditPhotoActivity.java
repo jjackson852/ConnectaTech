@@ -14,33 +14,30 @@ import com.notify.app.mobile.R;
 /**
  * Created by theblackfu on 3/1/2015.
  */
-public class NewMealActivity extends Activity {
+public class EditPhotoActivity extends Activity {
 
-    private Meal meal;
-
+    private Photo photo;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        meal = new Meal();
+        photo = new Photo();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
 
-        // Begin with main data entry view,
-        // NewMealFragment
-        setContentView(R.layout.activity_new_meal);
+        setContentView(R.layout.activity_edit_photo);
         FragmentManager manager = getFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
 
         if (fragment == null) {
-            fragment = new NewMealFragment();
+            fragment = new EditPhotoFragment();
             manager.beginTransaction().add(R.id.fragmentContainer, fragment)
                     .commit();
         }
     }
 
-    public Meal getCurrentMeal() {
-        return meal;
+    public Photo getCurrentPhoto() {
+        return photo;
     }
 }

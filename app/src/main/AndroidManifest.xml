@@ -143,13 +143,8 @@
         </activity>
 
         <activity
-            android:name=".ui.MealListActivity"
-            android:label="@string/title_activity_meal_list"  >
-        </activity>
-
-        <activity
-            android:name=".ui.NewMealActivity"
-            android:label="@string/title_activity_new_meal" >
+            android:name=".ui.EditPhotoActivity"
+            android:label="@string/title_activity_edit_photo" >
         </activity>
 
         <activity

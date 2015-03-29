@@ -7,12 +7,12 @@ import com.parse.ParseUser;
 /*
 * An extension of ParseObject that makes
 * it more convenient to access information
-* about a given Meal
+* about a given Photo
 */
-@ParseClassName("Meal")
-public class Meal extends ParseObject {
+@ParseClassName("Photo")
+public class Photo extends ParseObject {
 
-    public Meal() {
+    public Photo() {
 // A default constructor is required.
     }
     public String getTitle() {

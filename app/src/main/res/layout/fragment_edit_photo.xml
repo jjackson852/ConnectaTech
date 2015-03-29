@@ -3,25 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="@string/image_upload"
-        android:textSize="20sp"
-        android:background="#ff2f4bff"
-        android:textColor="#ff060606" />
-    <EditText
-        android:id="@+id/meal_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:textColor="#ff0d040c" />
-    <Spinner
-        android:id="@+id/rating_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ff1c13ff" />
     <ImageButton
         android:id="@+id/photo_button"
         android:layout_width="match_parent"
@@ -38,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel_button_text" />
     <com.parse.ParseImageView
-        android:id="@+id/meal_preview_image"
+        android:id="@+id/edit_photo_preview"
         android:layout_width="wrap_content"
         android:layout_height="200dp" />
 </LinearLayout>

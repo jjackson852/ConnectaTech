@@ -15,18 +15,18 @@ import com.parse.ParseQueryAdapter;
 
 import java.util.Arrays;
 /*
-* The FavoriteMealAdapter is an extension of ParseQueryAdapter
+* The PhotoRatingAdapter is an extension of ParseQueryAdapter
 * that has a custom layout for favorite meals, including a
 * bigger preview image, the meal's rating, and a "favorite"
 * star.
 */
-public class FavoriteMealAdapter extends ParseQueryAdapter<Meal> {
-    public FavoriteMealAdapter(Context context) {
-        super(context, new ParseQueryAdapter.QueryFactory<Meal>() {
-            public ParseQuery<Meal> create() {
+public class PhotoRatingAdapter extends ParseQueryAdapter<Photo> {
+    public PhotoRatingAdapter(Context context) {
+        super(context, new ParseQueryAdapter.QueryFactory<Photo>() {
+            public ParseQuery<Photo> create() {
 // Here we can configure a ParseQuery to display
 // only top-rated meals.
-                ParseQuery query = new ParseQuery("Meal");
+                ParseQuery query = new ParseQuery("Photo");
                 query.whereContainedIn("rating", Arrays.asList("5", "4"));
                 query.orderByDescending("rating");
                 return query;
@@ -34,16 +34,16 @@ public class FavoriteMealAdapter extends ParseQueryAdapter<Meal> {
         });
     }
     @Override
-    public View getItemView(Meal meal, View v, ViewGroup parent) {
+    public View getItemView(Photo photo, View v, ViewGroup parent) {
         if (v == null) {
             v = View.inflate(getContext(), R.layout.item_list_favorites, null);
         }
-        super.getItemView(meal, v, parent);
-        ParseImageView mealImage = (ParseImageView) v.findViewById(R.id.icon);
-        ParseFile photoFile = meal.getParseFile("photo");
+        super.getItemView(photo, v, parent);
+        ParseImageView image = (ParseImageView) v.findViewById(R.id.icon);
+        ParseFile photoFile = photo.getParseFile("photo");
         if (photoFile != null) {
-            mealImage.setParseFile(photoFile);
-            mealImage.loadInBackground(new GetDataCallback() {
+            image.setParseFile(photoFile);
+            image.loadInBackground(new GetDataCallback() {
                 @Override
                 public void done(byte[] data, ParseException e) {
 // nothing to do
@@ -51,10 +51,10 @@ public class FavoriteMealAdapter extends ParseQueryAdapter<Meal> {
             });
         }
         TextView titleTextView = (TextView) v.findViewById(R.id.text1);
-        titleTextView.setText(meal.getTitle());
+        titleTextView.setText(photo.getTitle());
         TextView ratingTextView = (TextView) v
-                .findViewById(R.id.favorite_meal_rating);
-        ratingTextView.setText(meal.getRating());
+                .findViewById(R.id.favorite_rating);
+        ratingTextView.setText(photo.getRating());
         return v;
     }
 }

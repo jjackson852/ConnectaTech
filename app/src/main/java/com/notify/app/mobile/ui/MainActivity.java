@@ -13,25 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
-import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.authenticator.RegisterActivity;
 import com.notify.app.mobile.core.BootstrapService;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
-import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -67,7 +59,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        ParseObject.registerSubclass(Meal.class);
+        ParseObject.registerSubclass(Photo.class);
 
         ParseACL defaultACL = new ParseACL();
 /*
@@ -171,10 +163,6 @@ public static String objID;
 
             //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
 
-
-
-
-
             Bundle carouselArgs = new Bundle();
 
             carouselArgs.putBoolean("isProvider", isProvider);
@@ -242,10 +230,6 @@ public static String objID;
                 startActivity(new Intent(this, RatingActivity.class));
                 //navigateToTest();
                 return true;
-            case R.id.meal_name:
-                startActivity(new Intent(this, MealListActivity.class));
-                //navigateToTest();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -289,12 +273,6 @@ public static String objID;
                 // Test
                 // navigateToTest();
                 startActivity(new Intent(this, RatingActivity.class));
-                break;
-
-            case 4:
-                // Test
-                // navigateToTest();
-                startActivity(new Intent(this, MealListActivity.class));
                 break;
         }
     }

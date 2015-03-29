@@ -24,7 +24,6 @@ import com.notify.app.mobile.ui.ExampleActivity;
 import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.FilterServicesActivity;
 import com.notify.app.mobile.ui.MainActivity;
-import com.notify.app.mobile.ui.MealListActivity;
 import com.notify.app.mobile.ui.NavigationDrawerFragment;
 import com.notify.app.mobile.ui.NewsActivity;
 import com.notify.app.mobile.ui.NewsListFragment;
@@ -63,7 +62,6 @@ import retrofit.converter.GsonConverter;
                 ExampleActivity.class,
                 ExampleListFragment.class,
                 RatingActivity.class,
-                MealListActivity.class,
                 NavigationDrawerFragment.class,
                 NewsActivity.class,
                 NewsListFragment.class,
