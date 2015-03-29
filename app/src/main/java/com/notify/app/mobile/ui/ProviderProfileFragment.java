@@ -138,5 +138,11 @@ public class ProviderProfileFragment extends ItemListFragment2 {
          // Inflate the layout for this fragment
          return view;
      }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        refresh();
+    }
 }
 
