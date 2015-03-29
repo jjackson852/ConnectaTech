@@ -30,11 +30,11 @@ public class RequestActivity extends BootstrapActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        setTitle(requestItem.getTitle());
+        setTitle(requestItem.getServiceTitle());
 
 
-        title.setText(requestItem.getTitle());
-        content.setText(requestItem.getContent());
+        title.setText(requestItem.getServiceTitle());
+        content.setText(requestItem.getAddlInfo());
 
     }
 

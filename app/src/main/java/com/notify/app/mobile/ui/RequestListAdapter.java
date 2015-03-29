@@ -37,8 +37,8 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
     protected void update(final int position, final Request item) {
         super.update(position, item);
 
-        setText(0, item.getTitle());
-        setText(1, item.getContent());
+        setText(0, item.getServiceTitle());
+        setText(1, item.getAddlInfo());
         //setNumber(R.id.tv_date, item.getCreatedAt());
     }
 }

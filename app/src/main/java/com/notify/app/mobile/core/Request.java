@@ -6,24 +6,24 @@ public class Request implements Serializable {
 
     private static final long serialVersionUID = -6641292855569752035L;
 
-    private String title;
-    private String content;
+    private String serviceTitle;
+    private String addlInfo;
     private String objectId;
 
-    public String getTitle() {
-        return title;
+    public String getServiceTitle() {
+        return serviceTitle;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setServiceTitle(final String serviceTitle) {
+        this.serviceTitle = serviceTitle;
     }
 
-    public String getContent() {
-        return content;
+    public String getAddlInfo() {
+        return addlInfo;
     }
 
-    public void setContent(final String content) {
-        this.content = content;
+    public void setAddlInfo(final String addlInfo) {
+        this.addlInfo = addlInfo;
     }
 
     public String getObjectId() {

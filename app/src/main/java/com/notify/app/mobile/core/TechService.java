@@ -1,5 +1,7 @@
 package com.notify.app.mobile.core;
 
+import com.parse.ParseUser;
+
 import java.io.Serializable;
 
 public class TechService implements Serializable {
@@ -11,6 +13,7 @@ public class TechService implements Serializable {
     private String objectId;
     private String basePrice;
     private String zipCode;
+    private ParseUser provider;
 
     public String getTitle() {
         return title;
@@ -48,7 +51,16 @@ public class TechService implements Serializable {
         return zipCode;
     }
 
-    public void setZipCode(final String basePrice) {
+    public void setZipCode(final String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public ParseUser getCreatedBy() {
+        return provider;
+    }
+
+    public void setCreatedBy(final ParseUser provider) {
+        this.provider = provider;
+    }
+
 }

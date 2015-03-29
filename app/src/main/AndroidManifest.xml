@@ -143,6 +143,11 @@
         </activity>
 
         <activity
+            android:name=".ui.RequestServiceActivity"
+            android:label="@string/title_requestservice" >
+        </activity>
+
+        <activity
             android:name=".ui.EditPhotoActivity"
             android:label="@string/title_activity_edit_photo" >
         </activity>
@@ -153,6 +158,10 @@
 
         <activity
             android:name=".ui.FilterServicesActivity" >
+        </activity>
+
+        <activity
+            android:name=".ui.RequestActivity" >
         </activity>
 
 

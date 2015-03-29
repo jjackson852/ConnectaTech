@@ -24,6 +24,7 @@ public class BootstrapService {
 //    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
 
     private static String curUserServConstraint;
+    private static String curUserReqConstraint;
 
     /**
      * Create bootstrap service
@@ -44,8 +45,14 @@ public class BootstrapService {
     }
 
     public static void setServConstraint(String constraint) {
-       // if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+
        curUserServConstraint = constraint;
+
+    }
+
+    public static void setReqConstraint(String constraint) {
+
+        curUserReqConstraint = constraint;
 
     }
 
@@ -122,7 +129,12 @@ public class BootstrapService {
      * Get all bootstrap Home Data that exists on Parse.com
      */
     public List<Request> getRequest() {
-        return getRequestService().getRequest().getResults();
+
+        if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+            setReqConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
+        }
+
+        return getRequestService().getRequest(curUserReqConstraint).getResults();
     }
 
     public User authenticate(String email, String password) {

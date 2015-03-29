@@ -121,8 +121,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         }catch(NullPointerException ex){
             if(ex != null){
 
-                TextView test = (TextView) view.findViewById(R.id.no_photo);
-                test.setText("Photo Not Yet Uploaded.");
+                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
+                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
             }
         }
 

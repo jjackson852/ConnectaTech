@@ -69,6 +69,7 @@
     <string name="title_example">Example</string>
     <string name="example_news">example_news</string>
     <string name="title_techservices">Offered Services</string>
+    <string name="title_requestservice">Offered Services</string>
     <string name="techservice_news">example_news</string>
     <string name="title_browse_techservices">Browse Services</string>
 
@@ -113,5 +114,8 @@
     <!--Request Activity -->
     <string name="no_requests">You currently have no \nrequests for your services.</string>
     <string name="provider_requests">Active Requests</string>
+    <string name="label_request_service">Request Service</string>
+    <string name="describe_request">Describe your request.</string>
+    <string name="label_addl_info">List the specific problem/request.</string>
 
 </resources>
