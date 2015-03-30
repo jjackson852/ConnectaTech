@@ -37,6 +37,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
     private View view;
     private ImageView edit_photo;
+    private Button edit_photo_button;
 
     //Toast Test Button
     private Button edit_rating;
@@ -138,6 +139,16 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         }
 
         edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
+        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
+
+        edit_photo_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         edit_photo.setOnClickListener(new View.OnClickListener() {
