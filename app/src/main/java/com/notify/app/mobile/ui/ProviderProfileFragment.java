@@ -2,6 +2,7 @@ package com.notify.app.mobile.ui;
 
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,9 +24,11 @@ import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
 import com.notify.app.mobile.core.Example;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -45,6 +48,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     //Rating
     private Button btnSubmit;
     private RatingBar ratingBar;
+    private ProgressDialog progressDialog;
+
 
 
     //Toast Test Button
@@ -171,20 +176,65 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             }
         });
 //-------------------------------------------------------------------------------------------------
-        ParseQuery query = new ParseQuery("User");
-        query.whereEqualTo("rating",5);
+
 
         //Rating Button Listener
-        edit_rating = ((Button) view.findViewById(R.id.edit_rating_btn));
+        btnSubmit = ((Button) view.findViewById(R.id.edit_rating_btn));
 
-        edit_rating.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                progressDialog = ProgressDialog.show(getActivity(), "",
+                        "Downloading Image...", true);
 
-                Toast.makeText(getActivity(), "Select A Rating", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), RatingActivity.class);
-                startActivity(intent);
+            // Locate the class table named "ImageUpload" in Parse.com
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+                        "ImageUpload");
+
+                // Locate the objectId from the class
+                query.getInBackground("KDKWQRTwRE",
+                        new GetCallback<ParseObject>() {
+
+                            public void done(ParseObject object,
+                                             ParseException e) {
+                                // TODO Auto-generated method stub
+
+                                // Locate the column named "ImageName" and set
+                                // the string
+                                ParseFile fileObject = (ParseFile) object
+                                        .get("ImageFile");
+                                fileObject
+                                        .getDataInBackground(new GetDataCallback() {
+
+                                            public void done(byte[] data,
+                                                             ParseException e) {
+                                                if (e == null) {
+                                                    Log.d("test",
+                                                            "We've got data in data.");
+                                                    // Decode the Byte[] into
+                                                    // Bitmap
+                                                    Bitmap bmp = BitmapFactory
+                                                            .decodeByteArray(data, 0, data.length);
+                                                    // Get the ImageView from
+                                                    // main.xml
+                                                    ImageView image = (ImageView) view.findViewById(R.id.image);
+                                                    // Set the Bitmap into the
+                                                    // ImageView
+                                                    image.setImageBitmap(bmp);
+                                                    // Close progress dialog
+                                                    progressDialog.dismiss();
+
+                                                } else {
+                                                    Log.d("test",
+                                                            "There was a problem downloading the data.");
+                                                }
+                                            }
+                                        });
+                            }
+                        });
             }
+
         });
 
 //--------------------------------------------------------------------------------------------------
