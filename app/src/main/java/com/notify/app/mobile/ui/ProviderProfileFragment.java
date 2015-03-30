@@ -36,7 +36,7 @@ import javax.inject.Inject;
 public class ProviderProfileFragment extends ItemListFragment2 {
 
     private View view;
-    private Button edit_photo;
+    private ImageView edit_photo;
 
     //Toast Test Button
     private Button edit_rating;
@@ -137,7 +137,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             }
         }
 
-        edit_photo = ((Button) view.findViewById(R.id.edit_photo_btn));
+        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
+
 
         edit_photo.setOnClickListener(new View.OnClickListener() {
             @Override
