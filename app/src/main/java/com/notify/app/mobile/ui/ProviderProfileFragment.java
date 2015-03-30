@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,12 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
+    private TextView txtRatingValue;
+
+    //Rating
+    private Button btnSubmit;
+    private RatingBar ratingBar;
+
 
     //Toast Test Button
     private Button edit_rating;
@@ -181,6 +188,59 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         });
 
 //--------------------------------------------------------------------------------------------------
+
+//
+//        //Rating Button Listener
+//        btnSubmit = ((Button) view.findViewById(R.id.edit_rating_btn));
+//
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(getActivity(), String.valueOf(ratingBar.getRating(), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), RatingActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+//--------------------------------------------------------------------------------------------------
+
+        //Rating Button Listener
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        txtRatingValue = (TextView) view.findViewById(R.id.txtRatingValue);
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+
+                txtRatingValue.setText(String.valueOf(rating));
+
+            }
+        });
+
+//--------------------------------------------------------------------------------------------------
+        //Rating Button Listener
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+
+        //if click on me, then display the current rating value.
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getActivity(),
+                        String.valueOf(ratingBar.getRating()),
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+//--------------------------------------------------------------------------------------------------
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -196,5 +256,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
+
 }
 
