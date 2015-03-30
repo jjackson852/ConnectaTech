@@ -479,4 +479,6 @@ public abstract class ItemListFragment<E> extends Fragment
         return getActivity() != null;
     }
 
+
+
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -121,10 +122,13 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                         // Close progress dialog
                         //   progressDialog.dismiss();
 
+
+
                     } else {
                         Log.d("test",
                                 "There was a problem downloading the data.");
                     }
+
                 }
             });
         } catch (NullPointerException ex) {
@@ -186,5 +190,11 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 //        super.onResume();
 //        refresh();
 //    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }
 

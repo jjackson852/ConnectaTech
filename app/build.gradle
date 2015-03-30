@@ -14,7 +14,7 @@ repositories {
     maven { url 'https://github.com/donnfelker/mvn-repo/raw/master/' }
     mavenLocal()
     mavenCentral()
-    maven { url 'C:\\Users\\AppleJacks\\Desktop\\ConnectaTech\\libs\\Parse-1.7.0.jar' }
+
 }
 
 dependencies {
@@ -35,8 +35,6 @@ dependencies {
     androidTestCompile 'junit:junit:4.11'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
     androidTestCompile 'org.mockito:mockito-core:1.9.5'
-    compile files('C:/Users/AppleJacks/Desktop/ConnectaTech/libs/Parse-1.7.0.jar')
-    compile files('C:/Users/theblackfu/Downloads/ConnectaTech/libs/Parse-1.7.0.jar')
     compile files('libs/Parse-1.7.0.jar')
 }
 
