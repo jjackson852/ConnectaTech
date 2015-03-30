@@ -57,6 +57,7 @@ public class EditPhotoFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Photo photo = ((EditPhotoActivity) getActivity()).getCurrentPhoto();
                 photo.setAuthor(ParseUser.getCurrentUser());
 

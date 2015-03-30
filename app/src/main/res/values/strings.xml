@@ -84,6 +84,7 @@
     <string name="button">Parse Image</string>
 
     <string name="title_activity_edit_photo">EditPhotoActivity</string>
+    <string name="title_activity_edit_rating">EditRatingActivity</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_favorite">Favorites</string>
     <string name="action_new">Add a Photo</string>
