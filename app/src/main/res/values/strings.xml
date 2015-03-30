@@ -57,8 +57,11 @@
     <string name="register_header_cust">Create your profile.</string>
     <string name="register_header_prov">Become a provider.</string>
     <string name="label_submit">Submit</string>
+    <string name="label_call">Call</string>
+    <string name="label_email">Email</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
+    <string name="label_phone_number">Phone Number</string>
     <string name="label_zipcode">Zip Code</string>
     <string name="label_username">Username</string>
     <string name="label_email_address">Email Address</string>

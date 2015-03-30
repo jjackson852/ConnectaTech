@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class EditPhotoFragment extends Fragment {
     private Button saveButton;
     private Button cancelButton;
     private ParseImageView photoPreview;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,10 @@ public class EditPhotoFragment extends Fragment {
                     public void done(ParseException e) {
                         if (e == null) {
                             getActivity().setResult(Activity.RESULT_OK);
-                            getActivity().finish();
+//                            getActivity().finish();
+                            Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(
                                     getActivity().getApplicationContext(),
