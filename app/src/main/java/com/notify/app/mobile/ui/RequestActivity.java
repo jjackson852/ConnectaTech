@@ -64,7 +64,7 @@ public class RequestActivity extends BootstrapActivity {
 //
 //            @Override
 //            public void onClick(View arg0) {
-//                
+//
 //                String phone_no = custPhone;
 //                Intent callIntent = new Intent(Intent.ACTION_CALL);
 //                callIntent.setData(Uri.parse("tel:" + phone_no));
