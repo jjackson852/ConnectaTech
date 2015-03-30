@@ -1,5 +1,7 @@
 package com.notify.app.mobile.core;
 
+import com.parse.ParseUser;
+
 import java.io.Serializable;
 
 public class Request implements Serializable {
@@ -9,6 +11,8 @@ public class Request implements Serializable {
     private String serviceTitle;
     private String addlInfo;
     private String objectId;
+    private String custPhoneNumber;
+    private String custEmail;
 
     public String getServiceTitle() {
         return serviceTitle;
@@ -32,5 +36,21 @@ public class Request implements Serializable {
 
     public void setObjectId(final String objectId) {
         this.objectId = objectId;
+    }
+
+    public String getCustPhoneNumber() {
+        return custPhoneNumber;
+    }
+
+    public void setCustPhoneNumber(final String custPhoneNumber) {
+        this.custPhoneNumber = custPhoneNumber;
+    }
+
+    public String getCustEmail() {
+        return custEmail;
+    }
+
+    public void setCustEmail(final String custEmail) {
+        this.custEmail = custEmail;
     }
 }
