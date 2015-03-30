@@ -20,6 +20,7 @@ import com.notify.app.mobile.core.UserAgentProvider;
 import com.notify.app.mobile.ui.AddServiceActivity;
 import com.notify.app.mobile.ui.BootstrapTimerActivity;
 import com.notify.app.mobile.ui.CheckInsListFragment;
+import com.notify.app.mobile.ui.EditPhotoActivity;
 import com.notify.app.mobile.ui.ExampleActivity;
 import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.FilterServicesActivity;
@@ -60,6 +61,7 @@ import retrofit.converter.GsonConverter;
                 MainActivity.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,
+                EditPhotoActivity.class,
                 ExampleActivity.class,
                 ExampleListFragment.class,
                 RatingActivity.class,

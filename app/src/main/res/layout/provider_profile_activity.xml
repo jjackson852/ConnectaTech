@@ -20,5 +20,14 @@
         android:layout_below="@+id/provider_profile_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Rating"
+        android:id="@+id/edit_rating_btn"
+        android:layout_below="@+id/edit_photo_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
