@@ -1,13 +1,18 @@
 package com.notify.app.mobile.ui;
-import android.app.Activity;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
@@ -15,40 +20,23 @@ import android.widget.Toast;
 
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-
-import com.notify.app.mobile.core.News;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import butterknife.InjectView;
-
-import static com.notify.app.mobile.core.Constants.Extra.USER;
-
 /**
  * Created by theblackfu on 2/25/2015.
  */
-public class RatingActivity extends BootstrapActivity{
+public class RatingActivity extends BootstrapActivity {
 
+    Button button;
     private RatingBar ratingBar;
     private TextView txtRatingValue;
     private Button btnSubmit;
-
-    Button button;
     private ProgressDialog progressDialog;
 
     @Override
@@ -83,7 +71,7 @@ public class RatingActivity extends BootstrapActivity{
 
                             public void done(ParseObject object,
                                              ParseException e) {
-                // TODO Auto-generated method stub
+                                // TODO Auto-generated method stub
 
                                 // Locate the column named "ImageName" and set
                                 // the string
@@ -100,7 +88,7 @@ public class RatingActivity extends BootstrapActivity{
                                                     // Decode the Byte[] into
                                                     // Bitmap
                                                     Bitmap bmp = BitmapFactory
-                                                            .decodeByteArray(data, 0,data.length);
+                                                            .decodeByteArray(data, 0, data.length);
                                                     // Get the ImageView from
                                                     // main.xml
                                                     ImageView image = (ImageView) findViewById(R.id.image);
@@ -122,7 +110,6 @@ public class RatingActivity extends BootstrapActivity{
 
         });
     }
-
 
 
     public void addListenerOnRatingBar() {

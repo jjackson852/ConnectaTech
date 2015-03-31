@@ -23,6 +23,7 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.core.Example;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -40,25 +41,20 @@ import javax.inject.Inject;
 
 public class ProviderProfileFragment extends ItemListFragment2 {
 
-    private View view;
-    private ImageView edit_photo;
-    private Button edit_photo_button;
-    private TextView txtRatingValue;
-
-    //Rating
-    private Button btnSubmit;
-    private RatingBar ratingBar;
-    private ProgressDialog progressDialog;
-
-
-
-    //Toast Test Button
-    private Button edit_rating;
-
     @Inject
     protected LogoutService logoutService;
     @Inject
     protected BootstrapServiceProvider serviceProvider;
+    private View view;
+    private ImageView edit_photo;
+    private Button edit_photo_button;
+    private TextView txtRatingValue;
+    //Rating
+    private Button btnSubmit;
+    private RatingBar ratingBar;
+    private ProgressDialog progressDialog;
+    //Toast Test Button
+    private Button edit_rating;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,7 +131,6 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                         //   progressDialog.dismiss();
 
 
-
                     } else {
                         Log.d("test",
                                 "There was a problem downloading the data.");
@@ -149,7 +144,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                 Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
                 noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
 
-                Button noRatingButton =(Button) view.findViewById(R.id.edit_rating_btn);
+                Button noRatingButton = (Button) view.findViewById(R.id.edit_rating_btn);
                 noPhotoButton.setText("Rating Not Yet Uploaded.\nClick here to upload one.");
             }
         }
@@ -188,7 +183,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                 progressDialog = ProgressDialog.show(getActivity(), "",
                         "Downloading Image...", true);
 
-            // Locate the class table named "ImageUpload" in Parse.com
+                // Locate the class table named "ImageUpload" in Parse.com
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                         "ImageUpload");
 

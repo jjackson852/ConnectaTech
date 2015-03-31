@@ -9,8 +9,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.authenticator.CustomerRegisterFragment;
-import com.notify.app.mobile.authenticator.TimerTestFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.CheckInsListFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.NewsListFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserListFragment;
 
 //import dagger.Module;
 

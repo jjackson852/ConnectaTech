@@ -5,8 +5,8 @@ package com.notify.app.mobile.core.core;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.User;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
 
 import java.util.List;
 

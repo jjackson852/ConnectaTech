@@ -5,18 +5,9 @@ package com.notify.app.mobile;
 import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
-import android.util.Log;
 
-import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.ui.MainActivity;
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
 import com.parse.Parse;
-import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SaveCallback;
 
 /**
  * connectatech application
@@ -39,6 +30,20 @@ public class BootstrapApplication extends Application {
     public BootstrapApplication(final Context context) {
         this();
         attachBaseContext(context);
+    }
+
+    /**
+     * Create main application
+     *
+     * @param instrumentation
+     */
+    public BootstrapApplication(final Instrumentation instrumentation) {
+        this();
+        attachBaseContext(instrumentation.getTargetContext());
+    }
+
+    public static BootstrapApplication getInstance() {
+        return instance;
     }
 
     @Override
@@ -84,20 +89,5 @@ public class BootstrapApplication extends Application {
 
     private Object getRootModule() {
         return new RootModule();
-    }
-
-
-    /**
-     * Create main application
-     *
-     * @param instrumentation
-     */
-    public BootstrapApplication(final Instrumentation instrumentation) {
-        this();
-        attachBaseContext(instrumentation.getTargetContext());
-    }
-
-    public static BootstrapApplication getInstance() {
-        return instance;
     }
 }

@@ -1,5 +1,7 @@
 package com.notify.app.mobile.core;
 
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
+
 import retrofit.http.GET;
 import retrofit.http.Query;
 

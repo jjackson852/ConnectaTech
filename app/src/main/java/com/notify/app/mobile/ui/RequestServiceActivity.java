@@ -7,8 +7,7 @@ import android.widget.EditText;
 
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.TechService;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -48,8 +47,8 @@ public class RequestServiceActivity extends BootstrapActivity {
 
         /**
          * Attaches the SubmitUser button listener to the xml button.
-//         */
-        Button filterServicesButton = (Button)findViewById(id.b_submit_request);
+         //         */
+        Button filterServicesButton = (Button) findViewById(id.b_submit_request);
         filterServicesButton.setOnClickListener(requestSubListener);
 
         serviceRequestedId = getIntent().getExtras().getString("serviceRequestedId");

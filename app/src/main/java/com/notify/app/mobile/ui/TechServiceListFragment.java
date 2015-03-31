@@ -5,10 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
@@ -16,8 +13,7 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
-import com.notify.app.mobile.authenticator.RegisterActivity;
-import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.core.TechService;
 import com.parse.ParseUser;
 
@@ -26,20 +22,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
-
-import static com.notify.app.mobile.core.Constants.Extra.TECHSERVICE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
 
 public class TechServiceListFragment extends ItemListFragment<TechService> {
 
-    @Inject protected BootstrapServiceProvider serviceProvider;
-    @Inject protected LogoutService logoutService;
+    @Inject
+    protected BootstrapServiceProvider serviceProvider;
+    @Inject
+    protected LogoutService logoutService;
 
 
     private View.OnClickListener noOfferedServicesListener = new View.OnClickListener() {
         public void onClick(View v) {
 
-           navigateToAddService();
+            navigateToAddService();
 
         }
     };
@@ -68,8 +64,7 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
             setEmptyText(R.string.no_tech_services);
             setEmptyTextIsClickable(true);
             setEmptyTextOnClickMethod(noOfferedServicesListener);
-        }
-        else{
+        } else {
             setEmptyText(R.string.no_tech_services_browse);
             setEmptyTextIsClickable(true);
             setEmptyTextOnClickMethod(noServicesBrowseableListener);
@@ -89,8 +84,7 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
             getListAdapter()
                     .addHeader(activity.getLayoutInflater()
                             .inflate(R.layout.techservice_list_label, null));
-        }
-        else{
+        } else {
             getListAdapter()
                     .addHeader(activity.getLayoutInflater()
                             .inflate(R.layout.search_techservice_list_label, null));
@@ -158,7 +152,7 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         refresh();
     }

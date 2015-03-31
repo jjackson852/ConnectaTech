@@ -9,8 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.authenticator.CustomerRegisterFragment;
-import com.notify.app.mobile.authenticator.TimerTestFragment;
 
 //import dagger.Module;
 
@@ -34,7 +32,7 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -50,12 +48,12 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
             case 2:
                 result = new TechServiceListFragment();
                 break;
-            case 3:
-                result = new UserListFragment();
-                break;
-            case 4:
-                result = new CheckInsListFragment();
-                break;
+//            case 3:
+//                result = new UserListFragment();
+//                break;
+//            case 4:
+//                result = new CheckInsListFragment();
+//                break;
             default:
                 result = null;
                 break;
@@ -75,10 +73,10 @@ public class BootstrapPagerAdapter_Prov extends FragmentPagerAdapter {
                 return resources.getString(R.string.title_activity_provider);
             case 2:
                 return resources.getString(R.string.title_techservices);
-            case 3:
-                return resources.getString(R.string.page_users);
-            case 4:
-                return resources.getString(R.string.page_checkins);
+//            case 3:
+//                return resources.getString(R.string.page_users);
+//            case 4:
+//                return resources.getString(R.string.page_checkins);
             default:
                 return null;
         }

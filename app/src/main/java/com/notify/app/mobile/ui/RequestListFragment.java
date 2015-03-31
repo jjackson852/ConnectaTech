@@ -13,7 +13,7 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
-import com.notify.app.mobile.core.Request;
+import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.core.Request;
 
 import java.util.Collections;
@@ -21,12 +21,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.notify.app.mobile.core.Constants.Extra.REQUEST_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.REQUEST_ITEM;
 
 public class RequestListFragment extends ItemListFragment<Request> {
 
-    @Inject protected BootstrapServiceProvider serviceProvider;
-    @Inject protected LogoutService logoutService;
+    @Inject
+    protected BootstrapServiceProvider serviceProvider;
+    @Inject
+    protected LogoutService logoutService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

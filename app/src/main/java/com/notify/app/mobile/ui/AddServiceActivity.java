@@ -7,11 +7,10 @@ import android.widget.EditText;
 
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
-import com.notify.app.mobile.authenticator.ActionBarAccountAuthenticatorActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 /**
  * Activity to create a new service on the parse database.
@@ -43,7 +42,7 @@ public class AddServiceActivity extends BootstrapActivity {
         /**
          * Attaches the Submit New Service button listener to the xml button.
          */
-        Button submitServiceButton = (Button)findViewById(id.b_submit_new_service);
+        Button submitServiceButton = (Button) findViewById(id.b_submit_new_service);
         submitServiceButton.setOnClickListener(addServiceListener);
 
     }

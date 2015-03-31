@@ -7,22 +7,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.TechService;
 import com.parse.ParseUser;
 
 import butterknife.InjectView;
 
-import static com.notify.app.mobile.core.Constants.Extra.TECHSERVICE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
 
 public class TechServiceActivity extends BootstrapActivity {
 
+    @InjectView(R.id.tv_title)
+    protected TextView title;
+    @InjectView(R.id.tv_content)
+    protected TextView content;
     private TechService techServiceItem;
     private Boolean isProvider;
-
-    @InjectView(R.id.tv_title) protected TextView title;
-    @InjectView(R.id.tv_content) protected TextView content;
-
-        private View.OnClickListener requestServListener = new View.OnClickListener() {
+    private View.OnClickListener requestServListener = new View.OnClickListener() {
         public void onClick(View v) {
 
             //Request the service.
@@ -40,16 +41,15 @@ public class TechServiceActivity extends BootstrapActivity {
 
         isProvider = ParseUser.getCurrentUser().getBoolean("isProvider");
 
-        if (isProvider == false){
+        if (isProvider == false) {
             setContentView(R.layout.techservice_cust);
 
             /**
              * Attaches the Submit Request button listener to the xml button.
              */
-            Button submitRequestButton = (Button)findViewById(R.id.b_request_service);
+            Button submitRequestButton = (Button) findViewById(R.id.b_request_service);
             submitRequestButton.setOnClickListener(requestServListener);
-        }
-        else{
+        } else {
             setContentView(R.layout.techservice);
         }
 
@@ -72,7 +72,7 @@ public class TechServiceActivity extends BootstrapActivity {
 
     }
 
-        protected void navigateToRequestSubmission(){
+    protected void navigateToRequestSubmission() {
 
         final Intent i = new Intent(this, RequestServiceActivity.class);
         i.putExtra("serviceRequestedId", techServiceItem.getObjectId());

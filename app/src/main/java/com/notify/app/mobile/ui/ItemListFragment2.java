@@ -1,7 +1,6 @@
 
 package com.notify.app.mobile.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -13,21 +12,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.github.kevinsawicki.wishlist.Toaster;
-import com.github.kevinsawicki.wishlist.ViewUtils;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 
 import java.util.Collections;
 import java.util.List;

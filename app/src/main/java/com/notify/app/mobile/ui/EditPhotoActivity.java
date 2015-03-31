@@ -1,20 +1,14 @@
 package com.notify.app.mobile.ui;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v4.app.TaskStackBuilder;
-import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 
 /**
  * Created by theblackfu on 3/1/2015.
@@ -29,8 +23,8 @@ public class EditPhotoActivity extends BootstrapActivity {
 
 
         photo = new Photo();
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         Injector.inject(this);
 

@@ -1,7 +1,6 @@
 package com.notify.app.mobile.ui;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +8,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.Request;
-import com.parse.ParseUser;
 
 import butterknife.InjectView;
 
-import static com.notify.app.mobile.core.Constants.Extra.REQUEST_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.REQUEST_ITEM;
 
 public class RequestActivity extends BootstrapActivity {
 
+    @InjectView(R.id.tv_title)
+    protected TextView title;
+    @InjectView(R.id.tv_content)
+    protected TextView content;
     private Request requestItem;
-
-    @InjectView(R.id.tv_title) protected TextView title;
-    @InjectView(R.id.tv_content) protected TextView content;
 //    @InjectView(R.id.tv_cust_phone_number_req) protected TextView custPhoneTV;
 
     @Override
@@ -64,7 +64,7 @@ public class RequestActivity extends BootstrapActivity {
                 String email_addr = custEmail;
 
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto",custEmail, null));
+                        "mailto", custEmail, null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Response to Request for: " + titleString);
                 startActivity(Intent.createChooser(emailIntent, "Send via..."));
             }

@@ -2,7 +2,6 @@
 package com.notify.app.mobile.ui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -22,20 +21,17 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.notify.app.mobile.R;
-import com.notify.app.mobile.R.id;
-import com.notify.app.mobile.R.layout;
-import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
-import com.notify.app.mobile.authenticator.LogoutService;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.github.kevinsawicki.wishlist.Toaster;
 import com.github.kevinsawicki.wishlist.ViewUtils;
+import com.notify.app.mobile.R;
+import com.notify.app.mobile.R.id;
+import com.notify.app.mobile.R.layout;
+import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 
 import java.util.Collections;
 import java.util.List;
-
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 
 
 /**
@@ -48,6 +44,26 @@ public abstract class ItemListFragment<E> extends Fragment
         implements LoaderCallbacks<List<E>> {
 
     private static final String FORCE_REFRESH = "forceRefresh";
+    /**
+     * List items provided to {@link #onLoadFinished(Loader, List)}
+     */
+    protected List<E> items = Collections.emptyList();
+    /**
+     * List view
+     */
+    protected ListView listView;
+    /**
+     * Empty view
+     */
+    protected TextView emptyView;
+    /**
+     * Progress bar
+     */
+    protected ProgressBar progressBar;
+    /**
+     * Is the list currently shown?
+     */
+    protected boolean listShown;
 
     /**
      * @param args bundle passed to the loader by the LoaderManager
@@ -57,31 +73,6 @@ public abstract class ItemListFragment<E> extends Fragment
     protected static boolean isForceRefresh(final Bundle args) {
         return args != null && args.getBoolean(FORCE_REFRESH, false);
     }
-
-    /**
-     * List items provided to {@link #onLoadFinished(Loader, List)}
-     */
-    protected List<E> items = Collections.emptyList();
-
-    /**
-     * List view
-     */
-    protected ListView listView;
-
-    /**
-     * Empty view
-     */
-    protected TextView emptyView;
-
-    /**
-     * Progress bar
-     */
-    protected ProgressBar progressBar;
-
-    /**
-     * Is the list currently shown?
-     */
-    protected boolean listShown;
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
@@ -286,7 +277,7 @@ public abstract class ItemListFragment<E> extends Fragment
 
     /**
      * Get exception from loader if it provides one by being a
-     * {@link ThrowableLoader}
+     * {@link com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader}
      *
      * @param loader
      * @return exception or null if none provided

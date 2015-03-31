@@ -3,7 +3,7 @@ package com.notify.app.mobile.ui;
 import android.view.LayoutInflater;
 
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.Request;
 
 import java.util.List;

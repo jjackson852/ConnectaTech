@@ -5,15 +5,10 @@ import android.accounts.AccountManager;
 import android.accounts.AccountManagerFuture;
 import android.content.Context;
 
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.ui.MainActivity;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
-import com.parse.DeleteCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 import javax.inject.Inject;
 
@@ -73,7 +68,7 @@ public class LogoutService {
             Ln.d("Logout succeeded: %s", accountWasRemoved);
             onSuccess.run();
 
-           // ParseUser.unpinAllInBackground();
+            // ParseUser.unpinAllInBackground();
             BootstrapService.setServConstraint(null);
 
 
