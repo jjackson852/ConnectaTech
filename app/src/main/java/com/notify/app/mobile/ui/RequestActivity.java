@@ -35,11 +35,13 @@ public class RequestActivity extends BootstrapActivity {
         }
 
         final String custPhone = requestItem.getCustPhoneNumber();
+        final String custEmail = requestItem.getCustEmail();
+        final String titleString = requestItem.getServiceTitle();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        setTitle(requestItem.getServiceTitle());
+        setTitle(titleString);
 
         Button callCustomerButton = (Button) findViewById(R.id.b_cust_phone_number_req);
         callCustomerButton.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,21 @@ public class RequestActivity extends BootstrapActivity {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone_no));
                 startActivity(callIntent);
+            }
+        });
+
+        Button emailCustomerButton = (Button) findViewById(R.id.b_cust_email_req);
+
+        emailCustomerButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                String email_addr = custEmail;
+
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",custEmail, null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Response to Request for: " + titleString);
+                startActivity(Intent.createChooser(emailIntent, "Send via..."));
             }
         });
 

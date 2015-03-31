@@ -40,9 +40,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/text_link"
         /> -->
-
-
-        <Button
+        <!--<Button
             android:id="@+id/b_cust_phone_number_req"
             style="@style/ShadowText"
             android:layout_width="match_parent"
@@ -54,7 +52,44 @@
             android:text="@string/label_call"
             android:textColor="@color/text"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp">
+            <Button
+                style="@style/ShadowText"
+                android:id="@+id/b_cust_phone_number_req"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/button_background_states"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/label_call"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"/>
+
+            <Button
+                style="@style/ShadowText"
+                android:id="@+id/b_cust_email_req"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background_states"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/label_email"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
         <!--<Button
             android:id="@+id/b_cust_email_req"

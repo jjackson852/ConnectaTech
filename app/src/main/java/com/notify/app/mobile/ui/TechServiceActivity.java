@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.core.TechService;
+import com.parse.ParseUser;
 
 import butterknife.InjectView;
 
@@ -16,6 +17,7 @@ import static com.notify.app.mobile.core.Constants.Extra.TECHSERVICE_ITEM;
 public class TechServiceActivity extends BootstrapActivity {
 
     private TechService techServiceItem;
+    private Boolean isProvider;
 
     @InjectView(R.id.tv_title) protected TextView title;
     @InjectView(R.id.tv_content) protected TextView content;
@@ -36,20 +38,28 @@ public class TechServiceActivity extends BootstrapActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.techservice);
+        isProvider = ParseUser.getCurrentUser().getBoolean("isProvider");
+
+        if (isProvider == false){
+            setContentView(R.layout.techservice_cust);
+
+            /**
+             * Attaches the Submit Request button listener to the xml button.
+             */
+            Button submitRequestButton = (Button)findViewById(R.id.b_request_service);
+            submitRequestButton.setOnClickListener(requestServListener);
+        }
+        else{
+            setContentView(R.layout.techservice);
+        }
+
 
         if (getIntent() != null && getIntent().getExtras() != null) {
             techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
         }
 
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-        /**
-         * Attaches the Submit Request button listener to the xml button.
-         */
-        Button submitRequestButton = (Button)findViewById(R.id.b_request_service);
-        submitRequestButton.setOnClickListener(requestServListener);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
