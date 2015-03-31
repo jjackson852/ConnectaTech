@@ -73,21 +73,7 @@ public class RequestActivity extends BootstrapActivity {
 
         title.setText(requestItem.getServiceTitle());
         content.setText(requestItem.getAddlInfo());
-//        custPhoneTV.setText("Call: "+ custPhone);
-//        custPhoneTV.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-//
-//
-//        custPhoneTV.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//
-//                String phone_no = custPhone;
-//                Intent callIntent = new Intent(Intent.ACTION_CALL);
-//                callIntent.setData(Uri.parse("tel:" + phone_no));
-//                startActivity(callIntent);
-//            }
-//        });
+
     }
 
 }
