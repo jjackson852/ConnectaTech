@@ -36,6 +36,15 @@
         android:stepSize="1.0"
         android:rating="2.0"
         android:layout_below="@+id/provider_profile_image"/>
+
+    <TextView
+        android:id="@+id/txtRatingValueAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_toRightOf="@+id/ratingBar"/>
+
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
