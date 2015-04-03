@@ -56,6 +56,10 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     //Toast Test Button
     private Button edit_rating;
 
+    //Parse Object for Rating Value
+    ParseObject ratingtxt;
+    TextView txtRatingValueAverage;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -276,14 +280,20 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             @Override
             public void onClick(View v) {
 
+                // ParseUser ratingId = new ParseUser();
+                ratingtxt = new ParseObject("Rating");
+
+                ratingtxt.put("rating", String.valueOf(ratingBar.getRating()));
+                ratingtxt.put("submittedBy", ParseUser.getCurrentUser());
+
                 Toast.makeText(getActivity(),
                         String.valueOf(ratingBar.getRating()),
                         Toast.LENGTH_SHORT).show();
+                ratingtxt.saveInBackground();
 
             }
 
         });
-
 //--------------------------------------------------------------------------------------------------
 
         // Inflate the layout for this fragment
