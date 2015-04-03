@@ -3,7 +3,7 @@ package com.notify.app.mobile.core;
 import java.io.Serializable;
 
 public class Example implements Serializable {
-
+//
     private static final long serialVersionUID = -6641292855569752035L;
 
     private String title;
