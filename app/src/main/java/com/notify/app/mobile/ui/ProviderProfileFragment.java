@@ -285,6 +285,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
                 ratingtxt.put("rating", String.valueOf(ratingBar.getRating()));
                 ratingtxt.put("submittedBy", ParseUser.getCurrentUser());
+                ratingtxt.add("ratingTotal", String.valueOf(ratingBar.getRating()));
 
                 Toast.makeText(getActivity(),
                         String.valueOf(ratingBar.getRating()),
