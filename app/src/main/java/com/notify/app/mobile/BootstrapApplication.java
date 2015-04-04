@@ -8,6 +8,9 @@ import android.content.Context;
 
 import com.notify.app.mobile.bootstrapOrigin.core.Constants;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseCrashReporting;
+
 
 /**
  * connectatech application
@@ -58,6 +61,9 @@ public class BootstrapApplication extends Application {
         //Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
+        // Enable Crash Reporting
+        ParseCrashReporting.enable(this);
+
         //Initialize the connection to the parse database.
         Parse.initialize(this, Constants.Http.PARSE_APP_ID, Constants.Http.PARSE_CLIENT_KEY);
 
@@ -84,6 +90,8 @@ public class BootstrapApplication extends Application {
 //                }
 //            });
 
+ //Test Crash Report Functionality
+ //       throw new RuntimeException("Test Exception!");
 
     }
 
