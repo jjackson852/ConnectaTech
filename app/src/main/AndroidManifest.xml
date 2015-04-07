@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.notify.app.mobile"
     android:versionCode="102"
-    android:versionName="1.1" >
+    android:versionName="1.1">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -14,8 +14,11 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -24,7 +27,6 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-
 
 
     <!--Push-->
@@ -40,8 +42,9 @@
       IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
       to match your app's package name + ".permission.C2D_MESSAGE".
     -->
-    <permission android:protectionLevel="signature"
-        android:name="com.notify.app.mobile.debug.permission.C2D_MESSAGE" />
+    <permission
+        android:name="com.notify.app.mobile.debug.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
     <uses-permission android:name="com.notify.app.mobile.debug.permission.C2D_MESSAGE" />
 
 
@@ -51,11 +54,11 @@
         android:name=".BootstrapApplication"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Bootstrap.Dark" >
+        android:theme="@style/Theme.Bootstrap.Dark">
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,11 +68,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.BootstrapTimerActivity"
+            android:name=".bootstrapOrigin.ui.BootstrapTimerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.MainActivity" >
+            android:parentActivityName=".ui.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <!-- Both parent activity attributes have to contain the full package name -->
@@ -79,12 +82,12 @@
         </activity>
 
         <service
-            android:name=".core.TimerService"
+            android:name=".bootstrapOrigin.core.TimerService"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".authenticator.AccountAuthenticatorService"
-            android:process=":auth" >
+            android:name=".bootstrapOrigin.authenticator.AccountAuthenticatorService"
+            android:process=":auth">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -96,7 +99,7 @@
 
         <activity
             android:name=".authenticator.BootstrapAuthenticatorActivity"
-            android:excludeFromRecents="true" >
+            android:excludeFromRecents="true">
 
             <intent-filter>
 
@@ -110,64 +113,52 @@
         </activity>
         <activity
             android:name=".authenticator.RegisterActivity"
-            android:excludeFromRecents="true" >
+            android:excludeFromRecents="true">
 
-<!--                 This activity is launched when the register button is clicked from login_activity. -->
+            <!--                 This activity is launched when the register button is clicked from login_activity. -->
         </activity>
+        <activity android:name=".bootstrapOrigin.ui.NewsActivity"></activity>
         <activity
-            android:name=".ui.NewsActivity" >
-        </activity>
+            android:name=".bootstrapOrigin.ui.UserActivity"
+            android:label="@string/app_name"></activity>
         <activity
-            android:name=".ui.UserActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".ui.TestActivity"
+            android:name=".bootstrapOrigin.ui.TestActivity"
             android:label="@string/title_activity_test_"
-            android:parentActivityName=".ui.MainActivity" >
-        </activity>
+            android:parentActivityName=".ui.MainActivity"></activity>
 
         <activity
             android:name=".ui.RatingActivity"
             android:label="@string/rating_activity"
-            android:parentActivityName=".ui.MainActivity" >
-        </activity>
+            android:parentActivityName=".ui.MainActivity"></activity>
         <activity
             android:name=".ui.ExampleActivity"
-            android:label="@string/title_example" >
-        </activity>
+            android:label="@string/title_example"></activity>
 
         <activity
             android:name=".ui.TechServiceActivity"
-            android:label="@string/title_techservices" >
-        </activity>
+            android:label="@string/title_techservices"></activity>
 
         <activity
-            android:name=".ui.MealListActivity"
-            android:label="@string/title_activity_meal_list"  >
-        </activity>
+            android:name=".ui.RequestServiceActivity"
+            android:label="@string/title_requestservice"></activity>
 
         <activity
-            android:name=".ui.NewMealActivity"
-            android:label="@string/title_activity_new_meal" >
-        </activity>
+            android:name=".ui.EditPhotoActivity"
+            android:label="@string/title_activity_edit_photo"></activity>
 
-        <activity
-            android:name=".ui.AddServiceActivity" >
-        </activity>
+        <activity android:name=".ui.AddServiceActivity"></activity>
 
-        <activity
-            android:name=".ui.FilterServicesActivity" >
-        </activity>
+        <activity android:name=".ui.FilterServicesActivity"></activity>
 
-
+        <activity android:name=".ui.RequestActivity"></activity>
 
 
         <!--Push-->
 
         <service android:name="com.parse.PushService" />
 
-        <receiver android:name="com.notify.app.mobile.util.Receiver"
+        <receiver
+            android:name="com.notify.app.mobile.util.Receiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
@@ -175,7 +166,8 @@
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.parse.GcmBroadcastReceiver"
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -188,8 +180,9 @@
             </intent-filter>
         </receiver>
 
-        <meta-data android:name="com.parse.push.notification_icon"
-            android:resource="@drawable/ic_launcher"/>
+        <meta-data
+            android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/ic_launcher" />
 
     </application>
 

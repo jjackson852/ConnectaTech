@@ -5,39 +5,39 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.notify.app.mobile.authenticator.ApiKeyProvider;
 import com.notify.app.mobile.authenticator.BootstrapAuthenticatorActivity;
 import com.notify.app.mobile.authenticator.LogoutService;
-import com.notify.app.mobile.authenticator.TimerTestFragment;
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.core.PostFromAnyThreadBus;
-import com.notify.app.mobile.core.RestAdapterRequestInterceptor;
-import com.notify.app.mobile.core.RestErrorHandler;
-import com.notify.app.mobile.core.TechService;
-import com.notify.app.mobile.core.TimerService;
-import com.notify.app.mobile.core.UserAgentProvider;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.ApiKeyProvider;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.TimerTestFragment;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
+import com.notify.app.mobile.bootstrapOrigin.core.PostFromAnyThreadBus;
+import com.notify.app.mobile.bootstrapOrigin.core.RestAdapterRequestInterceptor;
+import com.notify.app.mobile.bootstrapOrigin.core.RestErrorHandler;
+import com.notify.app.mobile.bootstrapOrigin.core.TimerService;
+import com.notify.app.mobile.bootstrapOrigin.core.UserAgentProvider;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapTimerActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.CheckInsListFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.NavigationDrawerFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.NewsActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.NewsListFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.TestActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.TrialListFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserListFragment;
 import com.notify.app.mobile.ui.AddServiceActivity;
-import com.notify.app.mobile.ui.BootstrapTimerActivity;
-import com.notify.app.mobile.ui.CheckInsListFragment;
+import com.notify.app.mobile.ui.EditPhotoActivity;
 import com.notify.app.mobile.ui.ExampleActivity;
 import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.FilterServicesActivity;
 import com.notify.app.mobile.ui.MainActivity;
-import com.notify.app.mobile.ui.MealListActivity;
-import com.notify.app.mobile.ui.NavigationDrawerFragment;
-import com.notify.app.mobile.ui.NewsActivity;
-import com.notify.app.mobile.ui.NewsListFragment;
 import com.notify.app.mobile.ui.ProviderProfileFragment;
 import com.notify.app.mobile.ui.RatingActivity;
 import com.notify.app.mobile.ui.RequestActivity;
 import com.notify.app.mobile.ui.RequestListFragment;
+import com.notify.app.mobile.ui.RequestServiceActivity;
 import com.notify.app.mobile.ui.TechServiceActivity;
 import com.notify.app.mobile.ui.TechServiceListFragment;
-import com.notify.app.mobile.ui.TestActivity;
-import com.notify.app.mobile.ui.TrialListFragment;
-import com.notify.app.mobile.ui.UserActivity;
-import com.notify.app.mobile.ui.UserListFragment;
 import com.squareup.otto.Bus;
 
 import javax.inject.Singleton;
@@ -60,10 +60,10 @@ import retrofit.converter.GsonConverter;
                 MainActivity.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,
+                EditPhotoActivity.class,
                 ExampleActivity.class,
                 ExampleListFragment.class,
                 RatingActivity.class,
-                MealListActivity.class,
                 NavigationDrawerFragment.class,
                 NewsActivity.class,
                 NewsListFragment.class,
@@ -79,7 +79,8 @@ import retrofit.converter.GsonConverter;
                 AddServiceActivity.class,
                 RequestActivity.class,
                 RequestListFragment.class,
-                FilterServicesActivity.class
+                FilterServicesActivity.class,
+                RequestServiceActivity.class
         }
 )
 public class BootstrapModule {

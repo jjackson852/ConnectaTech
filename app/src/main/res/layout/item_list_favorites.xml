@@ -23,7 +23,7 @@
         android:paddingRight="3dip"
         android:textColor="#ff060024" />
     <TextView
-        android:id="@+id/favorite_meal_rating"
+        android:id="@+id/favorite_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/text1"

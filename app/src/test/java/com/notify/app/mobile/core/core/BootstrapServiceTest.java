@@ -6,12 +6,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.CheckIn;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.CheckIn;
 import com.notify.app.mobile.core.Example;
-import com.notify.app.mobile.core.News;
-import com.notify.app.mobile.core.User;
-import com.notify.app.mobile.core.UserAgentProvider;
+import com.notify.app.mobile.bootstrapOrigin.core.News;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.bootstrapOrigin.core.UserAgentProvider;
 import com.github.kevinsawicki.http.HttpRequest;
 
 import java.io.BufferedReader;
@@ -27,7 +27,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- * Unit tests of {@link com.notify.app.mobile.core.BootstrapService}
+ * Unit tests of {@link com.notify.app.mobile.bootstrapOrigin.core.BootstrapService}
  */
 @RunWith(MockitoJUnitRunner.class)
 public class BootstrapServiceTest {

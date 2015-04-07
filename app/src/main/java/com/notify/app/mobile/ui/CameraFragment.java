@@ -100,17 +100,17 @@ public class CameraFragment extends Fragment {
     */
     private void saveScaledPhoto(byte[] data) {
 // Resize photo from camera byte array
-        Bitmap mealImage = BitmapFactory.decodeByteArray(data, 0, data.length);
-        Bitmap mealImageScaled = Bitmap.createScaledBitmap(mealImage, 200, 200
-                * mealImage.getHeight() / mealImage.getWidth(), false);
+        Bitmap image = BitmapFactory.decodeByteArray(data, 0, data.length);
+        Bitmap imageScaled = Bitmap.createScaledBitmap(image, 200, 200
+                * image.getHeight() / image.getWidth(), false);
 // Override Android default landscape orientation and save portrait
         Matrix matrix = new Matrix();
         matrix.postRotate(90);
-        Bitmap rotatedScaledMealImage = Bitmap.createBitmap(mealImageScaled, 0,
-                0, mealImageScaled.getWidth(), mealImageScaled.getHeight(),
+        Bitmap rotatedScaledImage = Bitmap.createBitmap(imageScaled, 0,
+                0, imageScaled.getWidth(), imageScaled.getHeight(),
                 matrix, true);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        rotatedScaledMealImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        rotatedScaledImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         byte[] scaledData = bos.toByteArray();
 // Save the scaled image to Parse
         photoFile = new ParseFile("profile_photo.jpg", scaledData);
@@ -121,26 +121,26 @@ public class CameraFragment extends Fragment {
                             "Error saving: " + e.getMessage(),
                             Toast.LENGTH_LONG).show();
                 } else {
-                    addPhotoToMealAndReturn(photoFile);
+                    addPhotoAndReturn(photoFile);
                 }
             }
         });
     }
     /*
     * Once the photo has saved successfully, we're ready to return to the
-    * NewMealFragment. When we added the CameraFragment to the back stack, we
-    * named it "NewMealFragment". Now we'll pop fragments off the back stack
+    * EditPhotoFragment. When we added the CameraFragment to the back stack, we
+    * named it "EditPhotoFragment". Now we'll pop fragments off the back stack
     * until we reach that Fragment.
     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void addPhotoToMealAndReturn(ParseFile photoFile) {
-//        ((NewMealActivity) getActivity()).getCurrentMeal().setPhotoFile(
+    private void addPhotoAndReturn(ParseFile photoFile) {
+//        ((EditPhotoActivity) getActivity()).getCurrentPhoto().setPhotoFile(
 //                photoFile);
         ParseUser cameraCurrentUser = ParseUser.getCurrentUser();
         cameraCurrentUser.put("ImageFile", photoFile);
         cameraCurrentUser.saveInBackground();
         FragmentManager fm = getActivity().getFragmentManager();
-        fm.popBackStack("NewMealFragment",
+        fm.popBackStack("EditPhotoFragment",
                 FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
     @Override

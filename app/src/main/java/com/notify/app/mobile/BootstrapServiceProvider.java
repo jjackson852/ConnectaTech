@@ -4,18 +4,15 @@ package com.notify.app.mobile;
 import android.accounts.AccountsException;
 import android.app.Activity;
 
-import com.notify.app.mobile.authenticator.ApiKeyProvider;
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.UserAgentProvider;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.ApiKeyProvider;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
 
 import java.io.IOException;
-
-import javax.inject.Inject;
 
 import retrofit.RestAdapter;
 
 /**
- * Provider for a {@link com.notify.app.mobile.core.BootstrapService} instance
+ * Provider for a {@link com.notify.app.mobile.bootstrapOrigin.core.BootstrapService} instance
  */
 public class BootstrapServiceProvider {
 

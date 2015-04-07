@@ -1,9 +1,12 @@
 package com.notify.app.mobile.authenticator;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +26,21 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
     private String regEmailText;
     private String regFNameText;
     private String regLNameText;
+    private String regPhoneNumberText;
+    private EditText phoneET;
+//    private String regCountry;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.register_activity_cust, container, false);
+
+        phoneET = (EditText) view.findViewById(R.id.et_phone_number);
+
+        phoneET.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+//        regCountry = getCountry(getActivity());
 
         Button submitUserButton = (Button) view.findViewById(R.id.b_registerSub_cust);
         submitUserButton.setOnClickListener(this);
@@ -66,6 +78,8 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
         regEmailText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_email)).getText()).toLowerCase();
         regFNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_first_name)).getText()).toLowerCase();
         regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText()).toLowerCase();
+        regPhoneNumberText = String.valueOf(phoneET.getText());
+
 
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");
@@ -78,6 +92,8 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
                 }
             });
 
+
+
         /**
          * Checks to ensure the Username contains only letters
          * and numbers and is between 8 and 16 characters.
@@ -88,10 +104,20 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
 
                 if (regFNameText.matches("^[a-zA-Z]{1,25}$") && regLNameText.matches("^[a-zA-Z]{1,30}$")){
 
-                    completeRegistration();
+                    if (regPhoneNumberText.matches("^[0-9]{10}")) {
 
-                    //Go back to login activity.
-                    getActivity().finish();
+                        completeRegistration();
+
+                        //Go back to login activity.
+                        getActivity().finish();
+                    }
+                    else{
+
+                        // Present Dialog Box and do NOT register.
+                        dlgAlert.setMessage("Phone numbers must contain 10 digits.");
+                        dlgAlert.create().show();
+
+                    }
 
                 }
                 else{
@@ -126,6 +152,8 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
         user.put("firstName", regFNameText);
         user.put("lastName", regLNameText);
         user.put("isProvider", false);
+        user.put("phoneNumber", regPhoneNumberText);
+//        user.put("country", regCountry);
 
         user.signUpInBackground(new SignUpCallback() {
 
@@ -148,4 +176,15 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddr).matches();
     }
+
+//    public String getCountry(Context c){
+//
+//        String country;
+//
+//        TelephonyManager tManager = (TelephonyManager)c.getSystemService(Context.TELEPHONY_SERVICE);
+//
+//        country = tManager.getNetworkCountryIso();
+//
+//        return country;
+//    }
 }

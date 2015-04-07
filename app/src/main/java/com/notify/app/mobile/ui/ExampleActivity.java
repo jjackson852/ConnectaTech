@@ -4,18 +4,20 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.Example;
 
 import butterknife.InjectView;
 
-import static com.notify.app.mobile.core.Constants.Extra.EXAMPLE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.EXAMPLE_ITEM;
 
 public class ExampleActivity extends BootstrapActivity {
 
+    @InjectView(R.id.tv_title)
+    protected TextView title;
+    @InjectView(R.id.tv_content)
+    protected TextView content;
     private Example exampleItem;
-
-    @InjectView(R.id.tv_title) protected TextView title;
-    @InjectView(R.id.tv_content) protected TextView content;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

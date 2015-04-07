@@ -1,11 +1,10 @@
 package com.notify.app.mobile.authenticator;
 
-import android.app.Fragment;
 import android.os.Bundle;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.layout;
-import com.notify.app.mobile.ui.TestActivityFragment;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.ActionBarAccountAuthenticatorActivity;
 
 /**
  * Activity to create a new account on the parse database.
@@ -37,14 +36,13 @@ public class RegisterActivity extends ActionBarAccountAuthenticatorActivity {
 
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
-            if(getIntent().getExtras().getBoolean("isProvider") == true){
+            if (getIntent().getExtras().getBoolean("isProvider") == true) {
                 provFragment.setArguments(getIntent().getExtras());
 
                 // Add the fragment to the 'fragment_container' FrameLayout
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.fragment_container, provFragment).commit();
-            }
-            else{
+            } else {
                 custFragment.setArguments(getIntent().getExtras());
 
                 // Add the fragment to the 'fragment_container' FrameLayout

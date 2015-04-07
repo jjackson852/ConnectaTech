@@ -3,7 +3,7 @@ package com.notify.app.mobile.ui;
 import android.view.LayoutInflater;
 
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.Request;
 
 import java.util.List;
@@ -37,8 +37,8 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
     protected void update(final int position, final Request item) {
         super.update(position, item);
 
-        setText(0, item.getTitle());
-        setText(1, item.getContent());
+        setText(0, item.getServiceTitle());
+        setText(1, item.getAddlInfo());
         //setNumber(R.id.tv_date, item.getCreatedAt());
     }
 }

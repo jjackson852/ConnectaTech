@@ -57,8 +57,11 @@
     <string name="register_header_cust">Create your profile.</string>
     <string name="register_header_prov">Become a provider.</string>
     <string name="label_submit">Submit</string>
+    <string name="label_call">Call</string>
+    <string name="label_email">Email</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
+    <string name="label_phone_number">Phone Number</string>
     <string name="label_zipcode">Zip Code</string>
     <string name="label_username">Username</string>
     <string name="label_email_address">Email Address</string>
@@ -69,6 +72,7 @@
     <string name="title_example">Example</string>
     <string name="example_news">example_news</string>
     <string name="title_techservices">Offered Services</string>
+    <string name="title_requestservice">Offered Services</string>
     <string name="techservice_news">example_news</string>
     <string name="title_browse_techservices">Browse Services</string>
 
@@ -79,14 +83,11 @@
     <string name="menu_settings">Settings</string>
     <string name="button">Parse Image</string>
 
-
-    <!--<string name="app_name">MealSpotting</string>-->
-    <!--<string name="menu_settings">Settings</string>-->
-    <string name="title_activity_meal_list">MealSpotting</string>
-    <string name="title_activity_new_meal">NewMealActivity</string>
+    <string name="title_activity_edit_photo">EditPhotoActivity</string>
+    <string name="title_activity_edit_rating">EditRatingActivity</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_favorite">Favorites</string>
-    <string name="action_new">Add a Photo</string>
+    <string name="action_new">cHANGE</string>
     <string name="menu_title">My Photos</string>
     <string name="image_upload">Image Upload</string>
     <string name="save_button_text">Save</string>
@@ -117,5 +118,8 @@
     <!--Request Activity -->
     <string name="no_requests">You currently have no \nrequests for your services.</string>
     <string name="provider_requests">Active Requests</string>
+    <string name="label_request_service">Request Service</string>
+    <string name="describe_request">Describe your request.</string>
+    <string name="label_addl_info">List the specific problem/request.</string>
 
 </resources>

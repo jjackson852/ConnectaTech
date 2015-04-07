@@ -1,6 +1,9 @@
 package com.notify.app.mobile.core;
 
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
+
 import retrofit.http.GET;
+import retrofit.http.Query;
 
 
 /**
@@ -9,6 +12,6 @@ import retrofit.http.GET;
 public interface RequestService {
 
     @GET(Constants.Http.URL_REQUEST_FRAG)
-    RequestWrapper getRequest();
+    RequestWrapper getRequest(@Query("where") String constraint);
 
 }

@@ -1,15 +1,5 @@
 package com.notify.app.mobile.authenticator;
 
-import static android.R.layout.simple_dropdown_item_1line;
-import static android.accounts.AccountManager.KEY_ACCOUNT_NAME;
-import static android.accounts.AccountManager.KEY_ACCOUNT_TYPE;
-import static android.accounts.AccountManager.KEY_AUTHTOKEN;
-import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
-import static android.view.KeyEvent.ACTION_DOWN;
-import static android.view.KeyEvent.KEYCODE_ENTER;
-import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
@@ -30,40 +20,47 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.github.kevinsawicki.wishlist.Toaster;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
 import com.notify.app.mobile.R.string;
-import com.notify.app.mobile.core.BootstrapService;
-import com.notify.app.mobile.core.Constants;
-import com.notify.app.mobile.core.User;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.ActionBarAccountAuthenticatorActivity;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.Constants;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.bootstrapOrigin.ui.TextWatcherAdapter;
 import com.notify.app.mobile.events.UnAuthorizedErrorEvent;
 import com.notify.app.mobile.ui.MainActivity;
-import com.notify.app.mobile.ui.TextWatcherAdapter;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
-import com.github.kevinsawicki.wishlist.Toaster;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SaveCallback;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-
-import javax.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.InjectView;
 import butterknife.Views;
 import retrofit.RetrofitError;
+
+import static android.R.layout.simple_dropdown_item_1line;
+import static android.accounts.AccountManager.KEY_ACCOUNT_NAME;
+import static android.accounts.AccountManager.KEY_ACCOUNT_TYPE;
+import static android.accounts.AccountManager.KEY_AUTHTOKEN;
+import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
+import static android.view.KeyEvent.ACTION_DOWN;
+import static android.view.KeyEvent.KEYCODE_ENTER;
+import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
 /**
  * Activity to authenticate the user against an API (example API on Parse.com)
@@ -90,52 +87,26 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
      */
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
     public static ParseUser user2 = null;
-
-    private AccountManager accountManager;
-    //private ParseUser emailUser;
-
-    private Boolean datastoreIsEnabled = false;
-    private Boolean isProvider = false;
-
-    @Inject BootstrapService bootstrapService;
-    @Inject Bus bus;
-
-    @InjectView(id.et_login_email_or_username) protected AutoCompleteTextView emailOrUsernameText;
-    @InjectView(id.et_password) protected EditText passwordText;
-
-
-    @InjectView(id.b_signin) protected Button signInButton;
-
-
-    private final TextWatcher watcher = validationTextWatcher();
-
-    private SafeAsyncTask<Boolean> authenticationTask;
-    private String authToken;
-    private String authTokenType;
-
-    /**
-     * If set we are just checking that the user knows their credentials; this
-     * doesn't cause the user's password to be changed on the device.
-     */
-    private Boolean confirmCredentials = false;
-
     public static String emailOrUsername;
-
-    private String password;
-
-
-    /**
-     * In this instance the token is simply the sessionId returned from Parse.com. This could be a
-     * oauth token or some other type of timed token that expires/etc. We're just using the parse.com
-     * sessionId to prove the example of how to utilize a token.
-     */
-    private String token;
-
+    //private ParseUser emailUser;
+    private final TextWatcher watcher = validationTextWatcher();
+    @InjectView(id.et_login_email_or_username)
+    protected AutoCompleteTextView emailOrUsernameText;
+    @InjectView(id.et_password)
+    protected EditText passwordText;
+    @InjectView(id.b_signin)
+    protected Button signInButton;
     /**
      * Was the original caller asking for an entirely new account?
      */
     protected boolean requestNewAccount = false;
-
+    @Inject
+    BootstrapService bootstrapService;
+    @Inject
+    Bus bus;
+    private AccountManager accountManager;
+    private Boolean datastoreIsEnabled = false;
+    private Boolean isProvider = false;
     /**
      * Button listener for the Register button.
      */
@@ -147,7 +118,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         }
     };
-
     private View.OnClickListener regProvButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
 
@@ -156,6 +126,21 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         }
     };
+    private SafeAsyncTask<Boolean> authenticationTask;
+    private String authToken;
+    private String authTokenType;
+    /**
+     * If set we are just checking that the user knows their credentials; this
+     * doesn't cause the user's password to be changed on the device.
+     */
+    private Boolean confirmCredentials = false;
+    private String password;
+    /**
+     * In this instance the token is simply the sessionId returned from Parse.com. This could be a
+     * oauth token or some other type of timed token that expires/etc. We're just using the parse.com
+     * sessionId to prove the example of how to utilize a token.
+     */
+    private String token;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -164,7 +149,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         Injector.inject(this);
 
         accountManager = AccountManager.get(this);
-
 
 
         final Intent intent = getIntent();
@@ -176,17 +160,17 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         setContentView(layout.login_activity);
 
-       // if (datastoreIsEnabled == false) {
+        // if (datastoreIsEnabled == false) {
 
 
-          //  datastoreIsEnabled = true;
-       // }
+        //  datastoreIsEnabled = true;
+        // }
 
         /**
          * Attaches the Register button listener to the xml button
          */
-        Button regNewCustButton = (Button)findViewById(id.b_regAsNewCust);
-        Button regNewProvButton = (Button)findViewById(id.b_regAsNewProv);
+        Button regNewCustButton = (Button) findViewById(id.b_regAsNewCust);
+        Button regNewProvButton = (Button) findViewById(id.b_regAsNewProv);
         regNewCustButton.setOnClickListener(regCustButtonListener);
         regNewProvButton.setOnClickListener(regProvButtonListener);
 
@@ -306,7 +290,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             /**
              * Checks to see if the account name entered is an email address or username.
              */
-            if (emailOrUsername.contains("@")){
+            if (emailOrUsername.contains("@")) {
                 ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
                 userQuery.whereEqualTo("email", emailOrUsername);
 
@@ -320,7 +304,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             }
 
         }
-
 
 
         password = passwordText.getText().toString();
@@ -341,9 +324,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 // Retrofit Errors are handled inside of the {
-                if(!(e instanceof RetrofitError)) {
+                if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    if(cause != null) {
+                    if (cause != null) {
                         Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
@@ -395,9 +378,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 // Retrofit Errors are handled inside of the {
-                if(!(e instanceof RetrofitError)) {
+                if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    if(cause != null) {
+                    if (cause != null) {
                         Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
@@ -449,9 +432,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 // Retrofit Errors are handled inside of the {
-                if(!(e instanceof RetrofitError)) {
+                if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    if(cause != null) {
+                    if (cause != null) {
                         Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
@@ -470,6 +453,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         };
         authenticationTask.execute();
     }
+
     /**
      * Called when response is received from the server for confirm credentials
      * request. See onAuthenticationResult(). Sets the
@@ -536,30 +520,30 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                             Toast.makeText(getApplicationContext(),
                                     "Successfully Logged in",
                                     Toast.LENGTH_LONG).show();
-                                    user2 = user;
+                            user2 = user;
 
-                                    finish();
+                            finish();
 
-                            if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
-                                ParsePush push = new ParsePush();
-                                push.subscribeInBackground("Provider");
-//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Provider");
-                                push.setMessage("You have 0 new Requests");
-                                push.sendInBackground();
-                            }
-                            else {
+//                            if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
+//                                ParsePush push = new ParsePush();
+//                                push.subscribeInBackground("Provider");
+////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+//                                push.setChannel("Provider");
+//                                push.setMessage("You have 0 new Requests");
+//                                push.sendInBackground();
+//                            }
+//                            else {
+//
+//                                ParsePush push = new ParsePush();
+//                                push.subscribeInBackground("Customer");
+////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+//                                push.setChannel("Customer");
+//                                push.setMessage("You have 0 new Services");
+//                                push.sendInBackground();
+//                            }
 
-                                ParsePush push = new ParsePush();
-                                push.subscribeInBackground("Customer");
-//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Customer");
-                                push.setMessage("You have 0 new Services");
-                                push.sendInBackground();
-                            }
-
-                                    homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-                                    startActivity(homeIntent);
+                            homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(homeIntent);
                         } else {
                             Toast.makeText(
                                     getApplicationContext(),
@@ -573,10 +557,10 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         user2.pinInBackground();
 //        //if (user == null){
         //final Intent homeIntent = new Intent(this, MainActivity.class);
-       // homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-         //   finish();
+        // homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+        //   finish();
 
-       // startActivity(homeIntent);
+        // startActivity(homeIntent);
 //        //}
 
     }

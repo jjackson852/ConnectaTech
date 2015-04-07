@@ -13,25 +13,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
-import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
-import com.notify.app.mobile.authenticator.RegisterActivity;
-import com.notify.app.mobile.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapFragmentActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapTimerActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.NavigationDrawerFragment;
+import com.notify.app.mobile.bootstrapOrigin.ui.TestActivity;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
-import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParsePush;
 import com.parse.ParseUser;
-import com.parse.PushService;
-import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -40,18 +36,17 @@ import butterknife.Views;
 
 /**
  * Initial activity for the application.
- *
+ * <p/>
  * If you need to remove the authentication from the application please see
- * {@link com.notify.app.mobile.authenticator.ApiKeyProvider#getAuthKey(android.app.Activity)}
+ * {@link com.notify.app.mobile.bootstrapOrigin.authenticator.ApiKeyProvider#getAuthKey(android.app.Activity)}
  */
 public class MainActivity extends BootstrapFragmentActivity {
 
-    @Inject protected BootstrapServiceProvider serviceProvider;
-
+    public static String objID;
+    @Inject
+    protected BootstrapServiceProvider serviceProvider;
     private boolean userHasAuthenticated = false;
-
     private boolean isProvider = true;
-
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private CharSequence drawerTitle;
@@ -67,7 +62,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        ParseObject.registerSubclass(Meal.class);
+        ParseObject.registerSubclass(Photo.class);
 
         ParseACL defaultACL = new ParseACL();
 /*
@@ -77,7 +72,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         defaultACL.setPublicReadAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
 
-        if(isTablet()) {
+        if (isTablet()) {
             setContentView(R.layout.main_activity_tablet);
         } else {
             setContentView(R.layout.main_activity);
@@ -94,7 +89,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 //        push.setMessage("You have 0 new Requests");
 //        push.sendInBackground();
 
-        if(!isTablet()) {
+        if (!isTablet()) {
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerToggle = new ActionBarDrawerToggle(
                     this,                    /* Host activity */
@@ -103,13 +98,17 @@ public class MainActivity extends BootstrapFragmentActivity {
                     R.string.navigation_drawer_open,    /* "open drawer" description */
                     R.string.navigation_drawer_close) { /* "close drawer" description */
 
-                /** Called when a drawer has settled in a completely closed state. */
+                /**
+                 * Called when a drawer has settled in a completely closed state.
+                 */
                 public void onDrawerClosed(View view) {
                     getSupportActionBar().setTitle(title);
                     supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 }
 
-                /** Called when a drawer has settled in a completely open state. */
+                /**
+                 * Called when a drawer has settled in a completely open state.
+                 */
                 public void onDrawerOpened(View drawerView) {
                     getSupportActionBar().setTitle(drawerTitle);
                     supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -143,37 +142,31 @@ public class MainActivity extends BootstrapFragmentActivity {
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        if(!isTablet()) {
+        if (!isTablet()) {
             // Sync the toggle state after onRestoreInstanceState has occurred.
             drawerToggle.syncState();
         }
     }
 
-
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if(!isTablet()) {
+        if (!isTablet()) {
             drawerToggle.onConfigurationChanged(newConfig);
         }
     }
 
-public static String objID;
     private void initScreen() {
         if (userHasAuthenticated) {
-           // try {
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                isProvider = currentUser.getBoolean("isProvider");
-                //ParseUser.unpinAllInBackground();
-           // } catch (com.parse.ParseException e) {
-          //      e.printStackTrace();
+            // try {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            isProvider = currentUser.getBoolean("isProvider");
+            //ParseUser.unpinAllInBackground();
+            // } catch (com.parse.ParseException e) {
+            //      e.printStackTrace();
             //}
 
             //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
-
-
-
-
 
             Bundle carouselArgs = new Bundle();
 
@@ -230,20 +223,16 @@ public static String objID;
             case android.R.id.home:
                 //menuDrawer.toggleMenu();
                 return true;
-            case R.id.timer:
-                //navigateToTimer();
-                startActivity(new Intent(this, BootstrapTimerActivity.class));
-                return true;
+//            case R.id.timer:
+//                //navigateToTimer();
+//                startActivity(new Intent(this, BootstrapTimerActivity.class));
+//                return true;
             case R.id.test:
                 startActivity(new Intent(this, TestActivity.class));
                 //navigateToTest();
                 return true;
             case R.id.rating:
                 startActivity(new Intent(this, RatingActivity.class));
-                //navigateToTest();
-                return true;
-            case R.id.meal_name:
-                startActivity(new Intent(this, MealListActivity.class));
                 //navigateToTest();
                 return true;
             default:
@@ -264,13 +253,12 @@ public static String objID;
     }
 
 
-
     @Subscribe
     public void onNavigationItemSelected(NavItemSelectedEvent event) {
 
         Ln.d("Selected: %1$s", event.getItemPosition());
 
-        switch(event.getItemPosition()) {
+        switch (event.getItemPosition()) {
             case 0:
                 // Home
                 // do nothing as we're already on the home screen.
@@ -290,12 +278,6 @@ public static String objID;
                 // navigateToTest();
                 startActivity(new Intent(this, RatingActivity.class));
                 break;
-
-            case 4:
-                // Test
-                // navigateToTest();
-                startActivity(new Intent(this, MealListActivity.class));
-                break;
         }
     }
 
@@ -309,5 +291,6 @@ public static String objID;
         final Intent i = new Intent(this, FilterServicesActivity.class);
         startActivity(i);
     }
+
 }
 
