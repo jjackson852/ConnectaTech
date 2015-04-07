@@ -15,6 +15,7 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.core.Request;
+import com.parse.ParseUser;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +41,12 @@ public class RequestListFragment extends ItemListFragment<Request> {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setEmptyText(R.string.no_requests);
+        if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+            setEmptyText(R.string.no_requests);
+        }
+        else{
+            setEmptyText(R.string.no_requests_cust);
+        }
     }
 
     @Override
@@ -50,9 +56,10 @@ public class RequestListFragment extends ItemListFragment<Request> {
         listView.setFastScrollEnabled(true);
         listView.setDividerHeight(0);
 
-        getListAdapter()
-                .addHeader(activity.getLayoutInflater()
-                        .inflate(R.layout.request_list_label, null));
+//  currently no need for title/date fields
+//        getListAdapter()
+//                .addHeader(activity.getLayoutInflater()
+//                        .inflate(R.layout.request_list_label, null));
     }
 
     @Override
@@ -105,5 +112,11 @@ public class RequestListFragment extends ItemListFragment<Request> {
     @Override
     protected int getErrorMessage(Exception exception) {
         return R.string.error_loading_news;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
     }
 }

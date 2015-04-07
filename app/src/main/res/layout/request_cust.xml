@@ -14,12 +14,14 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp">
 
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -30,21 +32,6 @@
                 android:layout_weight="1"
                 />
 
-            <Button
-                style="@style/ShadowText"
-                android:id="@+id/b_prov_edit_serv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background_states"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/label_edit"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3"/>
-        </LinearLayout>
 
 
         <LinearLayout
@@ -64,7 +51,7 @@
 
             <Button
                 style="@style/ShadowText"
-                android:id="@+id/b_prov_edit_serv_desc"
+                android:id="@+id/b_cust_edit_req_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background_states"
@@ -79,19 +66,23 @@
         </LinearLayout>
         <Button
             style="@style/ShadowText"
-            android:id="@+id/b_prov_remove_serv"
+            android:id="@+id/b_cust_remove_req"
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background_states"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/label_remove_service"
+            android:text="@string/label_retract_request"
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_weight="3"/>
+
+    </LinearLayout>
+
+
 
     </LinearLayout>
 

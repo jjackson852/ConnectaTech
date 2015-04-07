@@ -138,6 +138,10 @@ public class BootstrapService {
             setReqConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
         }
 
+        else{
+            setReqConstraint("{\"submittedBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
+        }
+
         return getRequestService().getRequest(curUserReqConstraint).getResults();
     }
 
