@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
 import butterknife.InjectView;
@@ -19,14 +22,35 @@ public class UserActivity extends BootstrapActivity {
     @InjectView(R.id.tv_name)
     protected TextView name;
 
-
     private User user;
+    private String email;
+    private String counter;
+    private TextView text;
+    private String ave;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.user_view);
+
+        try {
+            email = ParseUser.getCurrentUser().getEmail();
+
+            ParseQuery<ParseObject> count = ParseQuery.getQuery("rate");
+            count.whereEqualTo("count", email);
+            counter = String.valueOf(count);
+
+            ParseQuery<ParseObject> ave_rating = ParseQuery.getQuery("rate");
+            ave_rating.whereEqualTo("ave_rating", email);
+            ave = String.valueOf(ave_rating);
+
+            text = (TextView) findViewById(R.id.textView3);
+            text.setText(ave);
+        } catch(Exception e) {
+            text = (TextView) findViewById(R.id.textView3);
+            text.setText("N/a");
+        }
 
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
