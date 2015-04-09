@@ -59,6 +59,7 @@
     <string name="label_submit">Submit</string>
     <string name="label_call">Call</string>
     <string name="label_email">Email</string>
+    <string name="label_edit">Edit</string>
     <string name="label_first_name">First Name</string>
     <string name="label_last_name">Last Name</string>
     <string name="label_phone_number">Phone Number</string>
@@ -114,12 +115,16 @@
     <string name="service_description">Description</string>
     <string name="service_base_price">Base Price</string>
     <string name="service_submit">Submit Service</string>
+    <string name="label_remove_service">Remove Service</string>
 
     <!--Request Activity -->
-    <string name="no_requests">You currently have no \nrequests for your services.</string>
+    <string name="no_requests">You currently have no\nrequests for your services.</string>
+    <string name="no_requests_cust">You currently have no\nactive service requests.</string>
     <string name="provider_requests">Active Requests</string>
     <string name="label_request_service">Request Service</string>
     <string name="describe_request">Describe your request.</string>
     <string name="label_addl_info">List the specific problem/request.</string>
+    <string name="label_retract_request">Retract Request</string>
+    <string name="active_requests">Active Requests</string>
 
 </resources>

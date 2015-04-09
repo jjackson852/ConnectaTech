@@ -43,7 +43,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
         final Fragment result;
         switch (position) {
             case 0:
-                result = new NewsListFragment();
+                result = new RequestListFragment();
                 break;
             case 1:
                 result = new UserListFragment();
@@ -68,7 +68,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
     public CharSequence getPageTitle(final int position) {
         switch (position) {
             case 0:
-                return resources.getString(R.string.page_news);
+                return resources.getString(R.string.active_requests);
             case 1:
                 return resources.getString(R.string.page_users);
             case 2:
