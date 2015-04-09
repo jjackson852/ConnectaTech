@@ -28,6 +28,7 @@ public class BootstrapService {
 
     //    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
     private static String curUserReqConstraint;
+    private static String providersConstraint;
     private RestAdapter restAdapter;
 
     /**
@@ -57,6 +58,12 @@ public class BootstrapService {
     public static void setReqConstraint(String constraint) {
 
         curUserReqConstraint = constraint;
+
+    }
+
+    public static void setProvidersConstraint(String constraint) {
+
+        providersConstraint = constraint;
 
     }
 
@@ -112,7 +119,10 @@ public class BootstrapService {
      * Get all bootstrap Users that exist on Parse.com
      */
     public List<User> getUsers() {
-        return getUserService().getUsers().getResults();
+
+        setProvidersConstraint("{\"isProvider\":\"true\"}");
+
+        return getUserService().getUsers(providersConstraint).getResults();
     }
 
     /**
