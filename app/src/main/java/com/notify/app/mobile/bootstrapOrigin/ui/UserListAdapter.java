@@ -1,16 +1,25 @@
 package com.notify.app.mobile.bootstrapOrigin.ui;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.ui.MainActivity;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Adapter to display a list of traffic items
@@ -35,6 +44,7 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
     public UserListAdapter(final LayoutInflater inflater) {
         this(inflater, null);
 
+
     }
 
     @Override
@@ -58,6 +68,8 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
                 .into(imageView(0));
 
         setText(1, String.format("%1$s %2$s", user.getFirstName(), user.getLastName()));
+
+
 
     }
 

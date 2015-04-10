@@ -283,7 +283,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                 // ParseUser ratingId = new ParseUser();
                 ratingtxt = new ParseObject("Rating");
 
-                ratingtxt.put("rating", String.valueOf(ratingBar.getRating()));
+                ratingtxt.put("rating", Float.valueOf(ratingBar.getRating()));
                 ratingtxt.put("submittedBy", ParseUser.getCurrentUser());
                 ratingtxt.add("ratingTotal", String.valueOf(ratingBar.getRating()));
 

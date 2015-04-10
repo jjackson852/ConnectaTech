@@ -120,7 +120,7 @@ public class BootstrapService {
      */
     public List<User> getUsers() {
 
-        setProvidersConstraint("{\"isProvider\":\"true\"}");
+        setProvidersConstraint("{\"isProvider\":true}");
 
         return getUserService().getUsers(providersConstraint).getResults();
     }

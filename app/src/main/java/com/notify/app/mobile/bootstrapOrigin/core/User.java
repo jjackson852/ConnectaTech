@@ -1,6 +1,9 @@
 package com.notify.app.mobile.bootstrapOrigin.core;
 
+import android.media.Image;
 import android.text.TextUtils;
+
+import com.parse.ParseFile;
 
 import java.io.Serializable;
 
@@ -17,6 +20,7 @@ public class User implements Serializable {
     protected String gravatarId;
     protected String avatarUrl;
     protected String rating;
+    protected ParseFile imageFile;
 
 
     public String getUsername() {
@@ -57,6 +61,14 @@ public class User implements Serializable {
 
     public void setFirstName(final String firstName) {
         this.firstName = firstName;
+    }
+
+    public ParseFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(final ParseFile imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getLastName() {
