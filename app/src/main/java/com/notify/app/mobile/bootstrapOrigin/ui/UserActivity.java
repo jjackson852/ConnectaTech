@@ -89,7 +89,13 @@ public class UserActivity extends BootstrapActivity {
                 if (e == null) {
                     // ratings is 4.5 or such
 
-                    avgRating = Float.valueOf(ratings.get("avgRating").toString());
+
+                    try{
+                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+                    }catch (NumberFormatException ex){
+                        avgRating = 0.0f;
+                    }
+
 
                     Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
                     RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);

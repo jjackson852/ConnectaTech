@@ -230,6 +230,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                                                 }
                                             }
                                         });
+
                             }
                         });
             }
