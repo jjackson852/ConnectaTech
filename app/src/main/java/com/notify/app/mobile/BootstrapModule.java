@@ -32,7 +32,8 @@ import com.notify.app.mobile.ui.ExampleListFragment;
 import com.notify.app.mobile.ui.FilterServicesActivity;
 import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.ProviderProfileFragment;
-import com.notify.app.mobile.ui.RatingActivity;
+import com.notify.app.mobile.ui.OldRatingActivity;
+import com.notify.app.mobile.ui.RateUserActivity;
 import com.notify.app.mobile.ui.RequestActivity;
 import com.notify.app.mobile.ui.RequestListFragment;
 import com.notify.app.mobile.ui.RequestServiceActivity;
@@ -63,7 +64,7 @@ import retrofit.converter.GsonConverter;
                 EditPhotoActivity.class,
                 ExampleActivity.class,
                 ExampleListFragment.class,
-                RatingActivity.class,
+                OldRatingActivity.class,
                 NavigationDrawerFragment.class,
                 NewsActivity.class,
                 NewsListFragment.class,
@@ -80,6 +81,7 @@ import retrofit.converter.GsonConverter;
                 RequestActivity.class,
                 RequestListFragment.class,
                 FilterServicesActivity.class,
+                RateUserActivity.class,
                 RequestServiceActivity.class
         }
 )

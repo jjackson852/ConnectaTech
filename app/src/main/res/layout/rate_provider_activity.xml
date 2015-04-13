@@ -59,12 +59,5 @@
         android:layout_below="@+id/ratingBar_cust_view"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RateProvider"
-        android:id="@+id/rateProviderActivity"
-        android:layout_below="@+id/b_submitRating_cust"
-        />
 
 </RelativeLayout>

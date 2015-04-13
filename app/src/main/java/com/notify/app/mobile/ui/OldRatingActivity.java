@@ -31,10 +31,10 @@ import com.parse.ParseQuery;
 /**
  * Created by theblackfu on 2/25/2015.
  */
-public class RatingActivity extends BootstrapActivity {
+public class OldRatingActivity extends BootstrapActivity {
 
     Button button;
-    private RatingBar ratingBar;
+    private RatingBar old_ratingBar;
     private TextView txtRatingValue;
     private Button btnSubmit;
     private ProgressDialog progressDialog;
@@ -42,7 +42,7 @@ public class RatingActivity extends BootstrapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rating_actvity);
+        setContentView(R.layout.old_rating_actvity);
 
         Injector.inject(this);
         setTitle(R.string.rating_title);
@@ -58,7 +58,7 @@ public class RatingActivity extends BootstrapActivity {
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
 
-                progressDialog = ProgressDialog.show(RatingActivity.this, "",
+                progressDialog = ProgressDialog.show(OldRatingActivity.this, "",
                         "Downloading Image...", true);
 
                 // Locate the class table named "ImageUpload" in Parse.com
@@ -114,12 +114,12 @@ public class RatingActivity extends BootstrapActivity {
 
     public void addListenerOnRatingBar() {
 
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        old_ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         txtRatingValue = (TextView) findViewById(R.id.txtRatingValue);
 
         //if rating value is changed,
         //display the current rating value in the result (textview) automatically
-        ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+        old_ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
 
@@ -131,7 +131,7 @@ public class RatingActivity extends BootstrapActivity {
 
     public void addListenerOnButton() {
 
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        old_ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         //if click on me, then display the current rating value.
@@ -140,8 +140,8 @@ public class RatingActivity extends BootstrapActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(RatingActivity.this,
-                        String.valueOf(ratingBar.getRating()),
+                Toast.makeText(OldRatingActivity.this,
+                        String.valueOf(old_ratingBar.getRating()),
                         Toast.LENGTH_SHORT).show();
 
             }

@@ -232,7 +232,7 @@ public class MainActivity extends BootstrapFragmentActivity {
                 //navigateToTest();
                 return true;
             case R.id.rating:
-                startActivity(new Intent(this, RatingActivity.class));
+                startActivity(new Intent(this, OldRatingActivity.class));
                 //navigateToTest();
                 return true;
             default:
@@ -276,7 +276,7 @@ public class MainActivity extends BootstrapFragmentActivity {
             case 3:
                 // Test
                 // navigateToTest();
-                startActivity(new Intent(this, RatingActivity.class));
+                startActivity(new Intent(this, OldRatingActivity.class));
                 break;
         }
     }

@@ -1,5 +1,6 @@
 package com.notify.app.mobile.bootstrapOrigin.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.ui.RateUserActivity;
 import com.parse.FunctionCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseCloud;
@@ -41,6 +43,8 @@ public class UserActivity extends BootstrapActivity {
     private ParseObject newRating;
     private Float avgRating;
     private RatingBar ratingBarSubmittable;
+    private Button rateActivity;
+    private Intent intent;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -63,6 +67,19 @@ public class UserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
+        intent = new Intent(this, RateUserActivity.class);
+        intent.putExtra("providerID", user.getObjectId());
+
+        Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
+
+        rateActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(intent);
+            }
+        });
+
 
         /**
          * Attaches the Submit New Service button listener to the xml button.

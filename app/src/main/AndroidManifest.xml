@@ -127,7 +127,7 @@
             android:parentActivityName=".ui.MainActivity"></activity>
 
         <activity
-            android:name=".ui.RatingActivity"
+            android:name=".ui.OldRatingActivity"
             android:label="@string/rating_activity"
             android:parentActivityName=".ui.MainActivity"></activity>
         <activity
@@ -137,6 +137,10 @@
         <activity
             android:name=".ui.TechServiceActivity"
             android:label="@string/title_techservices"></activity>
+
+        <activity
+            android:name=".ui.RateUserActivity">
+        </activity>
 
         <activity
             android:name=".ui.RequestServiceActivity"
