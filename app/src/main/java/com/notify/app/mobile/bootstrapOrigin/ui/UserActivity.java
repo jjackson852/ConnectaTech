@@ -45,6 +45,8 @@ public class UserActivity extends BootstrapActivity {
     private RatingBar ratingBarSubmittable;
     private Button rateActivity;
     private Intent intent;
+    private TextView currentProviderRating;
+
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -109,6 +111,9 @@ public class UserActivity extends BootstrapActivity {
 
                     try{
                         avgRating = Float.valueOf(ratings.get("avgRating").toString());
+
+                         currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
+                        currentProviderRating.setText(String.valueOf(avgRating));
                     }catch (NumberFormatException ex){
                         avgRating = 0.0f;
                     }
@@ -136,6 +141,8 @@ public class UserActivity extends BootstrapActivity {
                 .into(avatar);
 
         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+
+
 
 
     }

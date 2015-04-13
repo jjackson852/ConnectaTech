@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Current Rating"
-        android:id="@+id/textView3"
+        android:id="@+id/currentProviderRating"
         android:layout_alignTop="@+id/ratingBar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
