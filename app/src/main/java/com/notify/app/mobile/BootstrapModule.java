@@ -26,6 +26,7 @@ import com.notify.app.mobile.bootstrapOrigin.ui.TrialListFragment;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserListFragment;
 import com.notify.app.mobile.ui.AddServiceActivity;
+import com.notify.app.mobile.ui.CustomerProfileFragment;
 import com.notify.app.mobile.ui.EditImageActivity;
 import com.notify.app.mobile.ui.EditPhotoActivity;
 import com.notify.app.mobile.ui.ExampleActivity;
@@ -61,6 +62,7 @@ import retrofit.converter.GsonConverter;
                 BootstrapAuthenticatorActivity.class,
                 MainActivity.class,
                 BootstrapTimerActivity.class,
+                CustomerProfileFragment.class,
                 CheckInsListFragment.class,
                 EditPhotoActivity.class,
                 EditImageActivity.class,
