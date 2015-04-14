@@ -71,7 +71,7 @@ public class EditImageActivity extends BootstrapActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-
+            //test
 
             // String picturePath contains the path of selected Image
 
