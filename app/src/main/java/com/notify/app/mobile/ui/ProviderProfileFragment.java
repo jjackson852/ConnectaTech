@@ -4,9 +4,12 @@ import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +44,8 @@ import butterknife.InjectView;
 
 public class ProviderProfileFragment extends ItemListFragment2 {
 
+
+    private int RESULT_LOAD_IMAGE  ;
     @Inject
     protected LogoutService logoutService;
     @Inject
@@ -184,9 +189,16 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditImageActivity.class);
-                startActivity(intent);
+
+                Intent i = new Intent(
+                        Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+
+                //Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditImageActivity.class);
+//                intent.putExtra("providerPic", (android.os.Parcelable) providerPhoto);
+//                startActivity(intent);
             }
         });
 
