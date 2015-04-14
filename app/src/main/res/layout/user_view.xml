@@ -26,16 +26,16 @@
         android:layout_toRightOf="@+id/iv_avatar"
         android:layout_toEndOf="@+id/iv_avatar" />
 
-    <!--<RatingBar-->
-        <!--android:id="@+id/ratingBar_cust_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:numStars="5"-->
-        <!--android:stepSize="0.50"-->
-        <!--android:rating="0.0"-->
-        <!--android:layout_below="@+id/iv_avatar"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
+    <RatingBar
+        android:id="@+id/ratingBar_cust_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.50"
+        android:rating="0.0"
+        android:layout_below="@+id/iv_avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="RateProvider"
         android:id="@+id/rateProviderActivity"
-        android:layout_below="@+id/iv_avatar"
+        android:layout_below="@+id/ratingBar_cust_view"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

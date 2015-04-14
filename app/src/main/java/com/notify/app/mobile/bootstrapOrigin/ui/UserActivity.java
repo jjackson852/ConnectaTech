@@ -42,7 +42,6 @@ public class UserActivity extends BootstrapActivity {
     private ParseUser parseProvider;
     private ParseObject newRating;
     private Float avgRating;
-    private RatingBar ratingBarSubmittable;
     private Button rateActivity;
     private Intent intent;
     private TextView currentProviderRating;
@@ -100,45 +99,43 @@ public class UserActivity extends BootstrapActivity {
 //
 //        ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
 //
-//        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-//        userQuery.whereEqualTo("objectId", user.getObjectId());
-//
-//        try {
-//            List<ParseUser> results = userQuery.find();
-//            parseProvider = results.get(0);
-//        } catch (com.parse.ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//        HashMap<String, Object> params = new HashMap<String, Object>();
-//        params.put("providerID", user.getObjectId());
-//        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
-//            public void done(Map<String, Object>  ratings, ParseException e) {
-//                if (e == null) {
-//                    // ratings is 4.5 or such
-//
-//
-//                    try{
-//                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
-//
-//                         currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
-//                        currentProviderRating.setText(String.valueOf(avgRating));
-//                    }catch (NumberFormatException ex){
-//                        avgRating = 0.0f;
-//                    }
-//
-//
-//                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
-//                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-//
-//                    ratingBarViewOnly.setRating(avgRating);
-//                    ratingBarViewOnly.invalidate();
-//                }
-//                else{
-//
-//                }
-//            }
-//        });
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("objectId", user.getObjectId());
+
+        try {
+            List<ParseUser> results = userQuery.find();
+            parseProvider = results.get(0);
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("providerID", user.getObjectId());
+        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
+            public void done(Map<String, Object>  ratings, ParseException e) {
+                if (e == null) {
+                    // ratings is 4.5 or such
+
+
+                    try{
+                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+                    }catch (NumberFormatException ex){
+                        avgRating = 0.0f;
+                    }
+
+
+                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
+                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+
+                    ratingBarViewOnly.setIsIndicator(true);
+                    ratingBarViewOnly.setRating(avgRating);
+                    ratingBarViewOnly.invalidate();
+                }
+                else{
+
+                }
+            }
+        });
 
 
 
@@ -155,20 +152,20 @@ public class UserActivity extends BootstrapActivity {
 
 
     }
-
-    /**
-     * Handles onClick event on the Submit button.
-     */
-    public void submitRating() {
-        ParseAnalytics.trackAppOpened(getIntent());
-
-        newRating = new ParseObject("Rating");
-        newRating.put("provider",parseProvider);
-        newRating.put("submittedBy", ParseUser.getCurrentUser());
-        newRating.put("rating", ratingBarSubmittable.getRating());
-        newRating.put("providerID", user.getObjectId());
-        newRating.saveInBackground();
-
-    }
+//
+//    /**
+//     * Handles onClick event on the Submit button.
+//     */
+//    public void submitRating() {
+//        ParseAnalytics.trackAppOpened(getIntent());
+//
+//        newRating = new ParseObject("Rating");
+//        newRating.put("provider",parseProvider);
+//        newRating.put("submittedBy", ParseUser.getCurrentUser());
+//        newRating.put("rating", ratingBarSubmittable.getRating());
+//        newRating.put("providerID", user.getObjectId());
+//        newRating.saveInBackground();
+//
+//    }
 
 }

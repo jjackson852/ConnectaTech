@@ -27,14 +27,18 @@
         android:layout_height="wrap_content"
         android:text="Take Picture"
         android:id="@+id/edit_photo_btn"
-        android:layout_toRightOf="@+id/provider_profile_image" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/provider_profile_image"
+        android:layout_toEndOf="@+id/provider_profile_image" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Photo"
         android:id="@+id/select_image_button"
-        android:layout_toRightOf="@+id/edit_photo_btn" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/edit_photo_btn"
+        android:layout_toEndOf="@+id/edit_photo_btn" />
     <!--<Button-->
         <!--style="?android:attr/buttonStyleSmall"-->
         <!--android:layout_width="wrap_content"-->
@@ -49,10 +53,13 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:numStars="5"
-        android:stepSize="1.0"
+        android:stepSize="0.50"
         android:rating="2.0"
-        android:layout_below="@+id/tv_name"/>
+        android:layout_below="@+id/edit_photo_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/txtRatingValueAverage"

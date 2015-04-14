@@ -39,12 +39,8 @@ public class RateUserActivity extends BootstrapActivity {
     private User user;
     private ParseUser parseProvider;
     private ParseObject newRating;
-    private Float avgRating;
     private RatingBar ratingBarSubmittable;
-    private TextView currentProviderRating;
-    String provider;
     String providerID;
-  //  String objectId;
     Intent intent;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
@@ -68,10 +64,9 @@ public class RateUserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
+
+        Bundle extras = getIntent().getExtras();
         providerID = extras.getString("providerID");
-        provider = extras.getString("parseProvider");
 
         /**
          * Attaches the Submit New Service button listener to the xml button.
@@ -80,10 +75,6 @@ public class RateUserActivity extends BootstrapActivity {
         submitRatingButton.setOnClickListener(addRatingListener);
 
         ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-//        provider = getIntent().getExtras().getString("provider");
-//       providerID = getIntent().getExtras().getString("providerID");
-//        objectId = getIntent().getExtras().getString("objectId");
-       // parseProvider = getIntent().getExtras().getString("")
 
         ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
         userQuery.whereEqualTo("objectId", providerID);
@@ -95,34 +86,34 @@ public class RateUserActivity extends BootstrapActivity {
             e.printStackTrace();
         }
 
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("providerID", providerID);
-        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
-            public void done(Map<String, Object>  ratings, ParseException e) {
-                if (e == null) {
-                    // ratings is 4.5 or such
-
-
-                    try{
-                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
-                        currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
-                        currentProviderRating.setText(String.valueOf(avgRating));
-                    }catch (NumberFormatException ex){
-                        avgRating = 0.0f;
-                    }
-
-
-                    Toast.makeText(RateUserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
-                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-
-                    ratingBarViewOnly.setRating(avgRating);
-                    ratingBarViewOnly.invalidate();
-                }
-                else{
-
-                }
-            }
-        });
+//        HashMap<String, Object> params = new HashMap<String, Object>();
+//        params.put("providerID", providerID);
+//        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
+//            public void done(Map<String, Object>  ratings, ParseException e) {
+//                if (e == null) {
+//                    // ratings is 4.5 or such
+//
+//
+//                    try{
+//                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+//                        currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
+//                        currentProviderRating.setText(String.valueOf(avgRating));
+//                    }catch (NumberFormatException ex){
+//                        avgRating = 0.0f;
+//                    }
+//
+//
+//                    Toast.makeText(RateUserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
+//                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+//
+//                    ratingBarViewOnly.setRating(avgRating);
+//                    ratingBarViewOnly.invalidate();
+//                }
+//                else{
+//
+//                }
+//            }
+//        });
 
 //        Button filterServicesButton = (Button) findViewById(R.id.b_submit_request);
 //        filterServicesButton.setOnClickListener(requestSubListener);
@@ -167,5 +158,6 @@ public class RateUserActivity extends BootstrapActivity {
         newRating.saveInBackground();
 
     }
+
 
 }
