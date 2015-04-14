@@ -43,6 +43,8 @@ public class RateUserActivity extends BootstrapActivity {
     String providerID;
     Intent intent;
 
+
+
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
 
@@ -67,6 +69,10 @@ public class RateUserActivity extends BootstrapActivity {
 
         Bundle extras = getIntent().getExtras();
         providerID = extras.getString("providerID");
+
+
+
+
 
         /**
          * Attaches the Submit New Service button listener to the xml button.
@@ -139,7 +145,7 @@ public class RateUserActivity extends BootstrapActivity {
 //                .placeholder(R.drawable.gravatar_icon)
 //                .into(avatar);
 //
-        // name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+//         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
 
 
     }

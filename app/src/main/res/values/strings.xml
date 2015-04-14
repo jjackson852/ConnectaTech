@@ -52,6 +52,7 @@
     <string name="title_home">Home</string>
     <string name="title_activity_test_">Test Activity</string>
     <string name="title_activity_provider">Profile</string>
+    <string name="title_activity_customer">Profile</string>
 
     <!-- RegisterActivity -->
     <string name="register_header_cust">Create your profile.</string>

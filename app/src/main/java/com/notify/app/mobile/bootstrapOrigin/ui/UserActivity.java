@@ -77,6 +77,8 @@ public class UserActivity extends BootstrapActivity {
         extras = new Bundle();
         extras.putString("providerID",user.getObjectId());
         extras.putString("provider", String.valueOf(parseProvider));
+        extras.putString("name", user.getUsername());
+        extras.putString("avatar", user.getGravatarId());
         intent.putExtras(extras);
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
