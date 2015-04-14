@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.notify.app.mobile.R;
@@ -175,7 +177,9 @@ public class TechServiceActivity extends BootstrapActivity {
 
         final EditText edittext = new EditText(this);
         alert.setTitle("Edit Description");
-
+//        LayoutInflater li = LayoutInflater.from(TechServiceActivity.this);
+//        RelativeLayout rl = (RelativeLayout)li.inflate(R.layout.rate_provider_activity, null);
+//        alert.setView(rl);
         alert.setView(edittext);
 
         techServIntent = new Intent(this, TechServiceActivity.class);

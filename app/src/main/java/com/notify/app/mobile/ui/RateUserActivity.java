@@ -77,8 +77,8 @@ public class RateUserActivity extends BootstrapActivity {
         /**
          * Attaches the Submit New Service button listener to the xml button.
          */
-        Button submitRatingButton = (Button) findViewById(R.id.b_submitRating_cust);
-        submitRatingButton.setOnClickListener(addRatingListener);
+        //Button submitRatingButton = (Button) findViewById(R.id.b_submitRating_cust);
+        //submitRatingButton.setOnClickListener(addRatingListener);
 
         ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
 
