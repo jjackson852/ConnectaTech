@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import com.parse.SaveCallback;
 /**
  * Created by theblackfu on 3/1/2015.
  */
-public class EditPhotoFragment extends Fragment {
+public class EditImageFragment extends Fragment {
 
     private ImageButton photoButton;
     private ImageButton imageButton;

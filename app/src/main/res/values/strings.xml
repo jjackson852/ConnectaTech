@@ -127,5 +127,6 @@
     <string name="label_retract_request">Retract Request</string>
     <string name="active_requests">Active Requests</string>
     <string name="title_activity_edit_image">Edit Image</string>
+    <string name="select_image">Select Image</string>
 
 </resources>

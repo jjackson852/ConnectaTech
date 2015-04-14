@@ -1,32 +1,33 @@
 package com.notify.app.mobile.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.ImageView;
+        import android.widget.RatingBar;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import com.notify.app.mobile.R;
-import com.notify.app.mobile.bootstrapOrigin.core.User;
-import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
-import com.parse.FunctionCallback;
-import com.parse.ParseAnalytics;
-import com.parse.ParseCloud;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.squareup.picasso.Picasso;
+        import com.notify.app.mobile.R;
+        import com.notify.app.mobile.bootstrapOrigin.core.User;
+        import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
+        import com.parse.FunctionCallback;
+        import com.parse.ParseAnalytics;
+        import com.parse.ParseCloud;
+        import com.parse.ParseException;
+        import com.parse.ParseObject;
+        import com.parse.ParseQuery;
+        import com.parse.ParseUser;
+        import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+        import java.util.HashMap;
+        import java.util.List;
+        import java.util.Map;
 
-import butterknife.InjectView;
+        import butterknife.InjectView;
 
-import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
+        import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 public class RateUserActivity extends BootstrapActivity {
 
@@ -41,6 +42,10 @@ public class RateUserActivity extends BootstrapActivity {
     private Float avgRating;
     private RatingBar ratingBarSubmittable;
     private TextView currentProviderRating;
+    String provider;
+    String providerID;
+  //  String objectId;
+    Intent intent;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -63,7 +68,10 @@ public class RateUserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
-
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        providerID = extras.getString("providerID");
+        provider = extras.getString("parseProvider");
 
         /**
          * Attaches the Submit New Service button listener to the xml button.
@@ -72,45 +80,64 @@ public class RateUserActivity extends BootstrapActivity {
         submitRatingButton.setOnClickListener(addRatingListener);
 
         ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+//        provider = getIntent().getExtras().getString("provider");
+//       providerID = getIntent().getExtras().getString("providerID");
+//        objectId = getIntent().getExtras().getString("objectId");
+       // parseProvider = getIntent().getExtras().getString("")
 
-//        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-//        userQuery.whereEqualTo("objectId", user.getObjectId());
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("objectId", providerID);
+
+        try {
+            List<ParseUser> results = userQuery.find();
+            parseProvider = results.get(0);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("providerID", providerID);
+        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
+            public void done(Map<String, Object>  ratings, ParseException e) {
+                if (e == null) {
+                    // ratings is 4.5 or such
+
+
+                    try{
+                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+                        currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
+                        currentProviderRating.setText(String.valueOf(avgRating));
+                    }catch (NumberFormatException ex){
+                        avgRating = 0.0f;
+                    }
+
+
+                    Toast.makeText(RateUserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
+                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+
+                    ratingBarViewOnly.setRating(avgRating);
+                    ratingBarViewOnly.invalidate();
+                }
+                else{
+
+                }
+            }
+        });
+
+//        Button filterServicesButton = (Button) findViewById(R.id.b_submit_request);
+//        filterServicesButton.setOnClickListener(requestSubListener);
+//
+//        serviceRequestedId = getIntent().getExtras().getString("serviceRequestedId");
+//
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("TechService");
+//        query.whereEqualTo("objectId", serviceRequestedId);
 //
 //        try {
-//            List<ParseUser> results = userQuery.find();
-//            parseProvider = results.get(0);
-//        } catch (ParseException e) {
+//            List<ParseObject> serviceResults = query.find();
+//            serviceRequested = serviceResults.get(0);
+//        } catch (com.parse.ParseException e) {
 //            e.printStackTrace();
 //        }
-//
-//        HashMap<String, Object> params = new HashMap<String, Object>();
-//        params.put("providerID", user.getObjectId());
-//        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
-//            public void done(Map<String, Object>  ratings, ParseException e) {
-//                if (e == null) {
-//                    // ratings is 4.5 or such
-//
-//
-//                    try{
-//                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
-//                        currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
-//                        currentProviderRating.setText(String.valueOf(avgRating));
-//                    }catch (NumberFormatException ex){
-//                        avgRating = 0.0f;
-//                    }
-//
-//
-//                    Toast.makeText(RateUserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
-//                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-//
-//                    ratingBarViewOnly.setRating(avgRating);
-//                    ratingBarViewOnly.invalidate();
-//                }
-//                else{
-//
-//                }
-//            }
-//        });
 
 
 
@@ -121,7 +148,7 @@ public class RateUserActivity extends BootstrapActivity {
 //                .placeholder(R.drawable.gravatar_icon)
 //                .into(avatar);
 //
-       // name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        // name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
 
 
     }
@@ -133,10 +160,10 @@ public class RateUserActivity extends BootstrapActivity {
         ParseAnalytics.trackAppOpened(getIntent());
 
         newRating = new ParseObject("Rating");
-     //   newRating.put("provider",parseProvider);
+        newRating.put("provider",parseProvider);
         newRating.put("submittedBy", ParseUser.getCurrentUser());
         newRating.put("rating", ratingBarSubmittable.getRating());
-  //     newRating.put("providerID", user.getObjectId());
+        newRating.put("providerID", providerID);
         newRating.saveInBackground();
 
     }
