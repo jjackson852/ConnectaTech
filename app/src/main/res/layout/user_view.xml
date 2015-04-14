@@ -26,48 +26,49 @@
         android:layout_toRightOf="@+id/iv_avatar"
         android:layout_toEndOf="@+id/iv_avatar" />
 
-    <RatingBar
-        android:id="@+id/ratingBar_cust_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="0.50"
-        android:rating="0.0"
-        android:layout_below="@+id/iv_avatar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!--<RatingBar-->
+        <!--android:id="@+id/ratingBar_cust_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:numStars="5"-->
+        <!--android:stepSize="0.50"-->
+        <!--android:rating="0.0"-->
+        <!--android:layout_below="@+id/iv_avatar"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Current Rating"
-        android:id="@+id/currentProviderRating"
-        android:layout_alignTop="@+id/ratingtxt"
-        android:layout_toRightOf="@+id/ratingBar_cust_view"
-        android:layout_toEndOf="@+id/ratingBar_cust_view" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Providers Average Rating"
-        android:id="@+id/ratingtxt"
-        android:layout_below="@+id/ratingBar_cust_view"/>
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit Rating"
-        android:id="@+id/b_submitRating_cust"
-        android:layout_below="@+id/currentProviderRating"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+        <!--android:text="Current Rating"-->
+        <!--android:id="@+id/currentProviderRating"-->
+        <!--android:layout_alignTop="@+id/ratingtxt"-->
+        <!--android:layout_toRightOf="@+id/ratingBar_cust_view"-->
+        <!--android:layout_toEndOf="@+id/ratingBar_cust_view" />-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+        <!--android:text="Providers Average Rating"-->
+        <!--android:id="@+id/ratingtxt"-->
+        <!--android:layout_below="@+id/ratingBar_cust_view"/>-->
+    <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Submit Rating"-->
+        <!--android:id="@+id/b_submitRating_cust"-->
+        <!--android:layout_below="@+id/currentProviderRating"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RateProvider"
         android:id="@+id/rateProviderActivity"
-        android:layout_below="@+id/b_submitRating_cust"
-        />
+        android:layout_below="@+id/iv_avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

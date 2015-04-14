@@ -46,16 +46,16 @@ public class UserActivity extends BootstrapActivity {
     private Button rateActivity;
     private Intent intent;
     private TextView currentProviderRating;
-
+    private Bundle extras;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
 
             //Submit the rating.
-            submitRating();
+          //  submitRating();
 
             //Go back to login activity.
-            finish();
+        //    finish();
 
         }
     };
@@ -69,8 +69,16 @@ public class UserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
+//        intent = new Intent(this, RateUserActivity.class);
+//        intent.putExtra("providerID", user.getObjectId());
+//        intent.putExtra("provider",parseProvider);
+
         intent = new Intent(this, RateUserActivity.class);
-        intent.putExtra("providerID", user.getObjectId());
+        intent.getExtras();
+        extras = new Bundle();
+        extras.putString("providerID",user.getObjectId());
+        extras.putString("provider", String.valueOf(parseProvider));
+        intent.putExtras(extras);
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
 
@@ -79,57 +87,58 @@ public class UserActivity extends BootstrapActivity {
             public void onClick(View v) {
 
                 startActivity(intent);
+
             }
         });
 
 
-        /**
-         * Attaches the Submit New Service button listener to the xml button.
-         */
-        Button submitRatingButton = (Button) findViewById(R.id.b_submitRating_cust);
-        submitRatingButton.setOnClickListener(addRatingListener);
-
-        ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-
-        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-        userQuery.whereEqualTo("objectId", user.getObjectId());
-
-        try {
-            List<ParseUser> results = userQuery.find();
-            parseProvider = results.get(0);
-        } catch (com.parse.ParseException e) {
-            e.printStackTrace();
-        }
-
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("providerID", user.getObjectId());
-        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
-            public void done(Map<String, Object>  ratings, ParseException e) {
-                if (e == null) {
-                    // ratings is 4.5 or such
-
-
-                    try{
-                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
-
-                         currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
-                        currentProviderRating.setText(String.valueOf(avgRating));
-                    }catch (NumberFormatException ex){
-                        avgRating = 0.0f;
-                    }
-
-
-                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
-                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
-
-                    ratingBarViewOnly.setRating(avgRating);
-                    ratingBarViewOnly.invalidate();
-                }
-                else{
-
-                }
-            }
-        });
+//        /**
+//         * Attaches the Submit New Service button listener to the xml button.
+//         */
+//        Button submitRatingButton = (Button) findViewById(R.id.b_submitRating_cust);
+//        submitRatingButton.setOnClickListener(addRatingListener);
+//
+//        ratingBarSubmittable = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+//
+//        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+//        userQuery.whereEqualTo("objectId", user.getObjectId());
+//
+//        try {
+//            List<ParseUser> results = userQuery.find();
+//            parseProvider = results.get(0);
+//        } catch (com.parse.ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        HashMap<String, Object> params = new HashMap<String, Object>();
+//        params.put("providerID", user.getObjectId());
+//        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String,Object>>() {
+//            public void done(Map<String, Object>  ratings, ParseException e) {
+//                if (e == null) {
+//                    // ratings is 4.5 or such
+//
+//
+//                    try{
+//                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+//
+//                         currentProviderRating  = (TextView) findViewById(R.id.currentProviderRating);
+//                        currentProviderRating.setText(String.valueOf(avgRating));
+//                    }catch (NumberFormatException ex){
+//                        avgRating = 0.0f;
+//                    }
+//
+//
+//                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
+//                    RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+//
+//                    ratingBarViewOnly.setRating(avgRating);
+//                    ratingBarViewOnly.invalidate();
+//                }
+//                else{
+//
+//                }
+//            }
+//        });
 
 
 

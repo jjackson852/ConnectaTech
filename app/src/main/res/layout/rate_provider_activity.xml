@@ -42,13 +42,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Current Rating"
-        android:id="@+id/textView3"
-        android:layout_alignTop="@+id/ratingBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/ratingBar"
-        android:layout_toRightOf="@+id/ratingBar"
-        android:layout_toEndOf="@+id/ratingBar" />
+        android:id="@+id/currentProviderRating"
+        android:layout_below="@id/ratingBar_cust_view" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -56,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Submit Rating"
         android:id="@+id/b_submitRating_cust"
-        android:layout_below="@+id/ratingBar_cust_view"
+        android:layout_below="@+id/currentProviderRating"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
