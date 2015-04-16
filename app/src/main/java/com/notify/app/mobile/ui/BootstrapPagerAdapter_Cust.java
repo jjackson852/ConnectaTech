@@ -35,7 +35,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -52,9 +52,6 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
                 result = new UserListFragment();
                 break;
             case 3:
-                result = new CheckInsListFragment();
-                break;
-            case 4:
                 result = new TechServiceListFragment();
                 break;
             default:
@@ -77,8 +74,6 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
             case 2:
                 return resources.getString(R.string.page_users);
             case 3:
-                return resources.getString(R.string.page_checkins);
-            case 4:
                 return resources.getString(R.string.title_browse_techservices);
             default:
                 return null;
