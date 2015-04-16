@@ -3,7 +3,8 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,14 +29,14 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/table_text_selector"
                 android:layout_weight="1"
+                android:paddingRight="15dp"
                 />
 
             <Button
-                style="@style/ShadowText"
+                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
@@ -60,14 +61,14 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/table_text_light_selector"
                 android:layout_weight="1"
+                android:paddingRight="15dp"
                 />
 
             <Button
-                style="@style/ShadowText"
+                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
@@ -81,15 +82,9 @@
             style="@style/ShadowText"
             android:id="@+id/b_prov_remove_serv"
             android:layout_marginTop="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background_states"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/label_remove_service"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_weight="3"/>
 

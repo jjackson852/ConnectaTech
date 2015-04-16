@@ -36,7 +36,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                style="@style/ShadowText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
@@ -49,27 +48,22 @@
                 android:id="@+id/textView2" />
 
             <AutoCompleteTextView
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/et_searchby_zip"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:inputType="number"/>
 
             <Button
                 android:id="@+id/b_filter_tech_services"
                 style="@style/ShadowText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="@string/label_submit"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/label_submit"/>
 
         </LinearLayout>
     </ScrollView>

@@ -35,7 +35,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                style="@style/ShadowText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
@@ -47,14 +46,15 @@
 
             <AutoCompleteTextView
                 android:id="@+id/et_service_title"
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:nextFocusDown="@+id/et_base_price" />
 
             <TextView
-                style="@style/ShadowText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
@@ -66,17 +66,16 @@
                 android:textColor="@color/text" />
 
             <AutoCompleteTextView
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/et_base_price"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
                 android:inputType="numberDecimal"
-                android:nextFocusDown="@+id/et_service_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:nextFocusDown="@+id/et_service_description"/>
 
             <TextView
-                style="@style/ShadowText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
@@ -88,27 +87,22 @@
                 android:textColor="@color/text" />
 
             <MultiAutoCompleteTextView
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/et_service_description"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
-                android:inputType="textMultiLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:inputType="textMultiLine"/>
 
             <Button
                 android:id="@+id/b_submit_new_service"
                 style="@style/ShadowText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="@string/service_submit"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/service_submit"/>
 
         </LinearLayout>
     </ScrollView>

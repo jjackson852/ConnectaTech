@@ -7,6 +7,6 @@
             android:endColor="@color/button_background_pressed_end"
             android:startColor="@color/button_background_pressed_start" />
 
-    <corners android:radius="3dp" />
+    <!--<corners android:radius="3dp" />-->
 
 </shape>

@@ -16,7 +16,7 @@
             android:gravity="left"
             android:text="@string/search_services"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/table_text_header"
+            android:textColor="@color/text_light"
             android:textStyle="bold"
             android:id="@+id/tv_searchservices"
             android:onClick="navigateToFilterServices"/>

@@ -44,6 +44,9 @@ public class FilterServicesActivity extends BootstrapActivity {
         Button filterServicesButton = (Button) findViewById(id.b_filter_tech_services);
         filterServicesButton.setOnClickListener(filterServicesListener);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
     }
 
     /**
