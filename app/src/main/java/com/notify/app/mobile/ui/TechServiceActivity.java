@@ -27,10 +27,9 @@ import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSER
 
 public class TechServiceActivity extends BootstrapActivity {
 
-    @InjectView(R.id.tv_title)
-    protected TextView title;
-    @InjectView(R.id.tv_content)
-    protected TextView content;
+    @InjectView(R.id.tv_title)protected TextView title;
+    @InjectView(R.id.tv_content) protected TextView content;
+    @InjectView(R.id.service_base_price) protected TextView serviceprice;
     private TechService techServiceItem;
     private Boolean isProvider;
     AlertDialog.Builder alert;
@@ -150,6 +149,7 @@ public class TechServiceActivity extends BootstrapActivity {
 
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
+        serviceprice.setText(techServiceItem.getBasePrice());
 
     }
 
