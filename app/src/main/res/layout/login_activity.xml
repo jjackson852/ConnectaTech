@@ -27,58 +27,59 @@
             android:paddingRight="15dp"
             android:paddingTop="5dp" >
 
-            <TextView
-                style="@style/ShadowText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="@string/label_email_address_or_username"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text" />
+            <!--<TextView-->
+                <!--style="@style/ShadowText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingBottom="5dp"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:paddingRight="5dp"-->
+                <!--android:text="@string/label_email_address_or_username"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:textColor="@color/text" />-->
 
             <AutoCompleteTextView
                 android:id="@+id/et_login_email_or_username"
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
                 android:completionThreshold="1"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
-                android:nextFocusDown="@+id/et_password" />
+                android:nextFocusDown="@+id/et_password"
+                android:hint="@string/label_email_address_or_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            <TextView
-                style="@style/ShadowText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:text="@string/label_password"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text" />
+            <!--<TextView-->
+                <!--style="@style/ShadowText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingBottom="5dp"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:paddingRight="5dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="@string/label_password"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:textColor="@color/text" />-->
 
             <EditText
                 android:id="@+id/et_password"
-                style="@style/SignInEditText"
+                style="@style/ParseLoginUI.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:password="true" />
+                android:paddingTop="15dp"
+                android:hint="@string/label_password"
+                android:password="true"/>
 
             <Button
                 android:id="@+id/b_signin"
                 style="@style/ShadowText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:onClick="handleLogin"
                 android:padding="10dp"
-                android:text="@string/label_sign_in"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="@string/label_sign_in" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,31 +89,23 @@
                 <Button
                     style="@style/ShadowText"
                     android:id="@+id/b_regAsNewCust"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/button_background_states"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/label_register_cust"
-                    android:textColor="@color/text"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"/>
 
                 <Button
                     style="@style/ShadowText"
                     android:id="@+id/b_regAsNewProv"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_states"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/label_register_prov"
-                    android:textColor="@color/text"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"/>
             </LinearLayout>
@@ -120,7 +113,6 @@
             <Button
                 style="@style/ShadowText"
                 android:id="@+id/b_continueAsGuest"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_background_states"
@@ -128,16 +120,12 @@
                 android:onClick="handleLoginAsGuest"
                 android:padding="10dp"
                 android:text="@string/label_sign_in_as_guest"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"/>
 
             <Button
                 style="@style/ShadowText"
                 android:id="@+id/b_continueAsProvider"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_background_states"
@@ -145,11 +133,8 @@
                 android:onClick="handleLoginAsProvider"
                 android:padding="10dp"
                 android:text="@string/label_sign_in_as_provider"
-                android:textColor="@color/text"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />/>
+                android:layout_weight="1" />
         </LinearLayout>
     </ScrollView>
 

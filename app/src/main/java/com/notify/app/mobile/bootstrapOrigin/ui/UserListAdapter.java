@@ -14,6 +14,9 @@ import com.notify.app.mobile.ui.MainActivity;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +28,8 @@ import java.util.Map;
  * Adapter to display a list of traffic items
  */
 public class UserListAdapter extends SingleTypeAdapter<User> {
+
+    private ParseUser parseProvider;
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd");
 
@@ -62,10 +67,31 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
     @Override
     protected void update(final int position, final User user) {
 
-        Picasso.with(BootstrapApplication.getInstance())
-                .load(user.getAvatarUrl())
-                .placeholder(R.drawable.gravatar_icon)
-                .into(imageView(0));
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("objectId", user.getObjectId());
+
+        try {
+            List<ParseUser> results = userQuery.find();
+            parseProvider = results.get(0);
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+        }
+
+        ParseFile photo = (ParseFile) parseProvider.get("ImageFile");
+
+        try{
+            Picasso.with(BootstrapApplication.getInstance())
+                    .load(photo.getUrl())
+                    .placeholder(R.drawable.gravatar_icon)
+                    .into(imageView(0));
+
+        }catch(NullPointerException ex){
+            Picasso.with(BootstrapApplication.getInstance())
+                    .load(user.getAvatarUrl())
+                    .placeholder(R.drawable.gravatar_icon)
+                    .into(imageView(0));
+        }
+
 
         setText(1, String.format("%1$s %2$s", user.getFirstName(), user.getLastName()));
 

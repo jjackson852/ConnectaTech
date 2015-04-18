@@ -6,28 +6,29 @@
               android:paddingBottom="5dp"
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
-              android:paddingTop="5dp">
+              android:paddingTop="5dp"
+              android:id="@+id/ratingTest">
 
-    <ImageView
-            android:id="@+id/iv_avatar"
-            style="@style/AvatarLarge"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
-            android:contentDescription="@string/avatar"
-            />
+    <!--<ImageView-->
+            <!--android:id="@+id/iv_avatar"-->
+            <!--style="@style/AvatarLarge"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:contentDescription="@string/avatar"-->
+            <!--/>-->
 
-    <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/table_text_selector"
-        android:layout_toRightOf="@+id/iv_avatar"
-        android:layout_toEndOf="@+id/iv_avatar" />
+    <!--<TextView-->
+            <!--android:id="@+id/tv_name"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+            <!--android:textColor="@color/table_text_selector"-->
+        <!--android:layout_toRightOf="@+id/iv_avatar"-->
+        <!--android:layout_toEndOf="@+id/iv_avatar" />-->
 
     <RatingBar
-        android:id="@+id/ratingBar_cust_view"
+        android:id="@+id/ratingBar_alert_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
@@ -37,22 +38,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Current Rating"
-        android:id="@+id/currentProviderRating"
-        android:layout_below="@id/ratingBar_cust_view" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit Rating"
-        android:id="@+id/b_submitRating_cust"
-        android:layout_below="@+id/currentProviderRating"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Submit Rating"-->
+        <!--android:id="@+id/b_submitRating_cust"-->
+        <!--android:layout_below="@+id/ratingBar_cust_view"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
 </RelativeLayout>

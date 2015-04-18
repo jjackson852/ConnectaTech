@@ -30,7 +30,7 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
     @Override
     protected int[] getChildViewIds() {
         return new int[]{R.id.tv_title, R.id.tv_summary,
-                R.id.tv_date};
+                R.id.tv_zip};
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
 
         setText(0, item.getTitle());
         setText(1, item.getDescription());
-        setText(2, "<" + item.getZipCode() + ">");
+        setText(2, item.getZipCode());
 
         //setNumber(R.id.tv_date, item.getCreatedAt());
     }

@@ -9,10 +9,18 @@
     <color name="text_title">#DFDFDF</color>
     <color name="text_activity_header">#FCFCFC</color>
 
+    <!--<color name="pager_footer">#ff6c93ff</color>-->
+    <!--<color name="pager_selected_text">#FFFFFF</color>-->
+    <!--<color name="pager_background">#F4F4F4</color>-->
+    <!--<color name="pager_background_alternate">#E7E7E7</color>-->
+
+    <color name="pager_background">#1A1A1A</color>
+    <color name="pager_background_alternate">#E7E7E7</color>
+
     <color name="pager_footer">#ff6c93ff</color>
     <color name="pager_selected_text">#FFFFFF</color>
-    <color name="pager_background">#F4F4F4</color>
-    <color name="pager_background_alternate">#E7E7E7</color>
+    <color name="list_pager_background">#636363</color>
+    <color name="list_pager_background_alternate">#484848</color>
 
     <color name="table_text">#484848</color>
     <color name="table_text_inverted">#FFFFFF</color>
@@ -55,4 +63,20 @@
 
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
+
+    <color name="com_parse_ui_parse_login_button">#40CCCCCC</color>
+    <color name="com_parse_ui_parse_login_button_push">#30CCCCCC</color>
+    <color name="com_parse_ui_parse_login_button_focus">#35CCCCCC</color>
+    <color name="com_parse_ui_parse_login_help_button_label">#E0E0E0</color>
+    <color name="com_parse_ui_parse_login_help_button_label_push">#AAAAAA</color>
+    <color name="com_parse_ui_parse_login_help_button_label_focus">#CCCCCC</color>
+    <color name="com_parse_ui_parse_login_text_hint">#AAAAAA</color>
+    <color name="com_parse_ui_parse_login_display_text">@android:color/white</color>
+    <color name="com_parse_ui_facebook_login_button">#3B5998</color>
+    <color name="com_parse_ui_facebook_login_button_push">#2E4677</color>
+    <color name="com_parse_ui_facebook_login_button_focus">#304F8B</color>
+    <color name="com_parse_ui_twitter_login_button">#2DAAE2</color>
+    <color name="com_parse_ui_twitter_login_button_push">#2588B5</color>
+    <color name="com_parse_ui_twitter_login_button_focus">#2788BE</color>
+
 </resources>

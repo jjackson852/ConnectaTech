@@ -24,15 +24,21 @@ import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.core.Example;
+import com.parse.FunctionCallback;
 import com.parse.GetDataCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,11 +57,12 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
+    private ParseUser parseProvider;
     private TextView txtRatingValue;
     //Rating
     private Button btnSubmit;
-    private RatingBar ratingBar;
     private ProgressDialog progressDialog;
+    private Float avgRating;
     //Toast Test Button
     private Button edit_rating;
 
@@ -270,18 +277,30 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
 //--------------------------------------------------------------------------------------------------
 
-        //Rating Button Listener
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-        txtRatingValue = (TextView) view.findViewById(R.id.txtRatingValue);
 
-        //if rating value is changed,
-        //display the current rating value in the result (textview) automatically
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("providerID", ParseUser.getCurrentUser().getObjectId());
+        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String, Object>>() {
+            public void done(Map<String, Object> ratings, ParseException e) {
+                if (e == null) {
+                    // ratings is 4.5 or such
 
-                txtRatingValue.setText(String.valueOf(rating));
 
+                    try {
+                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
+                    } catch (NumberFormatException ex) {
+                        avgRating = 0.0f;
+                    }
+
+
+                    RatingBar ratingBarViewOnly = (RatingBar) getActivity().findViewById(R.id.ratingBar);
+
+                    ratingBarViewOnly.setRating(avgRating);
+                    ratingBarViewOnly.setIsIndicator(true);
+                    ratingBarViewOnly.invalidate();
+                } else {
+
+                }
             }
         });
 
