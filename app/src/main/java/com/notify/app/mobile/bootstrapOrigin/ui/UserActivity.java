@@ -31,6 +31,9 @@ import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +50,9 @@ public class UserActivity extends BootstrapActivity {
     @InjectView(R.id.tv_name)
     protected TextView name;
 
+    @InjectView(R.id.currentJoinDate)
+    protected TextView currentJoinDate;
+
     private User user;
     private ParseUser parseProvider;
     private ParseObject newRating;
@@ -59,6 +65,7 @@ public class UserActivity extends BootstrapActivity {
     private Bundle extras;
     RelativeLayout rl;
     AlertDialog.Builder alert;
+    //private TextView currentJoinDate;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -81,6 +88,9 @@ public class UserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
+
+//        currentJoinDate.setText(user.getCreateAt());
+
 
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
@@ -207,7 +217,9 @@ public class UserActivity extends BootstrapActivity {
         }
 
         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-
+        TextView currentJoinDate = ((TextView) findViewById(R.id.currentJoinDate));
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        currentJoinDate.setText(formatter.format( user.getCreateAt()));
 
 
 

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.parse.ParseFile;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
 
@@ -21,6 +22,7 @@ public class User implements Serializable {
     protected String avatarUrl;
     protected String rating;
     protected ParseFile imageFile;
+    protected Date createdAt;
 
 
     public String getUsername() {
@@ -78,6 +80,11 @@ public class User implements Serializable {
     public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
+
+    public Date getCreateAt() {return createdAt;}
+
+    public void  setCreatedAt(final Date createdAt) {this.createdAt = createdAt;}
+
 
     //Rating
 
