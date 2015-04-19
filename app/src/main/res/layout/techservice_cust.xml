@@ -16,12 +16,26 @@
         android:paddingTop="5dp">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Title:"
+            android:id="@+id/title" />
+
+        <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/table_text_selector"
                 />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Description:"
+            android:id="@+id/description" />
 
         <TextView
             android:id="@+id/tv_content"
@@ -31,13 +45,20 @@
             android:textColor="@color/table_text_light_selector"
             />
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Price:"
+            android:id="@+id/textView3" />
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector"
+            />
 
         <Button
             android:id="@+id/b_request_service"

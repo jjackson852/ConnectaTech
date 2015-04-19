@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:paddingBottom="5dp"
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
@@ -13,13 +13,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:gravity="left"
-            android:text="@string/search_services"
+        android:text="@string/search_services"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/text_light"
             android:textStyle="bold"
             android:id="@+id/tv_searchservices"
-            android:onClick="navigateToFilterServices"/>
+            android:onClick="navigateToFilterServices"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

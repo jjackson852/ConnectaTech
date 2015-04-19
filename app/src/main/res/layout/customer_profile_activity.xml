@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/provider_profile_image"
+        android:id="@+id/cust_profile_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/table_text_selector"
-        android:layout_below="@id/provider_profile_image"
+        android:layout_below="@id/cust_profile_image"
         />
 
     <Button
@@ -28,15 +28,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Take Picture"
-        android:id="@+id/edit_photo_btn"
-        android:layout_toRightOf="@+id/provider_profile_image" />
+        android:id="@+id/edit_photo_btn_cust"
+        android:layout_toRightOf="@+id/cust_profile_image" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Photo"
-        android:id="@+id/select_image_button"
-        android:layout_toRightOf="@+id/edit_photo_btn" />
+        android:id="@+id/select_image_button_cust"
+        android:layout_toRightOf="@+id/edit_photo_btn_cust" />
     <!--<Button-->
         <!--style="?android:attr/buttonStyleSmall"-->
         <!--android:layout_width="wrap_content"-->
