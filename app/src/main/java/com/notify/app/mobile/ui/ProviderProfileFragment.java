@@ -59,6 +59,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
     @InjectView(R.id.tv_name)
     protected TextView name;
+    protected TextView providerInfo;
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
@@ -209,6 +210,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             }
         });
 
+        providerInfo = (Button) view.findViewById(R.id.edit_profile_button);
+       // providerInfo
 
 
 //        Rating Button Listener
