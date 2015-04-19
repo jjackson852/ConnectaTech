@@ -1,84 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:paddingBottom="5dp"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
-              android:paddingTop="5dp"
-              android:background="@drawable/main_background">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_background"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
 
     <ImageView
-            android:id="@+id/iv_avatar"
-            style="@style/AvatarLarge"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
-            android:contentDescription="@string/avatar"
-            />
+        android:id="@+id/iv_avatar"
+        style="@style/AvatarLarge"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:contentDescription="@string/avatar" />
 
     <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/text"
+        android:id="@+id/tv_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/iv_avatar"
         android:layout_toRightOf="@+id/iv_avatar"
-        android:layout_toEndOf="@+id/iv_avatar" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text" />
 
     <RatingBar
         android:id="@+id/ratingBar_cust_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="0.50"
-        android:rating="0.0"
-        android:layout_below="@+id/iv_avatar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/iv_avatar"
+        android:numStars="5"
+        android:rating="0.0"
+        android:stepSize="0.50" />
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-        <!--android:text="Current Rating"-->
-        <!--android:id="@+id/currentProviderRating"-->
-        <!--android:layout_alignTop="@+id/ratingtxt"-->
-        <!--android:layout_toRightOf="@+id/ratingBar_cust_view"-->
-        <!--android:layout_toEndOf="@+id/ratingBar_cust_view" />-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+    <!--android:text="Current Rating"-->
+    <!--android:id="@+id/currentProviderRating"-->
+    <!--android:layout_alignTop="@+id/ratingtxt"-->
+    <!--android:layout_toRightOf="@+id/ratingBar_cust_view"-->
+    <!--android:layout_toEndOf="@+id/ratingBar_cust_view" />-->
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-        <!--android:text="Providers Average Rating"-->
-        <!--android:id="@+id/ratingtxt"-->
-        <!--android:layout_below="@+id/ratingBar_cust_view"/>-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+    <!--android:text="Providers Average Rating"-->
+    <!--android:id="@+id/ratingtxt"-->
+    <!--android:layout_below="@+id/ratingBar_cust_view"/>-->
     <!--<Button-->
-        <!--style="?android:attr/buttonStyleSmall"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Submit Rating"-->
-        <!--android:id="@+id/b_submitRating_cust"-->
-        <!--android:layout_below="@+id/currentProviderRating"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
+    <!--style="?android:attr/buttonStyleSmall"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Submit Rating"-->
+    <!--android:id="@+id/b_submitRating_cust"-->
+    <!--android:layout_below="@+id/currentProviderRating"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/currentProviderRating"
-            android:layout_below="@+id/ratingBar_cust_view"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    <Button
+    <TextView
+        android:id="@+id/currentProviderRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RateProvider"
-        android:id="@+id/rateProviderActivity"
-        android:layout_below="@+id/currentProviderRating"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ratingBar_cust_view"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    <TextView
+        android:id="@+id/currentJoinDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentProviderRating"
+        android:layout_toEndOf="@+id/joinDateText"
+        android:layout_toRightOf="@+id/joinDateText"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/joinDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/currentProviderRating"
+        android:text="Member Since: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    <Button
+        android:id="@+id/rateProviderActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/currentJoinDate"
+        android:text="Review Provider" />
 
 </RelativeLayout>

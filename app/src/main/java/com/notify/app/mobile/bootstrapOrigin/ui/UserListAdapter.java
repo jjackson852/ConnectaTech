@@ -93,7 +93,7 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
         }
 
 
-        setText(1, String.format("%1$s %2$s", user.getFirstName(), user.getLastName()));
+        setText(1, user.getUsername());
 
 
 

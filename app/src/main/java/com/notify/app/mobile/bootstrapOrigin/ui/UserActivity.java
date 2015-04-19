@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +31,9 @@ import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +50,9 @@ public class UserActivity extends BootstrapActivity {
     @InjectView(R.id.tv_name)
     protected TextView name;
 
+    @InjectView(R.id.currentJoinDate)
+    protected TextView currentJoinDate;
+
     private User user;
     private ParseUser parseProvider;
     private ParseObject newRating;
@@ -57,6 +65,7 @@ public class UserActivity extends BootstrapActivity {
     private Bundle extras;
     RelativeLayout rl;
     AlertDialog.Builder alert;
+    //private TextView currentJoinDate;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -79,17 +88,10 @@ public class UserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
-//        intent = new Intent(this, RateUserActivity.class);
-//        intent.putExtra("providerID", user.getObjectId());
-//        intent.putExtra("provider",parseProvider);
 
-//        intent = new Intent(this, RateUserActivity.class);
-//        extras = new Bundle();
-//        extras.putString("providerID",user.getObjectId());
-//        extras.putString("provider", String.valueOf(parseProvider));
-//        extras.putString("name", user.getUsername());
-//        extras.putString("avatar", user.getGravatarId());
-//        intent.putExtras(extras);
+//        currentJoinDate.setText(user.getCreateAt());
+
+
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
 
@@ -127,13 +129,14 @@ public class UserActivity extends BootstrapActivity {
                 userIntent.putExtra(USER, user);
                 finish();
                 startActivity(userIntent);
+                ((ViewGroup)rl.getParent()).removeView(rl);
             }
         });
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
-
+                ((ViewGroup)rl.getParent()).removeView(rl);
             }
         });
 
@@ -176,6 +179,15 @@ public class UserActivity extends BootstrapActivity {
 
                     Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
                     RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+                    ratingBarViewOnly.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            if (event.getAction() == MotionEvent.ACTION_UP) {
+                                // TODO perform your action here
+                                alert.show();
+                            }
+                            return true;
+                        }});
 
                     ratingBarViewOnly.setIsIndicator(true);
                     ratingBarViewOnly.setRating(avgRating);
@@ -205,7 +217,9 @@ public class UserActivity extends BootstrapActivity {
         }
 
         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-
+        TextView currentJoinDate = ((TextView) findViewById(R.id.currentJoinDate));
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        currentJoinDate.setText(formatter.format( user.getCreateAt()));
 
 
 
