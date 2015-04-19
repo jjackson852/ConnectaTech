@@ -130,7 +130,7 @@ public class CustomerProfileFragment extends ItemListFragment2 {
 
                         // Get the ImageView from
                         // main.xml
-                        ImageView providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
+                        ImageView providerPic = (ImageView) view.findViewById(R.id.cust_profile_image);
 
                         // Set the Bitmap into the
                         // ImageView
@@ -150,7 +150,7 @@ public class CustomerProfileFragment extends ItemListFragment2 {
         } catch (NullPointerException ex) {
             if (ex != null) {
 
-                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
+                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn_cust);
                 noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
 
                 //     Button noRatingButton = (Button) view.findViewById(R.id.edit_rating_btn);
@@ -158,8 +158,8 @@ public class CustomerProfileFragment extends ItemListFragment2 {
             }
         }
 
-        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
-        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
+        edit_photo = ((ImageView) view.findViewById(R.id.cust_profile_image));
+        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn_cust));
 
         edit_photo_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +180,7 @@ public class CustomerProfileFragment extends ItemListFragment2 {
             }
         });
 //-------------------------------------------------------------------------------------------------
-        selectImage = (Button) view.findViewById(R.id.select_image_button);
+        selectImage = (Button) view.findViewById(R.id.select_image_button_cust);
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

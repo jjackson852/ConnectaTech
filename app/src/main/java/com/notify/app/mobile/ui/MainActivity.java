@@ -4,7 +4,13 @@ package com.notify.app.mobile.ui;
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +18,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.R;
@@ -26,9 +33,14 @@ import com.notify.app.mobile.util.SafeAsyncTask;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.squareup.otto.Subscribe;
+
+import java.io.ByteArrayOutputStream;
 
 import javax.inject.Inject;
 
@@ -52,7 +64,7 @@ public class MainActivity extends BootstrapFragmentActivity {
     private CharSequence drawerTitle;
     private CharSequence title;
     private NavigationDrawerFragment navigationDrawerFragment;
-
+    private static int RESULT_LOAD_IMG = 1;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
@@ -291,6 +303,79 @@ public class MainActivity extends BootstrapFragmentActivity {
         final Intent i = new Intent(this, FilterServicesActivity.class);
         startActivity(i);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            // When an Image is picked
+            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK
+                    && null != data) {
+                // Get the Image from data
+
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+                ///ImageView imgView = (ImageView) findViewById(R.id.imgView);
+                // Set the Image in ImageView after decoding the String
+//                imgView.setImageBitmap(BitmapFactory
+//                        .decodeFile(imgDecodableString));
+
+                //-------------begin gallery
+                Bitmap newPhoto = BitmapFactory.decodeFile(imgDecodableString);
+
+                Bitmap imageScaled = Bitmap.createScaledBitmap(newPhoto, 200, 200
+                        * newPhoto.getHeight() / newPhoto.getWidth(), false);
+// Override Android default landscape orientation and save portrait
+                Matrix matrix = new Matrix();
+                matrix.postRotate(0);
+                Bitmap rotatedScaledImage = Bitmap.createBitmap(imageScaled, 0,
+                        0, imageScaled.getWidth(), imageScaled.getHeight(),
+                        matrix, true);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                rotatedScaledImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                byte[] scaledData = bos.toByteArray();
+// Save the scaled image to Parse
+                ParseFile newPhotoFile = new ParseFile("profile_photoV2.jpg", scaledData);
+                newPhotoFile.saveInBackground(new SaveCallback() {
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(MainActivity.this,
+                                    "Error saving: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                ParseUser cameraCurrentUser = ParseUser.getCurrentUser();
+                cameraCurrentUser.put("ImageFile", newPhotoFile);
+                cameraCurrentUser.saveInBackground();
+
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+
+            } else {
+                Toast.makeText(this, "You haven't picked Image",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+
+    }
+
 
 }
 

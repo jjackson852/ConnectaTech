@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -18,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.provider.MediaStore;
+import android.net.Uri;
+import android.database.Cursor;
 
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
@@ -35,6 +39,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +70,9 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private Float avgRating;
     //Toast Test Button
     private Button edit_rating;
+    private int RESULT_LOAD_IMAGE;
+    private static int RESULT_LOAD_IMG = 1;
+    String imgDecodableString;
 
     //Parse Object for Rating Value
     ParseObject ratingtxt;
@@ -182,7 +190,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
+                Intent intent = new Intent(getActivity(), EditImageActivity.class);
                 startActivity(intent);
             }
         });
@@ -191,9 +199,17 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditImageActivity.class);
-                startActivity(intent);
+                // Create intent to Open Image applications like Gallery, Google Photos
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Start the Intent
+                getActivity().startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
+
+//                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditImageActivity.class);
+//                startActivity(intent);
+
+
             }
         });
 
@@ -349,6 +365,64 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        try {
+//            // When an Image is picked
+//            if (requestCode == RESULT_LOAD_IMG && resultCode == getActivity().RESULT_OK
+//                    && null != data) {
+//                // Get the Image from data
+//
+//                Uri selectedImage = data.getData();
+//                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+//
+//                // Get the cursor
+//                Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+//                        filePathColumn, null, null, null);
+//                // Move to first row
+//                cursor.moveToFirst();
+//
+//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                imgDecodableString = cursor.getString(columnIndex);
+//                cursor.close();
+//                ///ImageView imgView = (ImageView) findViewById(R.id.imgView);
+//                // Set the Image in ImageView after decoding the String
+////                imgView.setImageBitmap(BitmapFactory
+////                        .decodeFile(imgDecodableString));
+//
+//                //-------------begin gallery
+//                Bitmap newPhoto = BitmapFactory.decodeFile(imgDecodableString);
+//                Toast.makeText(getActivity(), "Photos!",
+//                        Toast.LENGTH_LONG).show();
+//                Bitmap imageScaled = Bitmap.createScaledBitmap(newPhoto, 200, 200
+//                        * newPhoto.getHeight() / newPhoto.getWidth(), false);
+//// Override Android default landscape orientation and save portrait
+//                Matrix matrix = new Matrix();
+//                matrix.postRotate(0);
+//                Bitmap rotatedScaledImage = Bitmap.createBitmap(imageScaled, 0,
+//                        0, imageScaled.getWidth(), imageScaled.getHeight(),
+//                        matrix, true);
+//                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                rotatedScaledImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+//                byte[] scaledData = bos.toByteArray();
+//// Save the scaled image to Parse
+//                ParseFile newPhotoFile = new ParseFile("profile_photoV2.jpg", scaledData);
+//                ParseUser.getCurrentUser().put("ImageFile", newPhotoFile);
+//                ParseUser.getCurrentUser().saveEventually();
+//
+//
+//            } else {
+//                Toast.makeText(getActivity(), "You haven't picked Image",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        } catch (Exception e) {
+//            Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG)
+//                    .show();
+//        }
+//
+//    }
 
 
 }

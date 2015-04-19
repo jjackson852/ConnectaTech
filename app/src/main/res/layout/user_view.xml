@@ -75,7 +75,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RateProvider"
+        android:text="Review Provider"
         android:id="@+id/rateProviderActivity"
         android:layout_below="@+id/currentProviderRating"
         android:layout_alignParentLeft="true"

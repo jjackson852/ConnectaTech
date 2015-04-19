@@ -118,6 +118,27 @@
     <string name="service_submit">Submit Service</string>
     <string name="label_remove_service">Remove Service</string>
 
+    <string-array name="categories_array">
+        <item>Web Devt</item>
+        <item>Mobile Devt</item>
+        <item>Wireless Networks</item>
+        <item>Cable Mgmt</item>
+        <item>Computer Repair</item>
+        <item>Desktop App Devt</item>
+        <item>Phone Repair</item>
+    </string-array>
+
+    <string-array name="filter_categories_array">
+        <item></item>
+        <item>Web Devt</item>
+        <item>Mobile Devt</item>
+        <item>Wireless Networks</item>
+        <item>Cable Mgmt</item>
+        <item>Computer Repair</item>
+        <item>Desktop App Devt</item>
+        <item>Phone Repair</item>
+    </string-array>
+
     <!--Request Activity -->
     <string name="no_requests">You currently have no\nrequests for your services.</string>
     <string name="no_requests_cust">You currently have no\nactive service requests.</string>

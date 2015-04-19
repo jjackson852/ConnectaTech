@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -79,17 +81,7 @@ public class UserActivity extends BootstrapActivity {
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
-//        intent = new Intent(this, RateUserActivity.class);
-//        intent.putExtra("providerID", user.getObjectId());
-//        intent.putExtra("provider",parseProvider);
 
-//        intent = new Intent(this, RateUserActivity.class);
-//        extras = new Bundle();
-//        extras.putString("providerID",user.getObjectId());
-//        extras.putString("provider", String.valueOf(parseProvider));
-//        extras.putString("name", user.getUsername());
-//        extras.putString("avatar", user.getGravatarId());
-//        intent.putExtras(extras);
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
 
@@ -127,13 +119,14 @@ public class UserActivity extends BootstrapActivity {
                 userIntent.putExtra(USER, user);
                 finish();
                 startActivity(userIntent);
+                ((ViewGroup)rl.getParent()).removeView(rl);
             }
         });
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
-
+                ((ViewGroup)rl.getParent()).removeView(rl);
             }
         });
 
@@ -176,6 +169,15 @@ public class UserActivity extends BootstrapActivity {
 
                     Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
                     RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
+                    ratingBarViewOnly.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            if (event.getAction() == MotionEvent.ACTION_UP) {
+                                // TODO perform your action here
+                                alert.show();
+                            }
+                            return true;
+                        }});
 
                     ratingBarViewOnly.setIsIndicator(true);
                     ratingBarViewOnly.setRating(avgRating);

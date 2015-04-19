@@ -13,6 +13,7 @@ public class TechService implements Serializable {
     private String objectId;
     private String basePrice;
     private String zipCode;
+    private String category;
     private ParseUser provider;
 
     public String getTitle() {
@@ -61,6 +62,14 @@ public class TechService implements Serializable {
 
     public void setCreatedBy(final ParseUser provider) {
         this.provider = provider;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(final String category) {
+        this.category = category;
     }
 
 }
