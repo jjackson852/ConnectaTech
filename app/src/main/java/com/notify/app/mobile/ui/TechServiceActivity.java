@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
@@ -191,21 +192,11 @@ public class TechServiceActivity extends BootstrapActivity {
             e.printStackTrace();
         }
 
-        alert = new AlertDialog.Builder(this);
-
         final EditText edittext = new EditText(this);
-        alert.setTitle("Edit Description");
-//        LayoutInflater li = LayoutInflater.from(TechServiceActivity.this);
-//        RelativeLayout rl = (RelativeLayout)li.inflate(R.layout.rate_provider_activity, null);
-//        alert.setView(rl);
+
+        alert = new AlertDialog.Builder(this);
+        alert.setTitle("Edit");
         alert.setView(edittext);
-
-//        if(edittext.getParent() == null){
-//            alert.setView(edittext);
-//        } else {
-//            edittext = null;
-//        }
-
 
         techServIntent = new Intent(this, TechServiceActivity.class);
 
@@ -240,7 +231,7 @@ public class TechServiceActivity extends BootstrapActivity {
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
-                
+                finish();
             }
         });
 
