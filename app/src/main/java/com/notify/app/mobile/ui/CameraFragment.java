@@ -75,7 +75,7 @@ public class CameraFragment extends Fragment {
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
                     if (camera != null) {
-                        camera.setDisplayOrientation(90);
+                        camera.setDisplayOrientation(0);
                         camera.setPreviewDisplay(holder);
                         camera.startPreview();
                     }
@@ -105,7 +105,7 @@ public class CameraFragment extends Fragment {
                 * image.getHeight() / image.getWidth(), false);
 // Override Android default landscape orientation and save portrait
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
+        matrix.postRotate(0);
         Bitmap rotatedScaledImage = Bitmap.createBitmap(imageScaled, 0,
                 0, imageScaled.getWidth(), imageScaled.getHeight(),
                 matrix, true);

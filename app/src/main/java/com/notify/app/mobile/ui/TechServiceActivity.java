@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
@@ -31,6 +32,8 @@ public class TechServiceActivity extends BootstrapActivity {
     protected TextView title;
     @InjectView(R.id.tv_content)
     protected TextView content;
+    @InjectView(R.id.tv_price)
+    protected TextView price;
     private TechService techServiceItem;
     private Boolean isProvider;
     AlertDialog.Builder alert;
@@ -52,6 +55,15 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 2;
+            alert.show();
+
+        }
+    };
+
+    private View.OnClickListener editServPriceListener = new View.OnClickListener(){
+        public void onClick(View v) {
+
+            itemBeingEdited = 3;
             alert.show();
 
         }
@@ -131,6 +143,12 @@ public class TechServiceActivity extends BootstrapActivity {
             editServDescButton.setOnClickListener(editServDescListener);
 
             /**
+             * Attaches the Edit Service Price button listener to the xml button.
+             */
+            Button editServPriceButton = (Button) findViewById(R.id.b_prov_edit_serv_price);
+            editServPriceButton.setOnClickListener(editServPriceListener);
+
+            /**
              * Attaches the Remove Service Description button listener to the xml button.
              */
             Button removeServButton = (Button) findViewById(R.id.b_prov_remove_serv);
@@ -150,6 +168,7 @@ public class TechServiceActivity extends BootstrapActivity {
 
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
+        price.setText(techServiceItem.getBasePrice());
 
     }
 
@@ -173,16 +192,14 @@ public class TechServiceActivity extends BootstrapActivity {
             e.printStackTrace();
         }
 
-        alert = new AlertDialog.Builder(this);
-
         final EditText edittext = new EditText(this);
-        alert.setTitle("Edit Description");
-//        LayoutInflater li = LayoutInflater.from(TechServiceActivity.this);
-//        RelativeLayout rl = (RelativeLayout)li.inflate(R.layout.rate_provider_activity, null);
-//        alert.setView(rl);
+
+        alert = new AlertDialog.Builder(this);
+        alert.setTitle("Edit");
         alert.setView(edittext);
 
         techServIntent = new Intent(this, TechServiceActivity.class);
+
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //What ever you want to do with the value
@@ -196,7 +213,9 @@ public class TechServiceActivity extends BootstrapActivity {
                     case 2: currentTechService.put("description", editTextValue);
                             techServiceItem.setDescription(editTextValue);
                             break;
-
+                    case 3: currentTechService.put("basePrice", editTextValue);
+                            techServiceItem.setBasePrice(editTextValue);
+                            break;
                 }
 
                 techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
@@ -212,7 +231,7 @@ public class TechServiceActivity extends BootstrapActivity {
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
-
+                finish();
             }
         });
 
