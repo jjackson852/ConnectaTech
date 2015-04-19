@@ -98,47 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtRatingValue"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="10dp"
-        android:text="About Me"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/text"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/txtRatingValue"/>
 
-    <!--AutoCompleteTextView-->
-        <!--style="@style/ParseLoginUI.EditText"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/provider_info_text"-->
-        <!--android:completionThreshold="1"-->
-        <!--android:imeOptions="actionNext"-->
-        <!--android:inputType="textMultiLine"-->
-        <!--android:layout_below="@+id/textView2"/>-->
-    <!--Button-->
-        <!--android:id="@+id/b_submit_provider_info"-->
-        <!--style="@style/ShadowText"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:background="@drawable/button_background_states"-->
-        <!--android:gravity="center"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="Update Your Profile"-->
-        <!--android:layout_below="@+id/provider_info_text"/>-->
 
-    <Button
-        android:id="@+id/edit_profile_button"
-        style="@style/ShadowText"
-        android:background="@drawable/button_background_states"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Edit Your Profile"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/select_image_button"
-        android:layout_alignEnd="@+id/select_image_button" />
 
 </RelativeLayout>

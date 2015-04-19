@@ -23,7 +23,6 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
-import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.core.Example;
 import com.parse.GetDataCallback;
@@ -38,8 +37,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.InjectView;
-
-import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 
 public class CustomerProfileFragment extends ItemListFragment2 {
@@ -110,8 +107,6 @@ public class CustomerProfileFragment extends ItemListFragment2 {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
 
         view = inflater.inflate(R.layout.customer_profile_activity, container, false);
 
@@ -195,9 +190,6 @@ public class CustomerProfileFragment extends ItemListFragment2 {
             }
         });
 
-//name = (TextView) view.findViewById(R.id.tv_name);
-//
-//        name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
 
 
 //        Rating Button Listener
