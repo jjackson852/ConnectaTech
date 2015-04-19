@@ -31,6 +31,14 @@
             android:textColor="@color/table_text_light_selector"
             />
 
+
+
+        <TextView
+            android:id="@+id/service_base_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+
         <Button
             android:id="@+id/b_request_service"
             style="@style/ShadowText"

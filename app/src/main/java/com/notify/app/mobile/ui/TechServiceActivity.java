@@ -34,6 +34,8 @@ public class TechServiceActivity extends BootstrapActivity {
     protected TextView content;
     @InjectView(R.id.tv_price)
     protected TextView price;
+    @InjectView(R.id.service_base_price)
+    protected TextView serviceBasePrice;
     private TechService techServiceItem;
     private Boolean isProvider;
     AlertDialog.Builder alert;
@@ -127,6 +129,9 @@ public class TechServiceActivity extends BootstrapActivity {
             if (getIntent() != null && getIntent().getExtras() != null) {
                 techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
             }
+
+            TextView basePrice = (TextView) findViewById(R.id.service_base_price);
+            basePrice.setText(techServiceItem.getBasePrice());
         } else {
             setContentView(R.layout.techservice);
 
@@ -165,10 +170,11 @@ public class TechServiceActivity extends BootstrapActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         setTitle(techServiceItem.getTitle());
-
+       // TextView price = (TextView) findViewById(R.id.tv_price);
+        price.setText(techServiceItem.getBasePrice());
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
-        price.setText(techServiceItem.getBasePrice());
+       //serviceBasePrice.setText(techServiceItem.getBasePrice());
 
     }
 
