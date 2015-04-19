@@ -130,7 +130,7 @@ public class TechServiceActivity extends BootstrapActivity {
                 techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
             }
 
-            TextView basePrice = (TextView) findViewById(R.id.service_base_price);
+            TextView basePrice = (TextView) findViewById(R.id.tv_price);
             basePrice.setText(techServiceItem.getBasePrice());
         } else {
             setContentView(R.layout.techservice);
