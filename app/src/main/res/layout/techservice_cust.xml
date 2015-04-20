@@ -60,6 +60,21 @@
             android:textColor="@color/table_text_light_selector"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Category:"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector"
+            />
+
         <Button
             android:id="@+id/b_request_service"
             style="@style/ShadowText"

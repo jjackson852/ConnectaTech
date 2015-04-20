@@ -110,6 +110,33 @@
                 android:layout_weight="3"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:weightSum="1">
+
+            <Spinner
+                android:layout_width="273dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spin_category"
+                android:spinnerMode="dropdown" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:id="@+id/b_prov_edit_serv_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/label_edit"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
         <Button
             style="@style/ShadowText"
             android:id="@+id/b_prov_remove_serv"

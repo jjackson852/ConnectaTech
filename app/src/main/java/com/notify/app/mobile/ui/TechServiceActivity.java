@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +36,14 @@ public class TechServiceActivity extends BootstrapActivity {
     protected TextView content;
     @InjectView(R.id.tv_price)
     protected TextView price;
+    @InjectView(R.id.tv_category)
+    protected TextView category;
     private TechService techServiceItem;
     private Boolean isProvider;
     AlertDialog.Builder alert;
     Intent techServIntent;
     int itemBeingEdited;
+    Spinner spinner;
 
     private ParseObject currentTechService;
 
@@ -64,6 +69,15 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 3;
+            alert.show();
+
+        }
+    };
+
+    private View.OnClickListener editServCategoryListener = new View.OnClickListener(){
+        public void onClick(View v) {
+
+            itemBeingEdited = 4;
             alert.show();
 
         }
@@ -149,6 +163,12 @@ public class TechServiceActivity extends BootstrapActivity {
             editServPriceButton.setOnClickListener(editServPriceListener);
 
             /**
+             * Attaches the Edit Service Price button listener to the xml button.
+             */
+//            Button editServCategoryButton = (Button) findViewById(R.id.b_prov_edit_serv_category);
+//            editServCategoryButton.setOnClickListener(editServCategoryListener);
+
+            /**
              * Attaches the Remove Service Description button listener to the xml button.
              */
             Button removeServButton = (Button) findViewById(R.id.b_prov_remove_serv);
@@ -169,6 +189,19 @@ public class TechServiceActivity extends BootstrapActivity {
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
         price.setText(techServiceItem.getBasePrice());
+        category.setText(techServiceItem.getCategory());
+
+//        spinner = (Spinner) findViewById(R.id.spin_category);
+//
+//        // Create an ArrayAdapter using the string array and a default spinner layout
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.categories_array, android.R.layout.simple_spinner_item);
+//
+//        // Specify the layout to use when the list of choices appears
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // Apply the adapter to the spinner
+//        spinner.setAdapter(adapter);
 
     }
 
@@ -216,6 +249,8 @@ public class TechServiceActivity extends BootstrapActivity {
                     case 3: currentTechService.put("basePrice", editTextValue);
                             techServiceItem.setBasePrice(editTextValue);
                             break;
+                    case 4: currentTechService.put("category", spinner.getSelectedItem().toString());
+//                            techServiceItem.setCategory(editTextValue);
                 }
 
                 techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
