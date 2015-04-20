@@ -165,8 +165,8 @@ public class TechServiceActivity extends BootstrapActivity {
             /**
              * Attaches the Edit Service Price button listener to the xml button.
              */
-//            Button editServCategoryButton = (Button) findViewById(R.id.b_prov_edit_serv_category);
-//            editServCategoryButton.setOnClickListener(editServCategoryListener);
+            Button editServCategoryButton = (Button) findViewById(R.id.b_prov_edit_serv_category);
+            editServCategoryButton.setOnClickListener(editServCategoryListener);
 
             /**
              * Attaches the Remove Service Description button listener to the xml button.
@@ -191,17 +191,17 @@ public class TechServiceActivity extends BootstrapActivity {
         price.setText(techServiceItem.getBasePrice());
         category.setText(techServiceItem.getCategory());
 
-//        spinner = (Spinner) findViewById(R.id.spin_category);
-//
-//        // Create an ArrayAdapter using the string array and a default spinner layout
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.categories_array, android.R.layout.simple_spinner_item);
-//
-//        // Specify the layout to use when the list of choices appears
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        // Apply the adapter to the spinner
-//        spinner.setAdapter(adapter);
+        spinner = (Spinner) findViewById(R.id.spin_category);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_array, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
     }
 
@@ -250,7 +250,8 @@ public class TechServiceActivity extends BootstrapActivity {
                             techServiceItem.setBasePrice(editTextValue);
                             break;
                     case 4: currentTechService.put("category", spinner.getSelectedItem().toString());
-//                            techServiceItem.setCategory(editTextValue);
+                            techServiceItem.setCategory(spinner.getSelectedItem().toString());
+                            break;
                 }
 
                 techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
