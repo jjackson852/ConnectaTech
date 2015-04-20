@@ -9,6 +9,7 @@ public class Example implements Serializable {
     private String title;
     private String content;
     private String objectId;
+    private String providerInfo;
 
     public String getTitle() {
         return title;
@@ -32,5 +33,13 @@ public class Example implements Serializable {
 
     public void setObjectId(final String objectId) {
         this.objectId = objectId;
+    }
+
+    public String getProviderInfo() {
+        return providerInfo;
+    }
+
+    public void setProviderInfo(final String providerInfo) {
+        this.providerInfo = providerInfo;
     }
 }

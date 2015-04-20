@@ -152,6 +152,10 @@
             android:name=".ui.EditImageActivity"
             android:label="@string/title_activity_edit_image"></activity>
 
+        <activity
+            android:name=".ui.AddProfileActivity"
+            android:label="@string/title_activity_edit_profile"></activity>
+
         <activity android:name=".ui.AddServiceActivity"></activity>
 
         <activity android:name=".ui.FilterServicesActivity"></activity>
