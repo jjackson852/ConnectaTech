@@ -150,5 +150,6 @@
     <string name="active_requests">Active Requests</string>
     <string name="title_activity_edit_image">Edit Image</string>
     <string name="select_image">Select Image</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
 
 </resources>

@@ -39,7 +39,7 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
 
         }
     };
-
+ 
     private View.OnClickListener noServicesBrowseableListener = new View.OnClickListener() {
         public void onClick(View v) {
 

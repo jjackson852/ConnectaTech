@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -27,9 +28,11 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.core.Request;
 import com.parse.FunctionCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseCloud;
@@ -49,6 +52,8 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
+
 
 public class ProviderProfileFragment extends ItemListFragment2 {
 
@@ -59,6 +64,9 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
     @InjectView(R.id.tv_name)
     protected TextView name;
+
+    @InjectView(R.id.providerInfo)
+    protected TextView providerInfo;
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
@@ -66,6 +74,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private TextView txtRatingValue;
     //Rating
     private Button btnSubmit;
+    private Button providerInfoBtn;
+   // private TextView providerInfo;
     private ProgressDialog progressDialog;
     private Float avgRating;
     //Toast Test Button
@@ -125,8 +135,10 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
         view = inflater.inflate(R.layout.provider_profile_activity, container, false);
 
+
         final ParseFile providerPhoto = (ParseFile) ParseUser.getCurrentUser()
                 .get("ImageFile");
+
 
         try {
             providerPhoto.getDataInBackground(new GetDataCallback() {
@@ -150,6 +162,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                         // Set the Bitmap into the
                         // ImageView
                         providerPic.setImageBitmap(bmp);
+
 
                         // Close progress dialog
                         //   progressDialog.dismiss();
@@ -212,7 +225,17 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
             }
         });
+        providerInfoBtn = (Button) view.findViewById(R.id.providerInfoBtn);
+        providerInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+//                User user = ((User)));
+                Toast.makeText(getActivity(), "Enter Your Profile Information", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), AddProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 //        Rating Button Listener
@@ -314,10 +337,15 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                     ratingBarViewOnly.setRating(avgRating);
                     ratingBarViewOnly.setIsIndicator(true);
                     ratingBarViewOnly.invalidate();
+
+
                 } else {
 
                 }
+
             }
+
+
         });
 
 //--------------------------------------------------------------------------------------------------
