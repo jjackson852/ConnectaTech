@@ -110,6 +110,21 @@
                 android:layout_weight="3"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Current Category:"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -118,7 +133,7 @@
             android:weightSum="1">
 
             <Spinner
-                android:layout_width="273dp"
+                android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/spin_category"
                 android:spinnerMode="dropdown" />
@@ -136,21 +151,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Current Category:"
-            android:id="@+id/textView4" />
-
-        <TextView
-            android:id="@+id/tv_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/table_text_light_selector"
-            />
 
         <Button
             style="@style/ShadowText"

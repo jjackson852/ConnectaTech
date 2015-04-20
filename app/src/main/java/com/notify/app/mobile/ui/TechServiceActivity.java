@@ -77,8 +77,11 @@ public class TechServiceActivity extends BootstrapActivity {
     private View.OnClickListener editServCategoryListener = new View.OnClickListener(){
         public void onClick(View v) {
 
-            itemBeingEdited = 4;
-            alert.show();
+            currentTechService.put("category", spinner.getSelectedItem().toString());
+            techServiceItem.setCategory(spinner.getSelectedItem().toString());
+            techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
+            currentTechService.saveInBackground();
+            finish();
 
         }
     };
@@ -174,6 +177,18 @@ public class TechServiceActivity extends BootstrapActivity {
             Button removeServButton = (Button) findViewById(R.id.b_prov_remove_serv);
             removeServButton.setOnClickListener(removeServListener);
 
+            spinner = (Spinner) findViewById(R.id.spin_category);
+
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.categories_array, android.R.layout.simple_spinner_item);
+
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            // Apply the adapter to the spinner
+            spinner.setAdapter(adapter);
+
             if (getIntent() != null && getIntent().getExtras() != null) {
                 techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
             }
@@ -190,18 +205,6 @@ public class TechServiceActivity extends BootstrapActivity {
         content.setText(techServiceItem.getDescription());
         price.setText(techServiceItem.getBasePrice());
         category.setText(techServiceItem.getCategory());
-
-        spinner = (Spinner) findViewById(R.id.spin_category);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categories_array, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
 
     }
 
@@ -248,9 +251,6 @@ public class TechServiceActivity extends BootstrapActivity {
                             break;
                     case 3: currentTechService.put("basePrice", editTextValue);
                             techServiceItem.setBasePrice(editTextValue);
-                            break;
-                    case 4: currentTechService.put("category", spinner.getSelectedItem().toString());
-                            techServiceItem.setCategory(spinner.getSelectedItem().toString());
                             break;
                 }
 
