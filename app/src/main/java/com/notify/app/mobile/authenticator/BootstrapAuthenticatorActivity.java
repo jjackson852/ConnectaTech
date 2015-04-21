@@ -527,19 +527,19 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
                             if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
                                 ParsePush push = new ParsePush();
-                                ParsePush.subscribeInBackground("Provider");
-//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Provider");
-                                push.setMessage("You have 0 new Requests");
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+//                               PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
                                 push.sendInBackground();
                             }
                             else {
 
                                 ParsePush push = new ParsePush();
-                                ParsePush.subscribeInBackground("Customer");
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 //                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Customer");
-                                push.setMessage("You have 0 new Services");
+                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
                                 push.sendInBackground();
                             }
 

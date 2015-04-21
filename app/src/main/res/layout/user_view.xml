@@ -33,6 +33,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/iv_avatar"
+        android:layout_marginTop="10dp"
         android:numStars="5"
         android:rating="0.0"
         android:stepSize="0.50" />
@@ -77,39 +78,39 @@
         android:id="@+id/currentJoinDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/currentProviderRating"
-        android:layout_toEndOf="@+id/joinDateText"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/tv_name"
         android:layout_toRightOf="@+id/joinDateText"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_toEndOf="@+id/joinDateText" />
 
     <TextView
         android:id="@+id/joinDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/currentProviderRating"
         android:text="Member Since: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/tv_name"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_alignStart="@+id/tv_name" />
 
 
     <Button
         android:id="@+id/rateProviderActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Review Provider"
+        android:layout_below="@+id/currentProviderRating"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/currentJoinDate"
-        android:text="Review Provider" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tv_bio_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bio"
-        android:paddingTop="15dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_above="@+id/tv_prov_bio"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/rateProviderActivity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -117,9 +118,9 @@
         android:id="@+id/tv_prov_bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_below="@+id/rateProviderActivity"
+        android:layout_below="@+id/tv_bio_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

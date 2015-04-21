@@ -90,7 +90,7 @@ public class UserActivity extends BootstrapActivity {
             provBioTV.setText("No bio given.");
         }
         else{
-            provBioTV.setText(user.getBio());
+            provBioTV.setText(provBioStr);
         }
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));

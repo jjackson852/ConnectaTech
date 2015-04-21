@@ -2,7 +2,9 @@ package com.notify.app.mobile.ui;
 
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,12 +20,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.provider.MediaStore;
 import android.net.Uri;
 import android.database.Cursor;
 
+import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
@@ -41,6 +45,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
+
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
@@ -65,12 +71,12 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     @InjectView(R.id.tv_name)
     protected TextView name;
 
-    @InjectView(R.id.providerInfo)
-    protected TextView providerInfo;
+//    @InjectView(R.id.providerInfo)
+//    protected TextView providerInfoTV;
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
-    private ParseUser parseProvider;
+    private ParseUser currentUser;
     private TextView txtRatingValue;
     //Rating
     private Button btnSubmit;
@@ -83,10 +89,12 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private int RESULT_LOAD_IMAGE;
     private static int RESULT_LOAD_IMG = 1;
     String imgDecodableString;
-
+    AlertDialog.Builder alert;
+    private ImageView providerPic;
     //Parse Object for Rating Value
     ParseObject ratingtxt;
     TextView totalRating;
+    private ParseFile providerPhoto;
 
     private Button selectImage;
 
@@ -135,8 +143,48 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
         view = inflater.inflate(R.layout.provider_profile_activity, container, false);
 
+        currentUser = ParseUser.getCurrentUser();
+        TextView providerInfoTV = (TextView) view.findViewById(R.id.providerInfo);
+        String provBioStr = currentUser.getString("bio");
+        if (provBioStr == null){
+            providerInfoTV.setText("No bio given.");
+        }
+        else{
+            providerInfoTV.setText(provBioStr);
+        }
 
-        final ParseFile providerPhoto = (ParseFile) ParseUser.getCurrentUser()
+
+        alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle("Edit Bio");
+
+        final EditText bioEditText = new EditText(getActivity());
+        alert.setView(bioEditText);
+
+
+        final Intent profileIntent = new Intent(getActivity(), MainActivity.class);
+        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+                String bioText = String.valueOf(bioEditText.getText());
+
+                currentUser.put("bio", bioText);
+                currentUser.saveInBackground();
+
+                getActivity().finish();
+                startActivity(profileIntent);
+                ((ViewGroup)bioEditText.getParent()).removeView(bioEditText);
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+                ((ViewGroup)bioEditText.getParent()).removeView(bioEditText);
+            }
+        });
+
+        providerPhoto = (ParseFile) ParseUser.getCurrentUser()
                 .get("ImageFile");
 
 
@@ -157,7 +205,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
                         // Get the ImageView from
                         // main.xml
-                        ImageView providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
+                        providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
 
                         // Set the Bitmap into the
                         // ImageView
@@ -178,35 +226,48 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         } catch (NullPointerException ex) {
             if (ex != null) {
 
-                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
-                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
+                try{
+                    Picasso.with(BootstrapApplication.getInstance())
+                            .load(providerPhoto.getUrl())
+                            .placeholder(R.drawable.gravatar_icon)
+                            .into(providerPic);
+
+                }catch(NullPointerException exc){
+                    Picasso.with(BootstrapApplication.getInstance())
+                            .load(providerPhoto.getUrl())
+                            .placeholder(R.drawable.gravatar_icon)
+                            .into(providerPic);
+                }
+
+//                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
+//                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
 
                 //     Button noRatingButton = (Button) view.findViewById(R.id.edit_rating_btn);
                 //      noPhotoButton.setText("Rating Not Yet Uploaded.\nClick here to upload one.");
             }
         }
 
-        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
-        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
-
-        edit_photo_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        edit_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditImageActivity.class);
-                startActivity(intent);
-            }
-        });
+//        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
+//        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
+//
+//        edit_photo_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        edit_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditImageActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 //-------------------------------------------------------------------------------------------------
         selectImage = (Button) view.findViewById(R.id.select_image_button);
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -230,10 +291,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             @Override
             public void onClick(View v) {
 
-//                User user = ((User)));
-                Toast.makeText(getActivity(), "Enter Your Profile Information", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), AddProfileActivity.class);
-                startActivity(intent);
+              alert.show();
             }
         });
 
