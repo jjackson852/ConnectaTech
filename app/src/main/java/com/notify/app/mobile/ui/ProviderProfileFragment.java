@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -229,19 +230,9 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             });
         } catch (NullPointerException ex) {
             if (ex != null) {
-
-                try{
-                    Picasso.with(BootstrapApplication.getInstance())
-                            .load(providerPhoto.getUrl())
-                            .placeholder(R.drawable.gravatar_icon)
-                            .into(providerPic);
-
-                }catch(NullPointerException exc){
-                    Picasso.with(BootstrapApplication.getInstance())
-                            .load(providerPhoto.getUrl())
-                            .placeholder(R.drawable.gravatar_icon)
-                            .into(providerPic);
-                }
+                providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
+                Drawable myDrawable = getResources().getDrawable(R.drawable.gravatar_icon);
+                providerPic.setImageDrawable(myDrawable);
 
 //                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
 //                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
