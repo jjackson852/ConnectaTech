@@ -40,6 +40,7 @@ import com.parse.ParseException;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.PushService;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -527,19 +528,19 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
                             if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
                                 ParsePush push = new ParsePush();
-                                ParsePush.subscribeInBackground("Provider");
-//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Provider");
-                                push.setMessage("You have 0 new Requests");
-                                push.sendInBackground();
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+//                               PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+                               push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
+                               push.sendInBackground();
                             }
                             else {
 
                                 ParsePush push = new ParsePush();
-                                ParsePush.subscribeInBackground("Customer");
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 //                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel("Customer");
-                                push.setMessage("You have 0 new Services");
+                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
                                 push.sendInBackground();
                             }
 
