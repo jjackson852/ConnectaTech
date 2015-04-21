@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/provider_profile_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/provider_profile_image"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/table_text_selector" />
+        android:textColor="@color/table_text_selector"/>
 
     <!--<Button-->
         <!--android:id="@+id/edit_photo_btn"-->

@@ -94,6 +94,8 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     //Parse Object for Rating Value
     ParseObject ratingtxt;
     TextView totalRating;
+    private String provBioStr;
+    private TextView providerInfoTV;
     private ParseFile providerPhoto;
 
     private Button selectImage;
@@ -144,7 +146,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         view = inflater.inflate(R.layout.provider_profile_activity, container, false);
 
         currentUser = ParseUser.getCurrentUser();
-        TextView providerInfoTV = (TextView) view.findViewById(R.id.providerInfo);
+        providerInfoTV = (TextView) view.findViewById(R.id.providerInfo);
         String provBioStr = currentUser.getString("bio");
         if (provBioStr == null){
             providerInfoTV.setText("No bio given.");
@@ -159,6 +161,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
         alert.setTitle("Edit Bio");
 
         final EditText bioEditText = new EditText(getActivity());
+        bioEditText.setText(provBioStr);
         alert.setView(bioEditText);
 
 
@@ -171,8 +174,9 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                 currentUser.put("bio", bioText);
                 currentUser.saveInBackground();
 
-                getActivity().finish();
-                startActivity(profileIntent);
+//                getActivity().finish();
+//                startActivity(profileIntent);
+                providerInfoTV.setText(bioText);
                 ((ViewGroup)bioEditText.getParent()).removeView(bioEditText);
             }
         });
