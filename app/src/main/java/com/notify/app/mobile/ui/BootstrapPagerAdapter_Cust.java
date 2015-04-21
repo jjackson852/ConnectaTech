@@ -35,7 +35,7 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -46,12 +46,9 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
                 result = new RequestListFragment();
                 break;
             case 1:
-                result = new CustomerProfileFragment();
-                break;
-            case 2:
                 result = new UserListFragment();
                 break;
-            case 3:
+            case 2:
                 result = new TechServiceListFragment();
                 break;
             default:
