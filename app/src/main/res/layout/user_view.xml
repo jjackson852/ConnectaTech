@@ -102,4 +102,26 @@
         android:layout_below="@+id/currentJoinDate"
         android:text="Review Provider" />
 
+    <TextView
+        android:id="@+id/tv_bio_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bio"
+        android:paddingTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/tv_prov_bio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_prov_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/rateProviderActivity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>

@@ -22,6 +22,7 @@ public class User implements Serializable {
     protected String gravatarId;
     protected String avatarUrl;
     protected String rating;
+    protected String bio;
     protected ParseFile imageFile;
     protected Date createdAt;
     protected String description;
@@ -127,5 +128,11 @@ public class User implements Serializable {
             return null;
     }
 
+    public String getBio() {
+        return bio;
+    }
 
+    public void setBio(final String bio) {
+        this.bio = bio;
+    }
 }

@@ -18,10 +18,7 @@ import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
-import com.notify.app.mobile.ui.RateUserActivity;
-import com.notify.app.mobile.ui.TechServiceActivity;
 import com.parse.FunctionCallback;
-import com.parse.ParseAnalytics;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -30,20 +27,14 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.InjectView;
 
-import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.RATING;
-import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
 import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 public class UserActivity extends BootstrapActivity {
@@ -55,6 +46,8 @@ public class UserActivity extends BootstrapActivity {
 
     @InjectView(R.id.currentJoinDate)
     protected TextView currentJoinDate;
+    @InjectView(R.id.tv_prov_bio)
+    protected TextView provBioTV;
 
     private User user;
     private ParseUser parseProvider;
@@ -92,6 +85,13 @@ public class UserActivity extends BootstrapActivity {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
 
+        String provBioStr = user.getBio();
+        if (provBioStr == null){
+            provBioTV.setText("No bio given.");
+        }
+        else{
+            provBioTV.setText(user.getBio());
+        }
 
         Button rateActivity = ((Button) findViewById(R.id.rateProviderActivity));
 
@@ -127,14 +127,14 @@ public class UserActivity extends BootstrapActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //What ever you want to do with the value
                 float rating = ((RatingBar)rl.findViewById(R.id.ratingBar_alert_view)).getRating();
+                String ratingDesc = String.valueOf(((EditText) rl.findViewById(R.id.ratingBar_alert_editText)).getText());
                 newRating = new ParseObject("Rating");
                 newRating.put("provider", parseProvider);
                 newRating.put("submittedBy", ParseUser.getCurrentUser());
                 newRating.put("rating", rating);
                 newRating.put("providerID", user.getObjectId());
-//                newRating.put("description",  );
+                newRating.put("description",  ratingDesc);
                 newRating.saveInBackground();
-                //submitRating();
 
                 userIntent.putExtra(USER, user);
                 finish();
@@ -238,17 +238,17 @@ public class UserActivity extends BootstrapActivity {
     }
 
 
-    public void submitRating() {
-        ParseAnalytics.trackAppOpened(getIntent());
-
-        newRating = new ParseObject("Rating");
-        newRating.put("provider", parseProvider);
-        newRating.put("submittedBy", ParseUser.getCurrentUser());
-
-        newRating.put("providerID", user.getObjectId());
-        newRating.saveInBackground();
-
-    }
+//    public void submitRating() {
+//        ParseAnalytics.trackAppOpened(getIntent());
+//
+//        newRating = new ParseObject("Rating");
+//        newRating.put("provider", parseProvider);
+//        newRating.put("submittedBy", ParseUser.getCurrentUser());
+//
+//        newRating.put("providerID", user.getObjectId());
+//        newRating.saveInBackground();
+//
+//    }
 
 
 }

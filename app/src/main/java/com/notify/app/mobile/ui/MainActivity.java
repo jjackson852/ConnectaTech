@@ -100,7 +100,7 @@ public class MainActivity extends BootstrapFragmentActivity {
 //        push.setChannel("Provider");
 //        push.setMessage("You have 0 new Requests");
 //        push.sendInBackground();
-
+        checkAuth();
         if (!isTablet()) {
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerToggle = new ActionBarDrawerToggle(
@@ -143,7 +143,7 @@ public class MainActivity extends BootstrapFragmentActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        checkAuth();
+
     }
 
     private boolean isTablet() {

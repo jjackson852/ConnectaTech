@@ -99,7 +99,7 @@ public class FilterServicesActivity extends BootstrapActivity {
         }
 
         compiledQuery = compiledQuery + zipQuery + categoryQuery + endQuery;
-        
+
         if (compiledQuery.equals("{}")) {
             // Do not apply the constraint because all EditText Fields were left empty.
         } else {
