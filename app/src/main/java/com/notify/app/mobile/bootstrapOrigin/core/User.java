@@ -1,5 +1,6 @@
 package com.notify.app.mobile.bootstrapOrigin.core;
 
+import android.app.AlertDialog;
 import android.media.Image;
 import android.text.TextUtils;
 
@@ -21,8 +22,10 @@ public class User implements Serializable {
     protected String gravatarId;
     protected String avatarUrl;
     protected String rating;
+    protected String bio;
     protected ParseFile imageFile;
     protected Date createdAt;
+    protected String description;
 
 
     public String getUsername() {
@@ -81,6 +84,14 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
+    }
+
     public Date getCreateAt() {return createdAt;}
 
     public void  setCreatedAt(final Date createdAt) {this.createdAt = createdAt;}
@@ -115,5 +126,13 @@ public class User implements Serializable {
             return "https://secure.gravatar.com/avatar/" + id + "?d=404";
         else
             return null;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(final String bio) {
+        this.bio = bio;
     }
 }

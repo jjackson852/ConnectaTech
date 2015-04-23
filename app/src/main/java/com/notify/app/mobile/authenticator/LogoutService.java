@@ -9,6 +9,8 @@ import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
 import com.notify.app.mobile.bootstrapOrigin.core.Constants;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
+import com.parse.ParsePush;
+import com.parse.ParseUser;
 
 import javax.inject.Inject;
 
@@ -68,8 +70,9 @@ public class LogoutService {
             Ln.d("Logout succeeded: %s", accountWasRemoved);
             onSuccess.run();
 
-            // ParseUser.unpinAllInBackground();
+            ParseUser.unpinAllInBackground();
             BootstrapService.setServConstraint(null);
+            ParsePush.unsubscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 
 
         }

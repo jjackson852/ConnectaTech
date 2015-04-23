@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +37,16 @@ public class TechServiceActivity extends BootstrapActivity {
     protected TextView content;
     @InjectView(R.id.tv_price)
     protected TextView price;
+    @InjectView(R.id.tv_category)
+    protected TextView category;
     private TechService techServiceItem;
     private Boolean isProvider;
+    private EditText edittext;
     AlertDialog.Builder alert;
     Intent techServIntent;
     int itemBeingEdited;
+    Spinner spinner;
+    private RelativeLayout rl;
 
     private ParseObject currentTechService;
 
@@ -46,7 +54,9 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 1;
+            alert.setView(edittext);
             alert.show();
+//            ((ViewGroup)edittext.getParent()).removeView(edittext);
 
         }
     };
@@ -55,7 +65,9 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 2;
+            alert.setView(edittext);
             alert.show();
+//            ((ViewGroup)edittext.getParent()).removeView(edittext);
 
         }
     };
@@ -64,7 +76,28 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 3;
+            alert.setView(edittext);
             alert.show();
+//            ((ViewGroup)edittext.getParent()).removeView(edittext);
+
+        }
+    };
+
+
+    private View.OnClickListener editServCategoryListener = new View.OnClickListener(){
+        public void onClick(View v) {
+
+//            currentTechService.put("category", spinner.getSelectedItem().toString());
+//            techServiceItem.setCategory(spinner.getSelectedItem().toString());
+//            techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
+//            currentTechService.saveInBackground();
+//            finish();
+            itemBeingEdited = 4;
+//            ((ViewGroup)edittext.getParent()).removeView(edittext);
+            alert.setView(rl);
+            alert.show();
+
+//            ((ViewGroup)spinner.getParent()).removeView(spinner);
 
         }
     };
@@ -149,15 +182,37 @@ public class TechServiceActivity extends BootstrapActivity {
             editServPriceButton.setOnClickListener(editServPriceListener);
 
             /**
+             * Attaches the Edit Service Price button listener to the xml button.
+             */
+            Button editServCategoryButton = (Button) findViewById(R.id.b_prov_edit_serv_category);
+            editServCategoryButton.setOnClickListener(editServCategoryListener);
+
+            /**
              * Attaches the Remove Service Description button listener to the xml button.
              */
             Button removeServButton = (Button) findViewById(R.id.b_prov_remove_serv);
             removeServButton.setOnClickListener(removeServListener);
 
+            LayoutInflater li = LayoutInflater.from(TechServiceActivity.this);
+            rl = (RelativeLayout)li.inflate(R.layout.spinner_layout, null);
+            spinner = (Spinner) rl.findViewById(R.id.spin_edit_category);
+
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.categories_array, android.R.layout.simple_spinner_item);
+
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            // Apply the adapter to the spinner
+            spinner.setAdapter(adapter);
+
             if (getIntent() != null && getIntent().getExtras() != null) {
                 techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
             }
 
+            alert = new AlertDialog.Builder(this);
+            edittext = new EditText(this);
             generateAlertDialogs();
         }
 
@@ -169,6 +224,7 @@ public class TechServiceActivity extends BootstrapActivity {
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
         price.setText(techServiceItem.getBasePrice());
+        category.setText(techServiceItem.getCategory());
 
     }
 
@@ -192,18 +248,30 @@ public class TechServiceActivity extends BootstrapActivity {
             e.printStackTrace();
         }
 
-        final EditText edittext = new EditText(this);
 
-        alert = new AlertDialog.Builder(this);
         alert.setTitle("Edit");
-        alert.setView(edittext);
+//        if(itemBeingEdited == 4){
+//            alert.setView(spinner);
+//        }
+//        else{
+//            alert.setView(edittext);
+//        }
+
 
         techServIntent = new Intent(this, TechServiceActivity.class);
 
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //What ever you want to do with the value
-                String editTextValue = String.valueOf(edittext.getText());
+                String editTextValue = "";
+                String spinnerTextValue = "";
+                if(itemBeingEdited == 4){
+                    spinnerTextValue = spinner.getSelectedItem().toString();
+                }
+                else{
+                    editTextValue = String.valueOf(edittext.getText());
+                }
+
 
                 switch (itemBeingEdited) {
 
@@ -216,6 +284,9 @@ public class TechServiceActivity extends BootstrapActivity {
                     case 3: currentTechService.put("basePrice", editTextValue);
                             techServiceItem.setBasePrice(editTextValue);
                             break;
+                    case 4: currentTechService.put("category", spinnerTextValue);
+                            techServiceItem.setCategory(spinnerTextValue);
+                            break;
                 }
 
                 techServIntent.putExtra(TECHSERVICE_ITEM, techServiceItem);
@@ -223,6 +294,9 @@ public class TechServiceActivity extends BootstrapActivity {
                 currentTechService.saveInBackground();
 
                 finish();
+                if(itemBeingEdited == 4){
+                    ((ViewGroup)rl.getParent()).removeView(rl);
+                }
                 startActivity(techServIntent);
 
             }
@@ -231,7 +305,6 @@ public class TechServiceActivity extends BootstrapActivity {
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
-                finish();
             }
         });
 

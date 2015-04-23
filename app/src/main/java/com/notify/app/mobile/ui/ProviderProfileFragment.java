@@ -2,11 +2,14 @@ package com.notify.app.mobile.ui;
 
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -15,21 +18,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.provider.MediaStore;
 import android.net.Uri;
 import android.database.Cursor;
 
+import com.notify.app.mobile.BootstrapApplication;
 import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.core.Example;
+import com.notify.app.mobile.core.Request;
 import com.parse.FunctionCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseCloud;
@@ -38,6 +46,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
+
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
@@ -49,6 +59,8 @@ import javax.inject.Inject;
 
 import butterknife.InjectView;
 
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
+
 
 public class ProviderProfileFragment extends ItemListFragment2 {
 
@@ -59,13 +71,18 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
     @InjectView(R.id.tv_name)
     protected TextView name;
+
+//    @InjectView(R.id.providerInfo)
+//    protected TextView providerInfoTV;
     private View view;
     private ImageView edit_photo;
     private Button edit_photo_button;
-    private ParseUser parseProvider;
+    private ParseUser currentUser;
     private TextView txtRatingValue;
     //Rating
     private Button btnSubmit;
+    private Button providerInfoBtn;
+   // private TextView providerInfo;
     private ProgressDialog progressDialog;
     private Float avgRating;
     //Toast Test Button
@@ -73,10 +90,14 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     private int RESULT_LOAD_IMAGE;
     private static int RESULT_LOAD_IMG = 1;
     String imgDecodableString;
-
+    AlertDialog.Builder alert;
+    private ImageView providerPic;
     //Parse Object for Rating Value
     ParseObject ratingtxt;
     TextView totalRating;
+    private String provBioStr;
+    private TextView providerInfoTV;
+    private ParseFile providerPhoto;
 
     private Button selectImage;
 
@@ -125,8 +146,52 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
         view = inflater.inflate(R.layout.provider_profile_activity, container, false);
 
-        final ParseFile providerPhoto = (ParseFile) ParseUser.getCurrentUser()
+        currentUser = ParseUser.getCurrentUser();
+        providerInfoTV = (TextView) view.findViewById(R.id.providerInfo);
+        String provBioStr = currentUser.getString("bio");
+        if (provBioStr == null){
+            providerInfoTV.setText("No bio given.");
+        }
+        else{
+            providerInfoTV.setText(provBioStr);
+        }
+
+
+        alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle("Edit Bio");
+
+        final EditText bioEditText = new EditText(getActivity());
+        bioEditText.setText(provBioStr);
+        alert.setView(bioEditText);
+
+
+        final Intent profileIntent = new Intent(getActivity(), MainActivity.class);
+        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+                String bioText = String.valueOf(bioEditText.getText());
+
+                currentUser.put("bio", bioText);
+                currentUser.saveInBackground();
+
+//                getActivity().finish();
+//                startActivity(profileIntent);
+                providerInfoTV.setText(bioText);
+                ((ViewGroup)bioEditText.getParent()).removeView(bioEditText);
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+                ((ViewGroup)bioEditText.getParent()).removeView(bioEditText);
+            }
+        });
+
+        providerPhoto = (ParseFile) ParseUser.getCurrentUser()
                 .get("ImageFile");
+
 
         try {
             providerPhoto.getDataInBackground(new GetDataCallback() {
@@ -145,11 +210,12 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
                         // Get the ImageView from
                         // main.xml
-                        ImageView providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
+                        providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
 
                         // Set the Bitmap into the
                         // ImageView
                         providerPic.setImageBitmap(bmp);
+
 
                         // Close progress dialog
                         //   progressDialog.dismiss();
@@ -164,36 +230,39 @@ public class ProviderProfileFragment extends ItemListFragment2 {
             });
         } catch (NullPointerException ex) {
             if (ex != null) {
+                providerPic = (ImageView) view.findViewById(R.id.provider_profile_image);
+                Drawable myDrawable = getResources().getDrawable(R.drawable.gravatar_icon);
+                providerPic.setImageDrawable(myDrawable);
 
-                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
-                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
+//                Button noPhotoButton = (Button) view.findViewById(R.id.edit_photo_btn);
+//                noPhotoButton.setText("Photo Not Yet Uploaded.\nClick here to upload one.");
 
                 //     Button noRatingButton = (Button) view.findViewById(R.id.edit_rating_btn);
                 //      noPhotoButton.setText("Rating Not Yet Uploaded.\nClick here to upload one.");
             }
         }
 
-        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
-        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
-
-        edit_photo_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        edit_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EditImageActivity.class);
-                startActivity(intent);
-            }
-        });
+//        edit_photo = ((ImageView) view.findViewById(R.id.provider_profile_image));
+//        edit_photo_button = ((Button) view.findViewById(R.id.edit_photo_btn));
+//
+//        edit_photo_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditPhotoActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        edit_photo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "Add A Photo", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), EditImageActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 //-------------------------------------------------------------------------------------------------
         selectImage = (Button) view.findViewById(R.id.select_image_button);
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -212,7 +281,14 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 
             }
         });
+        providerInfoBtn = (Button) view.findViewById(R.id.providerInfoBtn);
+        providerInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+              alert.show();
+            }
+        });
 
 
 //        Rating Button Listener
@@ -314,10 +390,15 @@ public class ProviderProfileFragment extends ItemListFragment2 {
                     ratingBarViewOnly.setRating(avgRating);
                     ratingBarViewOnly.setIsIndicator(true);
                     ratingBarViewOnly.invalidate();
+
+
                 } else {
 
                 }
+
             }
+
+
         });
 
 //--------------------------------------------------------------------------------------------------

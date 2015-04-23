@@ -37,8 +37,10 @@ import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.PushService;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -524,23 +526,23 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
                             finish();
 
-//                            if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
-//                                ParsePush push = new ParsePush();
-//                                push.subscribeInBackground("Provider");
-////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-//                                push.setChannel("Provider");
-//                                push.setMessage("You have 0 new Requests");
-//                                push.sendInBackground();
-//                            }
-//                            else {
-//
-//                                ParsePush push = new ParsePush();
-//                                push.subscribeInBackground("Customer");
-////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-//                                push.setChannel("Customer");
-//                                push.setMessage("You have 0 new Services");
-//                                push.sendInBackground();
-//                            }
+                            if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
+                                ParsePush push = new ParsePush();
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+//                               PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+                               push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
+                               push.sendInBackground();
+                            }
+                            else {
+
+                                ParsePush push = new ParsePush();
+                                ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+//                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
+                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
+                                push.setMessage(ParseUser.getCurrentUser().getUsername());
+                                push.sendInBackground();
+                            }
 
                             homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(homeIntent);
