@@ -41,7 +41,7 @@ public class RequestListFragment extends ItemListFragment<Request> {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (ParseUser.getCurrentUser().getBoolean("isProvider") == true) {
+        if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
             setEmptyText(R.string.no_requests);
         }
         else{

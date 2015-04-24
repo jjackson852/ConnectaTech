@@ -133,7 +133,7 @@ public class RequestActivity extends BootstrapActivity {
 
             final String titleString = requestItem.getServiceTitle();
 
-            setTitle(titleString);
+//            setTitle(titleString);
 
             Button callCustomerButton = (Button) findViewById(R.id.b_cust_phone_number_req);
             callCustomerButton.setOnClickListener(new View.OnClickListener() {
@@ -163,8 +163,8 @@ public class RequestActivity extends BootstrapActivity {
             });
 
 //            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
-//            query.whereEqualTo("submittedBy", requestItem.getSubmittedBy());
-//
+//            query.whereEqualTo("submittedBy", requestItem.getObjectId());
+
 //            try {
 //                List<ParseObject> results = query.find();
 //                parseResults = results.get(0);
@@ -174,13 +174,13 @@ public class RequestActivity extends BootstrapActivity {
 
             Format formatter = new SimpleDateFormat("yyyy-MM-dd");
             date.setText(formatter.format(requestItem.getCreatedAt()));
-//            submitted.setText("hi");
+//            submitted.setText(parseResults.toString());
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        title.setText(requestItem.getServiceTitle());
+        title.setText(requestItem.getServiceTitle() + ":");
         content.setText(requestItem.getAddlInfo());
 
     }

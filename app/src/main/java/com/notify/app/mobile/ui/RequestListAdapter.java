@@ -6,6 +6,8 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.Request;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
@@ -37,8 +39,10 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
     protected void update(final int position, final Request item) {
         super.update(position, item);
 
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         setText(0, item.getServiceTitle());
         setText(1, item.getAddlInfo());
-        //setNumber(R.id.tv_date, item.getCreatedAt());
+        setText(2, formatter.format(item.getCreatedAt()));
+
     }
 }

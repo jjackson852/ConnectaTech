@@ -30,7 +30,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_light" />
+                android:textColor="@color/text" />
     </LinearLayout>
 
     <TextView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:paddingLeft="15dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/table_text_selector" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text" />
 
 </LinearLayout>
