@@ -3,6 +3,7 @@ package com.notify.app.mobile.core;
 import com.parse.ParseUser;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TechService implements Serializable {
 
@@ -15,6 +16,7 @@ public class TechService implements Serializable {
     private String zipCode;
     private String category;
     private ParseUser provider;
+    private Date createdAt;
 
     public String getTitle() {
         return title;
@@ -71,5 +73,10 @@ public class TechService implements Serializable {
     public void setCategory(final String category) {
         this.category = category;
     }
+
+    public Date getCreatedAt() {return createdAt;}
+    public void setCreatedAt(final Date createdAt) {this.createdAt = createdAt;
+    }
+
 
 }

@@ -38,7 +38,9 @@ public class TechServiceActivity extends BootstrapActivity {
     @InjectView(R.id.tv_price)
     protected TextView price;
     @InjectView(R.id.tv_category)
-    protected TextView category;
+        protected TextView category;
+    @InjectView(R.id.tv_submitted)
+    protected TextView submitted;
     private TechService techServiceItem;
     private Boolean isProvider;
     private EditText edittext;
@@ -225,6 +227,7 @@ public class TechServiceActivity extends BootstrapActivity {
         content.setText(techServiceItem.getDescription());
         price.setText(techServiceItem.getBasePrice());
         category.setText(techServiceItem.getCategory());
+        submitted.setText(techServiceItem.getCreatedAt().toString());
 
     }
 
