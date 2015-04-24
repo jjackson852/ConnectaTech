@@ -31,6 +31,39 @@
             android:textColor="@color/table_text_light_selector"
             />
 
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Submitted:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/table_text_selector"
+            />
+
+        <TextView
+            android:id="@+id/date_submitted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector"
+            />
+
+        <TextView
+            android:id="@+id/submitted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submitted By:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/table_text_selector"
+            />
+
+        <TextView
+            android:id="@+id/submitted_by"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector"
+            />
         <!-- <TextView
         android:id="@+id/tv_cust_phone_number_req"
         android:layout_width="match_parent"

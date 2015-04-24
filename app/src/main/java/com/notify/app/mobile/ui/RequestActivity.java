@@ -11,18 +11,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.Request;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.InjectView;
 
 import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.REQUEST_ITEM;
 import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 public class RequestActivity extends BootstrapActivity {
 
@@ -30,9 +35,15 @@ public class RequestActivity extends BootstrapActivity {
     protected TextView title;
     @InjectView(R.id.tv_content)
     protected TextView content;
+    @InjectView(R.id.date_submitted)
+    protected TextView date;
+//    @InjectView(R.id.submitted_by)
+//    protected TextView submitted;
+
     private Request requestItem;
     private Boolean isProvider;
     ParseObject currentRequest;
+//    ParseObject parseResults;
     AlertDialog.Builder alert;
     Intent requestIntent;
     int itemBeingEdited;
@@ -84,7 +95,7 @@ public class RequestActivity extends BootstrapActivity {
         isProvider = ParseUser.getCurrentUser().getBoolean("isProvider");
 
 
-        if (isProvider == false) {
+        if (!isProvider) {
             setContentView(R.layout.request_cust);
 
             if (getIntent() != null && getIntent().getExtras() != null) {
@@ -150,6 +161,20 @@ public class RequestActivity extends BootstrapActivity {
                     startActivity(Intent.createChooser(emailIntent, "Send via..."));
                 }
             });
+
+//            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
+//            query.whereEqualTo("submittedBy", requestItem.getSubmittedBy());
+//
+//            try {
+//                List<ParseObject> results = query.find();
+//                parseResults = results.get(0);
+//            } catch (com.parse.ParseException e) {
+//                e.printStackTrace();
+//            }
+
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+            date.setText(formatter.format(requestItem.getCreatedAt()));
+//            submitted.setText("hi");
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
