@@ -36,10 +36,10 @@ public class RequestActivity extends BootstrapActivity {
     protected TextView title;
     @InjectView(R.id.tv_content)
     protected TextView content;
-    @InjectView(R.id.tv_submitted)
+    @InjectView(R.id.date_submitted)
     protected TextView date;
-//    @InjectView(R.id.submitted_by)
-//    protected TextView submitted;
+    @InjectView(R.id.submitted_by)
+    protected TextView submitted;
 
     private Request requestItem;
     private Boolean isProvider;

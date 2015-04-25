@@ -93,7 +93,7 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
         }
 
 
-        setText(1, user.getUsername());
+        setText(1, user.getUsername().toUpperCase());
 
 
 

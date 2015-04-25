@@ -34,7 +34,6 @@
             android:gravity="right" />
 
         <TextView
-            android:id="@+id/submitted"
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:text="Submitted By:"
