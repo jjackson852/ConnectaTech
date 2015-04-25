@@ -27,11 +27,10 @@
             android:id="@+id/date_submitted"
             android:layout_width="364dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="15dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/text"
-            android:layout_gravity="right"
-            android:autoText="false"
-            android:gravity="right" />
+            android:textColor="@color/table_text_light_selector" />
 
         <TextView
             android:layout_width="108dp"
@@ -43,12 +42,12 @@
 
         <TextView
             android:id="@+id/submitted_by"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="15dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/text"
-            android:layout_gravity="right"
-            android:gravity="right" />
+            android:textColor="@color/table_text_light_selector"/>
         <!-- <TextView
         android:id="@+id/tv_cust_phone_number_req"
         android:layout_width="match_parent"

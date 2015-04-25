@@ -183,6 +183,7 @@ public class RequestActivity extends BootstrapActivity {
         content.setText(requestItem.getAddlInfo());
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         date.setText(formatter.format( requestItem.getCreatedAt()));
+        submitted.setText(requestItem.getCustEmail());
 
 
     }
