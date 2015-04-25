@@ -22,6 +22,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.InjectView;
 
@@ -35,7 +36,7 @@ public class RequestActivity extends BootstrapActivity {
     protected TextView title;
     @InjectView(R.id.tv_content)
     protected TextView content;
-    @InjectView(R.id.date_submitted)
+    @InjectView(R.id.tv_submitted)
     protected TextView date;
 //    @InjectView(R.id.submitted_by)
 //    protected TextView submitted;
@@ -172,8 +173,8 @@ public class RequestActivity extends BootstrapActivity {
 //                e.printStackTrace();
 //            }
 
-            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-            date.setText(formatter.format(requestItem.getCreatedAt()));
+            Format formatter = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+            date.setText(formatter.format(requestItem.getCreatedAt().toString()));
 //            submitted.setText(parseResults.toString());
         }
 
@@ -182,6 +183,9 @@ public class RequestActivity extends BootstrapActivity {
 
         title.setText(requestItem.getServiceTitle() + ":");
         content.setText(requestItem.getAddlInfo());
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        date.setText(formatter.format( requestItem.getCreatedAt()));
+
 
     }
 

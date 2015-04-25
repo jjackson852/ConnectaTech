@@ -230,7 +230,7 @@ public class UserActivity extends BootstrapActivity {
 
         name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
         TextView currentJoinDate = ((TextView) findViewById(R.id.currentJoinDate));
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         currentJoinDate.setText(formatter.format( user.getCreateAt()));
 
 

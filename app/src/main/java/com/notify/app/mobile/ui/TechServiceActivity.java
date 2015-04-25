@@ -17,17 +17,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.bootstrapOrigin.core.UserService;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.TechService;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.InjectView;
 
 import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 public class TechServiceActivity extends BootstrapActivity {
 
@@ -46,6 +52,7 @@ public class TechServiceActivity extends BootstrapActivity {
     private EditText edittext;
     AlertDialog.Builder alert;
     Intent techServIntent;
+    Intent userServIntent;
     int itemBeingEdited;
     Spinner spinner;
     private RelativeLayout rl;
@@ -181,6 +188,7 @@ public class TechServiceActivity extends BootstrapActivity {
              * Attaches the Edit Service Price button listener to the xml button.
              */
             Button editServPriceButton = (Button) findViewById(R.id.b_prov_edit_serv_price);
+
             editServPriceButton.setOnClickListener(editServPriceListener);
 
             /**
@@ -212,6 +220,9 @@ public class TechServiceActivity extends BootstrapActivity {
             if (getIntent() != null && getIntent().getExtras() != null) {
                 techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
             }
+//            if (getIntent() != null && getIntent().getExtras() != null) {
+//                name = (ParseUser) getIntent().getExtras().getSerializable(USER);
+//            }
 
             alert = new AlertDialog.Builder(this);
             edittext = new EditText(this);
@@ -225,11 +236,17 @@ public class TechServiceActivity extends BootstrapActivity {
 
         title.setText(techServiceItem.getTitle());
         content.setText(techServiceItem.getDescription());
-        price.setText(techServiceItem.getBasePrice());
+
+
+
         category.setText(techServiceItem.getCategory());
-        submitted.setText(techServiceItem.getCreatedAt().toString());
+        price.setText(techServiceItem.getBasePrice());
+        Format formatter = new SimpleDateFormat("MM-dd-yyyy");
+        submitted.setText(formatter.format( techServiceItem.getCreatedAt()));
 
     }
+
+
 
     protected void navigateToRequestSubmission() {
 

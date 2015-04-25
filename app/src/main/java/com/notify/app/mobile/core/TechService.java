@@ -75,6 +75,7 @@ public class TechService implements Serializable {
     }
 
     public Date getCreatedAt() {return createdAt;}
+
     public void setCreatedAt(final Date createdAt) {this.createdAt = createdAt;
     }
 

@@ -6,6 +6,8 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.TechService;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class TechServiceListAdapter extends AlternatingColorListAdapter<TechService> {
@@ -36,12 +38,16 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
     @Override
     protected void update(final int position, final TechService item) {
         super.update(position, item);
+        //Double number = Double.valueOf(item.getBasePrice());
+        DecimalFormat decimalFormat = new DecimalFormat("$.00");
+       // decimalFormat.format(item.getBasePrice());
 
         setText(0, item.getTitle());
         setText(1, item.getDescription());
         setText(2, item.getZipCode());
         setText(3, item.getCategory());
-        setText(4, item.getBasePrice());
-        //setNumber(R.id.tv_date, item.getCreatedAt());
+
+
+        setText(4,item.getBasePrice());
     }
 }

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/main_background">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,179 +17,178 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Title:"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/text"
-            android:text="Title:" />
+            android:textColor="@color/text" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/table_text_light"
                 android:layout_weight="1"
                 android:paddingRight="15dp"
-                />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/table_text_light" />
 
             <Button
-                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_title"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Description:"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/text"
-            android:text="Description:" />
+            android:textColor="@color/text" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/table_text_light_selector"
                 android:layout_weight="1"
                 android:paddingRight="15dp"
-                />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/table_text_light_selector" />
 
             <Button
-                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_desc"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Pricing:"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/text"
-            android:text="Pricing:" />
+            android:textColor="@color/text" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/table_text_light_selector"
                 android:layout_weight="1"
                 android:paddingRight="15dp"
-                />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/table_text_light_selector" />
 
             <Button
-                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_price"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Category:"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/text"
-            android:text="Category:" />
+            android:textColor="@color/text" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/table_text_light_selector"
                 android:layout_weight="1"
                 android:paddingRight="15dp"
-                />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/table_text_light_selector" />
 
             <Button
-                style="?android:attr/buttonStyleSmall"
                 android:id="@+id/b_prov_edit_serv_category"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/label_edit"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3"/>
+                android:textStyle="bold" />
         </LinearLayout>
-        <LinearLayout
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text" />
+
+
+        <TextView
+            android:id="@+id/tv_submitted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_weight="1"
+            android:paddingRight="15dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/table_text_light_selector" />
 
-            <TextView
-                android:id="@+id/tv_submitted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/table_text_light_selector"
-                android:layout_weight="1"
-                android:paddingRight="15dp"
-                />
-
-
-        </LinearLayout>
 
         <Button
-            style="@style/ShadowText"
             android:id="@+id/b_prov_remove_serv"
+            style="@style/ShadowText"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
+            android:layout_weight="3"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/label_remove_service"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="3"/>
-
+            android:text="@string/label_remove_service" />
 
 
     </LinearLayout>

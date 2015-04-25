@@ -13,7 +13,9 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.core.TechService;
 import com.parse.ParseUser;
 
@@ -23,6 +25,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.USER;
 
 public class TechServiceListFragment extends ItemListFragment<TechService> {
 
@@ -142,8 +145,14 @@ public class TechServiceListFragment extends ItemListFragment<TechService> {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         TechService techService = ((TechService) l.getItemAtPosition(position));
-
+       // User user = ;
         startActivity(new Intent(getActivity(), TechServiceActivity.class).putExtra(TECHSERVICE_ITEM, techService));
+
+
+
+
+
+
     }
 
     @Override
