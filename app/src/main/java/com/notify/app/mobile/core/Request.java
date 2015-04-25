@@ -3,6 +3,7 @@ package com.notify.app.mobile.core;
 import com.parse.ParseUser;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Request implements Serializable {
 
@@ -13,6 +14,8 @@ public class Request implements Serializable {
     private String objectId;
     private String custPhoneNumber;
     private String custEmail;
+    private Date createdAt;
+//    private String submittedBy;
 
     public String getServiceTitle() {
         return serviceTitle;
@@ -53,4 +56,12 @@ public class Request implements Serializable {
     public void setCustEmail(final String custEmail) {
         this.custEmail = custEmail;
     }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+//    public String getSubmittedBy(){
+//        return submittedBy;
+//    }
 }

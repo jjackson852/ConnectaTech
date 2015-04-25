@@ -16,21 +16,40 @@
         android:paddingTop="5dp">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/table_text_selector"
-                />
+            android:text="Date Submitted:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text" />
 
         <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="match_parent"
+            android:id="@+id/date_submitted"
+            android:layout_width="364dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/table_text_light_selector"
+            android:textColor="@color/text"
+            android:layout_gravity="right"
+            android:autoText="false"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/submitted"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:text="Submitted By:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text"
             />
 
+        <TextView
+            android:id="@+id/submitted_by"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text"
+            android:layout_gravity="right"
+            android:gravity="right" />
         <!-- <TextView
         android:id="@+id/tv_cust_phone_number_req"
         android:layout_width="match_parent"
@@ -54,6 +73,22 @@
             android:textColor="@color/text"
             android:textSize="20sp"
             android:textStyle="bold" />-->
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text"
+                />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/text"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
