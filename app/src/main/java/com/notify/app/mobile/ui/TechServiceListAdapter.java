@@ -38,9 +38,9 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
     @Override
     protected void update(final int position, final TechService item) {
         super.update(position, item);
-        //Double number = Double.valueOf(item.getBasePrice());
+        Double number = Double.valueOf(item.getBasePrice());
         DecimalFormat decimalFormat = new DecimalFormat("$.00");
-       // decimalFormat.format(item.getBasePrice());
+        decimalFormat.format(item.getBasePrice());
 
         setText(0, item.getTitle());
         setText(1, item.getDescription());

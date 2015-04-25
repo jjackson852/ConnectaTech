@@ -173,8 +173,8 @@ public class RequestActivity extends BootstrapActivity {
 //                e.printStackTrace();
 //            }
 
-            Format formatter = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
-            date.setText(formatter.format(requestItem.getCreatedAt().toString()));
+//            Format formatter = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+//            date.setText(formatter.format(requestItem.getCreatedAt().toString()));
 //            submitted.setText(parseResults.toString());
         }
 
@@ -183,7 +183,7 @@ public class RequestActivity extends BootstrapActivity {
 
         title.setText(requestItem.getServiceTitle() + ":");
         content.setText(requestItem.getAddlInfo());
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         date.setText(formatter.format( requestItem.getCreatedAt()));
 
 
