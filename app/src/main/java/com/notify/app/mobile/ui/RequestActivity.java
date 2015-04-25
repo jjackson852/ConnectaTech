@@ -173,9 +173,7 @@ public class RequestActivity extends BootstrapActivity {
 //                e.printStackTrace();
 //            }
 
-//            Format formatter = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
-//            date.setText(formatter.format(requestItem.getCreatedAt().toString()));
-//            submitted.setText(parseResults.toString());
+
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
