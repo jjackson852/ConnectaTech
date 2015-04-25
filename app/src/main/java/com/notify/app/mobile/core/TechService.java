@@ -13,10 +13,12 @@ public class TechService implements Serializable {
     private String description;
     private String objectId;
     private String basePrice;
+    private String state;
     private String zipCode;
     private String category;
-    private ParseUser provider;
+    private String chargeType;
     private Date createdAt;
+    private ParseUser provider;
 
     public String getTitle() {
         return title;
@@ -79,5 +81,20 @@ public class TechService implements Serializable {
     public void setCreatedAt(final Date createdAt) {this.createdAt = createdAt;
     }
 
+    public String getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(final String chargeType) {
+        this.chargeType = chargeType;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(final String state) {
+        this.state = state;
+    }
 
 }

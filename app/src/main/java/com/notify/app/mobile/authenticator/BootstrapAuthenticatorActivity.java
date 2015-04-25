@@ -527,21 +527,21 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                             finish();
 
                             if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
-                                ParsePush push = new ParsePush();
+//                                ParsePush push = new ParsePush();
                                 ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 //                               PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                               push.setChannel(ParseUser.getCurrentUser().getObjectId());
-                                push.setMessage(ParseUser.getCurrentUser().getUsername());
-                               push.sendInBackground();
+//                               push.setChannel(ParseUser.getCurrentUser().getObjectId());
+//                                push.setMessage(ParseUser.getCurrentUser().getUsername());
+//                               push.sendInBackground();
                             }
                             else {
 
-                                ParsePush push = new ParsePush();
+//                                ParsePush push = new ParsePush();
                                 ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());
 //                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
-                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
-                                push.setMessage(ParseUser.getCurrentUser().getUsername());
-                                push.sendInBackground();
+//                                push.setChannel(ParseUser.getCurrentUser().getObjectId());
+//                                push.setMessage(ParseUser.getCurrentUser().getUsername());
+//                                push.sendInBackground();
                             }
 
                             homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);

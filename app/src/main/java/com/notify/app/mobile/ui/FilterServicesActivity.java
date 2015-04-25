@@ -23,10 +23,13 @@ public class FilterServicesActivity extends BootstrapActivity {
     private String endQuery = "}";
     private String filterByZipText;
     private String filterByCategory;
+    private String filterByState;
     private String zipQuery;
     private String categoryQuery;
+    private String stateQuery;
     private boolean firstQuery = true;
     private Spinner spinner;
+    private Spinner spinnerState;
 
     private View.OnClickListener filterServicesListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -64,6 +67,19 @@ public class FilterServicesActivity extends BootstrapActivity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+//State Spinner
+        spinnerState = (Spinner) findViewById(id.filter_spin_state);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> stateAdapter = ArrayAdapter.createFromResource(this,
+                R.array.filter_states, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinnerState.setAdapter(stateAdapter);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -77,7 +93,16 @@ public class FilterServicesActivity extends BootstrapActivity {
         BootstrapService.setServConstraint(null);
 
         filterByZipText = String.valueOf(((EditText) findViewById(id.et_searchby_zip)).getText());
+        if(filterByZipText.equals("")) {
+            // Do Nothing.
+        }
+        else{
+            // Capitalize the first Character.
+            filterByZipText = Character.toUpperCase(filterByZipText.charAt(0)) + filterByZipText.substring(1);
+        }
+
         filterByCategory = spinner.getSelectedItem().toString();
+        filterByState = spinnerState.getSelectedItem().toString();
 
         // If the value passed in is empty, then do not include it in the query.
         if (filterByZipText.equals("")) {
@@ -92,13 +117,26 @@ public class FilterServicesActivity extends BootstrapActivity {
         } else {
             if(firstQuery == true){
                 categoryQuery = "\"category\":\"" + filterByCategory + "\"";
+                firstQuery = false;
             }
             else{
                 categoryQuery = ",\"category\":\"" + filterByCategory + "\"";
             }
         }
 
-        compiledQuery = compiledQuery + zipQuery + categoryQuery + endQuery;
+        if (filterByState.equals("")) {
+            stateQuery = "";
+        } else {
+            if(firstQuery == true){
+                stateQuery = "\"state\":\"" + filterByState + "\"";
+                firstQuery = false;
+            }
+            else{
+                stateQuery = ",\"state\":\"" + filterByState + "\"";
+            }
+        }
+
+        compiledQuery = compiledQuery + zipQuery + categoryQuery + stateQuery + endQuery;
 
         if (compiledQuery.equals("{}")) {
             // Do not apply the constraint because all EditText Fields were left empty.

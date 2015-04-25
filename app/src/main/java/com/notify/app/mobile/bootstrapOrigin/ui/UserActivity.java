@@ -189,7 +189,7 @@ public class UserActivity extends BootstrapActivity {
                     }
 
 
-                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(UserActivity.this, avgRating.toString(), Toast.LENGTH_LONG).show();
                     RatingBar ratingBarViewOnly = (RatingBar) findViewById(R.id.ratingBar_cust_view);
                     ratingBarViewOnly.setOnTouchListener(new View.OnTouchListener() {
                         @Override

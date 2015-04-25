@@ -61,7 +61,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="10dp"
-                android:text="@string/service_base_price"
+                android:text="Price"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/text" />
 
@@ -74,6 +74,35 @@
                 android:imeOptions="actionNext"
                 android:inputType="numberDecimal"
                 android:nextFocusDown="@+id/et_service_description"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="Charge Type"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text"
+                android:id="@+id/textView5" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_hourly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hourly"
+                    android:onClick="onRadioButtonClicked"
+                    android:layout_marginRight="40dp"/>
+                <RadioButton android:id="@+id/radio_flatfee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flat Fee"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"

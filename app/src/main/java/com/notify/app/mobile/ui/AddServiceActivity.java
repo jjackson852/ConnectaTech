@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.notify.app.mobile.R;
@@ -23,6 +24,7 @@ public class AddServiceActivity extends BootstrapActivity {
 
     private String category;
     Spinner spinner;
+    private String chargeType;
 
     private View.OnClickListener addServiceListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -51,6 +53,10 @@ public class AddServiceActivity extends BootstrapActivity {
          */
         Button submitServiceButton = (Button) findViewById(id.b_submit_new_service);
         submitServiceButton.setOnClickListener(addServiceListener);
+
+        RadioButton hourlyButton = (RadioButton) findViewById(id.radio_hourly);
+        hourlyButton.toggle();
+        chargeType = "Hourly";
 
         spinner = (Spinner) findViewById(id.spin_category);
 
@@ -87,10 +93,28 @@ public class AddServiceActivity extends BootstrapActivity {
         newTechService.put("description", String.valueOf(addServDescriptionText.getText()));
         newTechService.put("createdBy", ParseUser.getCurrentUser());
         newTechService.put("zipCode", ParseUser.getCurrentUser().getString("zipCode"));
+        newTechService.put("state", ParseUser.getCurrentUser().getString("state"));
         newTechService.put("category", spinner.getSelectedItem().toString());
+        newTechService.put("chargeType", chargeType);
 
         newTechService.saveInBackground();
 
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_hourly:
+                if (checked)
+                    chargeType = "Hourly";
+                    break;
+            case R.id.radio_flatfee:
+                if (checked)
+                    chargeType = "Flat Fee";
+                    break;
+        }
+    }
 }

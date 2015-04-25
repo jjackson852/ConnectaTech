@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class TechServiceActivity extends BootstrapActivity {
         public void onClick(View v) {
 
             itemBeingEdited = 3;
+            edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
             alert.setView(edittext);
             alert.show();
 //            ((ViewGroup)edittext.getParent()).removeView(edittext);
@@ -240,7 +242,7 @@ public class TechServiceActivity extends BootstrapActivity {
 
 
         category.setText(techServiceItem.getCategory());
-        price.setText(techServiceItem.getBasePrice());
+        price.setText("$" + techServiceItem.getBasePrice() + " " + techServiceItem.getChargeType());
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         submitted.setText(formatter.format( techServiceItem.getCreatedAt()));
 
@@ -301,7 +303,10 @@ public class TechServiceActivity extends BootstrapActivity {
                     case 2: currentTechService.put("description", editTextValue);
                             techServiceItem.setDescription(editTextValue);
                             break;
-                    case 3: currentTechService.put("basePrice", editTextValue);
+                    case 3: if(editTextValue.equals("")){
+                                editTextValue = "0.00";
+                            }
+                            currentTechService.put("basePrice", editTextValue);
                             techServiceItem.setBasePrice(editTextValue);
                             break;
                     case 4: currentTechService.put("category", spinnerTextValue);
@@ -316,6 +321,9 @@ public class TechServiceActivity extends BootstrapActivity {
                 finish();
                 if(itemBeingEdited == 4){
                     ((ViewGroup)rl.getParent()).removeView(rl);
+                }
+                if(itemBeingEdited == 3){
+                    edittext.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
                 startActivity(techServIntent);
 

@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.notify.app.mobile.R;
 import com.parse.ParseUser;
@@ -24,6 +26,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
     private String regFNameText;
     private String regLNameText;
     private String regZipCodeText;
+    private Spinner spinner;
 
     public final static boolean isEmailValid(CharSequence emailAddr) {
         if (emailAddr == null)
@@ -40,6 +43,17 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
 
         Button submitUserButton = (Button) view.findViewById(R.id.b_registerSub_prov);
         submitUserButton.setOnClickListener(this);
+        spinner = (Spinner) view.findViewById(R.id.spin_states);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.states, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         // Inflate the layout for this fragment
         return view;
@@ -76,6 +90,8 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText()).toLowerCase();
         regZipCodeText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_zipcode)).getText());
 
+        regZipCodeText = Character.toUpperCase(regZipCodeText.charAt(0)) + regZipCodeText.substring(1);
+
         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");
         dlgAlert.setCancelable(true);
@@ -97,14 +113,14 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
 
                 if (regFNameText.matches("^[a-zA-Z]{1,25}$") && regLNameText.matches("^[a-zA-Z]{1,30}$")) {
 
-                    if (regZipCodeText.matches("^[0-9]{5}$")) {
+                    if (regZipCodeText.matches(/*"^[0-9]{5}$"*/"^[a-zA-Z\\s]*$")) {
                         completeRegistration();
 
                         //Go back to login activity.
                         getActivity().finish();
                     } else {
                         // Present Dialog Box and do NOT register.
-                        dlgAlert.setMessage("A Zip Code must be 5 numerical digits");
+                        dlgAlert.setMessage("Please revise your city name.");
                         dlgAlert.create().show();
                     }
 

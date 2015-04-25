@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
+import com.notify.app.mobile.authenticator.RegisterActivity;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
@@ -37,10 +38,10 @@ public class RequestServiceActivity extends BootstrapActivity {
             push.setChannel(serviceRequested.getParseUser("createdBy").getObjectId());
             push.setMessage("You have a new Request");
             push.sendInBackground();
-            Toast.makeText(
-                    getApplicationContext(),
-                    serviceRequested.getParseUser("createdBy").getObjectId(),
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(
+//                    getApplicationContext(),
+//                    serviceRequested.getParseUser("createdBy").getObjectId(),
+//                    Toast.LENGTH_LONG).show();
 //        }
             //Request the service.
             submitRequest();
@@ -48,6 +49,7 @@ public class RequestServiceActivity extends BootstrapActivity {
 
             //Go back to login activity.
             finish();
+            Toast.makeText(RequestServiceActivity.this, "Request Sent.", Toast.LENGTH_LONG).show();
 //        if (ParseUser.getCurrentUser().getBoolean("isProvider")) {
 //            ParsePush push = new ParsePush();
 //////            ParsePush.subscribeInBackground(ParseUser.getCurrentUser().getObjectId());

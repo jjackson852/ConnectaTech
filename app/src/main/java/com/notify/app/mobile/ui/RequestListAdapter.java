@@ -39,7 +39,7 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
     protected void update(final int position, final Request item) {
         super.update(position, item);
 
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         setText(0, item.getServiceTitle());
         setText(1, item.getAddlInfo());
         setText(2, formatter.format(item.getCreatedAt()));
