@@ -58,7 +58,7 @@
         android:layout_below="@+id/select_image_button"
         android:numStars="5"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:rating="2.0"
+        android:rating="0.0"
         android:stepSize="0.50" />
 
     <TextView

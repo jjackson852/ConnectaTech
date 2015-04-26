@@ -61,7 +61,7 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[]{R.id.iv_avatar, R.id.tv_name};
+        return new int[]{R.id.iv_avatar, R.id.tv_name, R.id.tv_username2};
     }
 
     @Override
@@ -93,8 +93,8 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
         }
 
 
-        setText(1, user.getUsername().toUpperCase());
-
+        setText(1, user.getFirstName() + " " + user.getLastName());
+        setText(2, user.getUsername());
 
 
     }
