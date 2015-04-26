@@ -131,6 +131,9 @@
         <activity
             android:name=".ui.ExampleActivity"
             android:label="@string/title_example"></activity>
+        <activity
+            android:name=".ui.RatingActivity"
+            android:label="Rating"></activity>
 
         <activity
             android:name=".ui.TechServiceActivity"

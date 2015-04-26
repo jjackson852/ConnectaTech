@@ -17,7 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.notify.app.mobile.R;
+import com.notify.app.mobile.authenticator.CustomerRegisterFragment;
+import com.notify.app.mobile.authenticator.ProviderRegisterFragment;
+import com.notify.app.mobile.bootstrapOrigin.authenticator.ActionBarAccountAuthenticatorActivity;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
+import com.notify.app.mobile.ui.RatingListFragment;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
@@ -128,12 +133,14 @@ public class UserActivity extends BootstrapActivity {
                 //What ever you want to do with the value
                 float rating = ((RatingBar)rl.findViewById(R.id.ratingBar_alert_view)).getRating();
                 String ratingDesc = String.valueOf(((EditText) rl.findViewById(R.id.ratingBar_alert_editText)).getText());
+                String title = String.valueOf(((EditText) rl.findViewById(R.id.ratingBar_alert_editText_title)).getText());
                 newRating = new ParseObject("Rating");
                 newRating.put("provider", parseProvider);
                 newRating.put("submittedBy", ParseUser.getCurrentUser());
                 newRating.put("rating", rating);
                 newRating.put("providerID", user.getObjectId());
                 newRating.put("description",  ratingDesc);
+                newRating.put("title",  title);
                 newRating.saveInBackground();
 
                 userIntent.putExtra(USER, user);
@@ -234,6 +241,13 @@ public class UserActivity extends BootstrapActivity {
         currentJoinDate.setText(formatter.format( user.getCreateAt()));
 
 
+        RatingListFragment ratingFragment = new RatingListFragment();
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.rating_fragment_container, ratingFragment).commit();
+
+        BootstrapService.setRatingConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + user.getObjectId() + "\"}}");
 
     }
 

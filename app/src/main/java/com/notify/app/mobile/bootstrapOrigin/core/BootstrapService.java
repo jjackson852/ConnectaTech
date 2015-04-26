@@ -3,6 +3,8 @@ package com.notify.app.mobile.bootstrapOrigin.core;
 
 import com.notify.app.mobile.core.Example;
 import com.notify.app.mobile.core.ExampleService;
+import com.notify.app.mobile.core.Rating;
+import com.notify.app.mobile.core.RatingService;
 import com.notify.app.mobile.core.Request;
 import com.notify.app.mobile.core.RequestService;
 import com.notify.app.mobile.core.TechServService;
@@ -29,6 +31,10 @@ public class BootstrapService {
     //    private String curUserServConstraint = "{\"createdBy\":{__type:\"Pointer\",className:\"_User\",objectId:\"bCIxz54gFI\"}}";
     private static String curUserReqConstraint;
     private static String providersConstraint;
+
+    private static String ratingConstraint;
+    private static String ratingOrderConstraint;
+
     private RestAdapter restAdapter;
 
     /**
@@ -67,6 +73,18 @@ public class BootstrapService {
 
     }
 
+    public static void setRatingConstraint(String constraint) {
+
+        ratingConstraint = constraint;
+
+    }
+
+    public static void setRatingOrderConstraint(String constraint) {
+
+        ratingOrderConstraint = constraint;
+
+    }
+
     private UserService getUserService() {
         return getRestAdapter().create(UserService.class);
     }
@@ -81,6 +99,10 @@ public class BootstrapService {
 
     private ExampleService getExampleService() {
         return getRestAdapter().create(ExampleService.class);
+    }
+
+    private RatingService getRatingService() {
+        return getRestAdapter().create(RatingService.class);
     }
 
     private RequestService getRequestService() {
@@ -137,6 +159,11 @@ public class BootstrapService {
      */
     public List<Example> getExample() {
         return getExampleService().getExample().getResults();
+    }
+
+
+    public List<Rating> getRating() {
+        return getRatingService().getRating(ratingConstraint, ratingOrderConstraint).getResults();
     }
 
     /**

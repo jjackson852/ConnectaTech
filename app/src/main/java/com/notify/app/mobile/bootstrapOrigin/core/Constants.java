@@ -79,10 +79,16 @@ public final class Constants {
         public static final String URL_TECHSERVICE_FRAG = "/1/classes/TechService";
         public static final String URL_TECHSERVICE = URL_BASE + URL_TECHSERVICE_FRAG;
         /**
-         * List TechService URL
+         * List Request URL
          */
         public static final String URL_REQUEST_FRAG = "/1/classes/Request";
         public static final String URL_REQUEST = URL_BASE + URL_REQUEST_FRAG;
+
+        /**
+         * List Rating URL
+         */
+        public static final String URL_RATING_FRAG = "/1/classes/Rating";
+        public static final String URL_RATING = URL_BASE + URL_RATING_FRAG;
         /**
          * List Checkin's URL
          */
@@ -115,6 +121,7 @@ public final class Constants {
         public static final String USER = "user";
         public static final String EXAMPLE_ITEM = "news_item";
         public static final String TECHSERVICE_ITEM = "techservice_item";
+        public static final String RATING_ITEM = "rating_item";
         public static final String REQUEST_ITEM = "request_item";
         public static final String RATING = "image";
 
