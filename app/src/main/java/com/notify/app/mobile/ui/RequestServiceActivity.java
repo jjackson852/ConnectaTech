@@ -36,7 +36,7 @@ public class RequestServiceActivity extends BootstrapActivity {
 ////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
 ////            push.setChannel(String.valueOf(serviceRequested.getParseUser("createdBy")));
             push.setChannel(serviceRequested.getParseUser("createdBy").getObjectId());
-            push.setMessage("You have a new Request");
+            push.setMessage("You have a new Request from "+ ParseUser.getCurrentUser().getUsername());
             push.sendInBackground();
 //            Toast.makeText(
 //                    getApplicationContext(),

@@ -281,17 +281,17 @@ public class MainActivity extends BootstrapFragmentActivity {
                 // Home
                 // do nothing as we're already on the home screen.
                 break;
+//            case 1:
+//                // Timer
+//                startActivity(new Intent(this, BootstrapTimerActivity.class));
+//                //navigateToTimer();
+//                break;
+//            case 2:
+//                // Test
+//                // navigateToTest();
+//                startActivity(new Intent(this, TestActivity.class));
+//                break;
             case 1:
-                // Timer
-                startActivity(new Intent(this, BootstrapTimerActivity.class));
-                //navigateToTimer();
-                break;
-            case 2:
-                // Test
-                // navigateToTest();
-                startActivity(new Intent(this, TestActivity.class));
-                break;
-            case 3:
 
 
                 Uri uri = Uri.parse("http://CONNECTATECH.ORG");
