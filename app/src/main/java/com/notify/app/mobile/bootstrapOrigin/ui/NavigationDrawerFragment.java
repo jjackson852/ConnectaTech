@@ -18,11 +18,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
-import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.util.UIUtils;
 import com.parse.ParseUser;
 import com.squareup.otto.Bus;
@@ -50,9 +48,6 @@ public class NavigationDrawerFragment extends Fragment {
     protected SharedPreferences prefs;
     @Inject
     protected Bus bus;
-
-    @Inject
-    protected BootstrapServiceProvider serviceProvider;
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
@@ -93,29 +88,19 @@ public class NavigationDrawerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        isProvider = currentUser.getBoolean("isProvider");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        isProvider = currentUser.getBoolean("isProvider");
-        //ParseUser.unpinAllInBackground();
-        // } catch (com.parse.ParseException e) {
-        //      e.printStackTrace();
-        //}
-
-        //String isProviderstr = BootstrapAuthenticatorActivity.user.fetch().;
-
-        Bundle carouselArgs = new Bundle();
-
-        carouselArgs.putBoolean("isProvider", isProvider);
-
         drawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
+
             }
         });
 
@@ -132,10 +117,11 @@ public class NavigationDrawerFragment extends Fragment {
                     }));
             drawerListView.setItemChecked(currentSelectedPosition, true);
         }
-        else {
+        else
+        {
             drawerListView.setAdapter(new ArrayAdapter<String>(
                     getActionBar().getThemedContext(),
-                    android.R.layout.simple_list_item_2,
+                    android.R.layout.simple_list_item_1,
                     android.R.id.text1,
                     new String[]{
                             getString(R.string.title_home),
@@ -144,7 +130,7 @@ public class NavigationDrawerFragment extends Fragment {
                     }));
             drawerListView.setItemChecked(currentSelectedPosition, true);
         }
-            return drawerListView;
+        return drawerListView;
     }
 
     public boolean isDrawerOpen() {
