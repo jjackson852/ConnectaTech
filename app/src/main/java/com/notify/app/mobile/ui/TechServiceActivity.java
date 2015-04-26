@@ -21,6 +21,7 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.core.UserService;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
+import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
 import com.notify.app.mobile.core.TechService;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -28,6 +29,7 @@ import com.parse.ParseUser;
 
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -59,6 +61,7 @@ public class TechServiceActivity extends BootstrapActivity {
     private RelativeLayout rl;
 
     private ParseObject currentTechService;
+    private ParseUser parseProvider;
 
     private View.OnClickListener editServTitleListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -125,6 +128,15 @@ public class TechServiceActivity extends BootstrapActivity {
         }
     };
 
+    private View.OnClickListener viewProviderListener = new View.OnClickListener() {
+        public void onClick(View v) {
+
+            //Request the service.
+            navigateToProviderProfile();
+
+        }
+    };
+
     private View.OnClickListener removeServListener = new View.OnClickListener() {
         public void onClick(View v) {
             AlertDialog.Builder removeAlert  = new AlertDialog.Builder(TechServiceActivity.this);
@@ -159,6 +171,22 @@ public class TechServiceActivity extends BootstrapActivity {
         isProvider = ParseUser.getCurrentUser().getBoolean("isProvider");
 
 
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
+        }
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("TechService");
+        query.whereEqualTo("objectId", techServiceItem.getObjectId());
+
+        try {
+            List<ParseObject> serviceResults = query.find();
+            currentTechService = serviceResults.get(0).fetchIfNeeded();
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+        }
+
+
         if (isProvider == false) {
             setContentView(R.layout.techservice_cust);
 
@@ -168,9 +196,19 @@ public class TechServiceActivity extends BootstrapActivity {
             Button submitRequestButton = (Button) findViewById(R.id.b_request_service);
             submitRequestButton.setOnClickListener(requestServListener);
 
-            if (getIntent() != null && getIntent().getExtras() != null) {
-                techServiceItem = (TechService) getIntent().getExtras().getSerializable(TECHSERVICE_ITEM);
+            TextView viewProviderView = (TextView) findViewById(R.id.tv_navtoprovider);
+            viewProviderView.setOnClickListener(viewProviderListener);
+
+            TextView viewProviderName = (TextView) findViewById(R.id.tv_providername);
+
+            try{
+
+                parseProvider = currentTechService.getParseUser("createdBy").fetchIfNeeded();
+            }catch(com.parse.ParseException ex){
+                ex.printStackTrace();
             }
+            viewProviderName.setText(parseProvider.getUsername());
+
         } else {
             setContentView(R.layout.techservice);
 
@@ -258,18 +296,23 @@ public class TechServiceActivity extends BootstrapActivity {
 
     }
 
+    protected void navigateToProviderProfile() {
+
+        User provider = new User();
+
+        provider.setObjectId(parseProvider.getObjectId());
+        provider.setBio(parseProvider.getString("bio"));
+        provider.setCreatedAt(parseProvider.getCreatedAt());
+        provider.setFirstName(parseProvider.getString("firstName"));
+        provider.setLastName(parseProvider.getString("lastName"));
+        provider.setUsername(parseProvider.getUsername());
+        final Intent i = new Intent(this, UserActivity.class);
+        i.putExtra(USER, provider);
+        startActivity(i);
+
+    }
+
     protected void generateAlertDialogs(){
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("TechService");
-        query.whereEqualTo("objectId", techServiceItem.getObjectId());
-
-        try {
-            List<ParseObject> serviceResults = query.find();
-            currentTechService = serviceResults.get(0);
-        } catch (com.parse.ParseException e) {
-            e.printStackTrace();
-        }
-
 
         alert.setTitle("Edit");
 //        if(itemBeingEdited == 4){

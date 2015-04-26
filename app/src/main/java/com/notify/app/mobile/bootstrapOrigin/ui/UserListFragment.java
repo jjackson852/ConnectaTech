@@ -68,17 +68,23 @@ public class UserListFragment extends ItemListFragment<User> {
             public List<User> loadData() throws Exception {
 
                 try {
-                    List<User> latest = null;
 
                     if (getActivity() != null) {
-                        latest = serviceProvider.getService(getActivity()).getUsers();
-                    }
-
-                    if (latest != null) {
-                        return latest;
+                        return serviceProvider.getService(getActivity()).getUsers();
                     } else {
                         return Collections.emptyList();
                     }
+//                    List<User> latest = null;
+//
+//                    if (getActivity() != null) {
+//                        latest = serviceProvider.getService(getActivity()).getUsers();
+//                    }
+//
+//                    if (latest != null) {
+//                        return latest;
+//                    } else {
+//                        return Collections.emptyList();
+//                    }
                 } catch (final OperationCanceledException e) {
                     final Activity activity = getActivity();
                     if (activity != null) {

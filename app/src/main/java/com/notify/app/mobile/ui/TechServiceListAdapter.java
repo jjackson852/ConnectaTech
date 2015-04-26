@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.TechService;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
     @Override
     protected int[] getChildViewIds() {
         return new int[]{R.id.tv_title, R.id.tv_summary,
-                R.id.tv_zip, R.id.tv_category, R.id.tv_price};
+                R.id.tv_zip, R.id.tv_category, R.id.tv_price, R.id.tv_prov_username};
     }
 
     @Override
@@ -42,6 +43,10 @@ public class TechServiceListAdapter extends AlternatingColorListAdapter<TechServ
         setText(2, item.getZipCode() + ", " + item.getState());
         setText(3, item.getCategory());
         setText(4, "$" + item.getBasePrice() + " " + item.getChargeType());
+        if(!ParseUser.getCurrentUser().getBoolean("isProvider")){
+            setText(5, "Provider: " + item.getProviderUsername());
+        }
+
         //setNumber(R.id.tv_date, item.getCreatedAt());
     }
 }

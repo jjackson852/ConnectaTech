@@ -228,7 +228,7 @@ public class UserActivity extends BootstrapActivity {
                     .into(avatar);
         }
 
-        name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        name.setText(user.getFirstName() + " " + user.getLastName() + " (" + user.getUsername() + ")");
         TextView currentJoinDate = ((TextView) findViewById(R.id.currentJoinDate));
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         currentJoinDate.setText(formatter.format( user.getCreateAt()));

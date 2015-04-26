@@ -18,7 +18,7 @@ public class TechService implements Serializable {
     private String category;
     private String chargeType;
     private Date createdAt;
-    private ParseUser provider;
+    private String providerUsername;
 
     public String getTitle() {
         return title;
@@ -60,12 +60,12 @@ public class TechService implements Serializable {
         this.zipCode = zipCode;
     }
 
-    public ParseUser getCreatedBy() {
-        return provider;
+    public String getProviderUsername() {
+        return providerUsername;
     }
 
-    public void setCreatedBy(final ParseUser provider) {
-        this.provider = provider;
+    public void setProviderUsername(final String providerUsername) {
+        this.providerUsername = providerUsername;
     }
 
     public String getCategory() {

@@ -96,6 +96,7 @@ public class AddServiceActivity extends BootstrapActivity {
         newTechService.put("state", ParseUser.getCurrentUser().getString("state"));
         newTechService.put("category", spinner.getSelectedItem().toString());
         newTechService.put("chargeType", chargeType);
+        newTechService.put("providerUsername", ParseUser.getCurrentUser().getUsername());
 
         newTechService.saveInBackground();
 

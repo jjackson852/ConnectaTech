@@ -109,6 +109,7 @@ public class RequestServiceActivity extends BootstrapActivity {
         newRequest.put("provider", serviceRequested.getParseUser("createdBy"));
         newRequest.put("custPhoneNumber", ParseUser.getCurrentUser().getString("phoneNumber"));
         newRequest.put("custEmail", ParseUser.getCurrentUser().getEmail());
+        newRequest.put("custUsername", ParseUser.getCurrentUser().getUsername());
         //newRequest.put("category", serviceRequested.getCategory()); For Later Use
 
         newRequest.saveInBackground();

@@ -12,6 +12,7 @@ public class Request implements Serializable {
     private String serviceTitle;
     private String addlInfo;
     private String objectId;
+    private String custUsername;
     private String custPhoneNumber;
     private String custEmail;
     private Date createdAt;
@@ -55,6 +56,14 @@ public class Request implements Serializable {
 
     public void setCustEmail(final String custEmail) {
         this.custEmail = custEmail;
+    }
+
+    public String getCustUsername() {
+        return custUsername;
+    }
+
+    public void setCustUsername(final String custUsername) {
+        this.custUsername = custUsername;
     }
 
     public Date getCreatedAt() {
