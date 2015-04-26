@@ -43,6 +43,6 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
         setText(0, item.getServiceTitle());
         setText(1, item.getAddlInfo());
         setText(2, formatter.format(item.getCreatedAt()).toString());
-//        setText(3, item.getCustEmail());
+   //     setText(3, item.getCustEmail());
     }
 }

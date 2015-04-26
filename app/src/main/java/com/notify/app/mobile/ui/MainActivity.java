@@ -244,7 +244,13 @@ public class MainActivity extends BootstrapFragmentActivity {
                 //navigateToTest();
                 return true;
             case R.id.rating:
-                startActivity(new Intent(this, OldRatingActivity.class));
+
+                Uri uri = Uri.parse("http://CONNECTATECH.ORG");
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "text/html");
+                startActivity(intent);
+
+//                startActivity(new Intent(this, OldRatingActivity.class));
                 //navigateToTest();
                 return true;
             default:
@@ -286,9 +292,15 @@ public class MainActivity extends BootstrapFragmentActivity {
                 startActivity(new Intent(this, TestActivity.class));
                 break;
             case 3:
+
+
+                Uri uri = Uri.parse("http://CONNECTATECH.ORG");
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "text/html");
+                startActivity(intent);
                 // Test
                 // navigateToTest();
-                startActivity(new Intent(this, OldRatingActivity.class));
+             //   startActivity(new Intent(this, OldRatingActivity.class));
                 break;
         }
     }
