@@ -41,8 +41,8 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
 
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         setText(0, item.getServiceTitle());
-        setText(1, item.getAddlInfo());
-        setText(2, formatter.format(item.getCreatedAt()).toString());
+        setText(2, item.getAddlInfo());
+        setText(1, formatter.format(item.getCreatedAt()).toString());
    //     setText(3, item.getCustEmail());
     }
 }
