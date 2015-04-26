@@ -37,6 +37,8 @@ import com.notify.app.mobile.ui.MainActivity;
 import com.notify.app.mobile.ui.ProviderProfileFragment;
 import com.notify.app.mobile.ui.OldRatingActivity;
 import com.notify.app.mobile.ui.RateUserActivity;
+import com.notify.app.mobile.ui.RatingActivity;
+import com.notify.app.mobile.ui.RatingListFragment;
 import com.notify.app.mobile.ui.RequestActivity;
 import com.notify.app.mobile.ui.RequestListFragment;
 import com.notify.app.mobile.ui.RequestServiceActivity;
@@ -86,6 +88,8 @@ import retrofit.converter.GsonConverter;
                 AddServiceActivity.class,
                 RequestActivity.class,
                 RequestListFragment.class,
+                RatingActivity.class,
+                RatingListFragment.class,
                 FilterServicesActivity.class,
                 RateUserActivity.class,
                 RequestServiceActivity.class
