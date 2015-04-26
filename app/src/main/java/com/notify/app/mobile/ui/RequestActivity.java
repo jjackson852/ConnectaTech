@@ -44,7 +44,7 @@ public class RequestActivity extends BootstrapActivity {
     private Request requestItem;
     private Boolean isProvider;
     ParseObject currentRequest;
-//    ParseObject parseResults;
+    //    ParseObject parseResults;
     AlertDialog.Builder alert;
     Intent requestIntent;
     int itemBeingEdited;
@@ -61,7 +61,7 @@ public class RequestActivity extends BootstrapActivity {
 
     private View.OnClickListener removeReqListener = new View.OnClickListener() {
         public void onClick(View v) {
-            AlertDialog.Builder removeAlert  = new AlertDialog.Builder(RequestActivity.this);
+            AlertDialog.Builder removeAlert = new AlertDialog.Builder(RequestActivity.this);
 
             removeAlert.setTitle("Really Delete Request?");
 
@@ -80,7 +80,7 @@ public class RequestActivity extends BootstrapActivity {
                             RequestActivity.this.finish();
 
                         }
-            });
+                    });
 
             removeAlert.show();
         }
@@ -103,7 +103,7 @@ public class RequestActivity extends BootstrapActivity {
                 requestItem = (Request) getIntent().getExtras().getSerializable(REQUEST_ITEM);
             }
             final String titleString = requestItem.getServiceTitle();
-
+            submitted.setText(requestItem.getCustEmail());
             setTitle(titleString);
 
             /**
@@ -121,8 +121,7 @@ public class RequestActivity extends BootstrapActivity {
             generateAlertDialogs();
 
 
-        }
-        else {
+        } else {
             setContentView(R.layout.request);
 
             if (getIntent() != null && getIntent().getExtras() != null) {
@@ -162,7 +161,7 @@ public class RequestActivity extends BootstrapActivity {
                     startActivity(Intent.createChooser(emailIntent, "Send via..."));
                 }
             });
-
+            submitted.setText(requestItem.getCustEmail());
 //            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
 //            query.whereEqualTo("submittedBy", requestItem.getObjectId());
 
@@ -179,16 +178,15 @@ public class RequestActivity extends BootstrapActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        title.setText(requestItem.getServiceTitle() + ":");
+        title.setText(requestItem.getServiceTitle());
         content.setText(requestItem.getAddlInfo());
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
-        date.setText(formatter.format( requestItem.getCreatedAt()));
-        submitted.setText(requestItem.getCustEmail());
+        date.setText(formatter.format(requestItem.getCreatedAt()));
 
 
     }
 
-    protected void generateAlertDialogs(){
+    protected void generateAlertDialogs() {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
         query.whereEqualTo("objectId", requestItem.getObjectId());
@@ -215,7 +213,8 @@ public class RequestActivity extends BootstrapActivity {
 
                 switch (itemBeingEdited) {
 
-                    case 1: currentRequest.put("addlInfo", editTextValue);
+                    case 1:
+                        currentRequest.put("addlInfo", editTextValue);
                         requestItem.setAddlInfo(editTextValue);
                         break;
 

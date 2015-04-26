@@ -32,7 +32,7 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
     @Override
     protected int[] getChildViewIds() {
         return new int[]{R.id.tv_title, R.id.tv_summary,
-                R.id.tv_date, R.id.tv_submitted_by};
+                R.id.tv_date};
     }
 
     @Override
@@ -43,6 +43,6 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
         setText(0, item.getServiceTitle());
         setText(1, item.getAddlInfo());
         setText(2, formatter.format(item.getCreatedAt()).toString());
-        setText(3, item.getCustEmail());
+//        setText(3, item.getCustEmail());
     }
 }
