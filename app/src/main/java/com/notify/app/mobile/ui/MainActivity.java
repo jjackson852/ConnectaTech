@@ -239,10 +239,10 @@ public class MainActivity extends BootstrapFragmentActivity {
 //                //navigateToTimer();
 //                startActivity(new Intent(this, BootstrapTimerActivity.class));
 //                return true;
-            case R.id.test:
-                startActivity(new Intent(this, TestActivity.class));
-                //navigateToTest();
-                return true;
+//            case R.id.test:
+//                startActivity(new Intent(this, TestActivity.class));
+//                //navigateToTest();
+//                return true;
             case R.id.rating:
 
                 Uri uri = Uri.parse("http://CONNECTATECH.ORG");
