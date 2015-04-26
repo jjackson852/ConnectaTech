@@ -103,7 +103,7 @@ public class RequestActivity extends BootstrapActivity {
                 requestItem = (Request) getIntent().getExtras().getSerializable(REQUEST_ITEM);
             }
             final String titleString = requestItem.getServiceTitle();
-            submitted.setText(requestItem.getCustEmail());
+     //       submitted.setText(requestItem.getCustEmail());
             setTitle(titleString);
 
             /**
