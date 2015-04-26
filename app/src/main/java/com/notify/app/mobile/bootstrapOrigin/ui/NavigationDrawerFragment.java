@@ -22,7 +22,6 @@ import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.events.NavItemSelectedEvent;
 import com.notify.app.mobile.util.UIUtils;
-import com.parse.ParseUser;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -58,7 +57,6 @@ public class NavigationDrawerFragment extends Fragment {
     private int currentSelectedPosition = 0;
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
-    private boolean isProvider = true;
 
 
     public NavigationDrawerFragment() {
@@ -88,8 +86,6 @@ public class NavigationDrawerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        isProvider = currentUser.getBoolean("isProvider");
     }
 
     @Override
@@ -100,36 +96,19 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
-
             }
         });
-
-        if (!isProvider) {
-            drawerListView.setAdapter(new ArrayAdapter<String>(
-                    getActionBar().getThemedContext(),
-                    android.R.layout.simple_list_item_1,
-                    android.R.id.text1,
-                    new String[]{
-                            getString(R.string.title_home),
-                            getString(R.string.title_timer),
-                            getString(R.string.title_activity_test_),
-                            getString(R.string.rating_title)
-                    }));
-            drawerListView.setItemChecked(currentSelectedPosition, true);
-        }
-        else
-        {
-            drawerListView.setAdapter(new ArrayAdapter<String>(
-                    getActionBar().getThemedContext(),
-                    android.R.layout.simple_list_item_1,
-                    android.R.id.text1,
-                    new String[]{
-                            getString(R.string.title_home),
-                            getString(R.string.title_timer)
-
-                    }));
-            drawerListView.setItemChecked(currentSelectedPosition, true);
-        }
+        drawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                new String[]{
+                        getString(R.string.title_home),
+//                        getString(R.string.title_timer),
+//                        getString(R.string.title_activity_test_),
+                        getString(R.string.rating_title)
+                }));
+        drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;
     }
 
