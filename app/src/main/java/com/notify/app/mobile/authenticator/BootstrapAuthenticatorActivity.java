@@ -329,7 +329,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                 if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
                     if (cause != null) {
-                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+//                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
             }
@@ -383,7 +383,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                 if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
                     if (cause != null) {
-                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+//                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
             }
@@ -437,7 +437,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
                 if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
                     if (cause != null) {
-                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+//                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
             }

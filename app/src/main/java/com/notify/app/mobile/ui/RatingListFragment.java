@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -48,6 +50,11 @@ public class RatingListFragment extends ItemListFragment<Rating> {
         else{
             setEmptyText("This provider has no reviews.");
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(final Menu optionsMenu, final MenuInflater inflater) {
+        // Don't Inflate
     }
 
     @Override

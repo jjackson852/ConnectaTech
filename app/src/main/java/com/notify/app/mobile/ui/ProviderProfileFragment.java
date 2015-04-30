@@ -33,6 +33,7 @@ import com.notify.app.mobile.BootstrapServiceProvider;
 import com.notify.app.mobile.Injector;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.authenticator.LogoutService;
+import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
 import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.ThrowableLoader;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserActivity;
@@ -105,6 +106,13 @@ public class ProviderProfileFragment extends ItemListFragment2 {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Injector.inject(this);
+
+        BootstrapService.setRatingConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
+        RatingListFragment ratingFragment = new RatingListFragment();
+
+        // Add the fragment to the 'fragment_container' FrameLayout
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.rating_fragment_container_prov, ratingFragment).commit();
     }
 
     @Override
@@ -429,6 +437,7 @@ public class ProviderProfileFragment extends ItemListFragment2 {
 //
 //        });
 //--------------------------------------------------------------------------------------------------
+
 
 
         // Inflate the layout for this fragment

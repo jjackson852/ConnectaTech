@@ -240,14 +240,14 @@ public class UserActivity extends BootstrapActivity {
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         currentJoinDate.setText(formatter.format( user.getCreateAt()));
 
-
+        BootstrapService.setRatingConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + user.getObjectId() + "\"}}");
         RatingListFragment ratingFragment = new RatingListFragment();
 
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.rating_fragment_container, ratingFragment).commit();
 
-        BootstrapService.setRatingConstraint("{\"provider\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + user.getObjectId() + "\"}}");
+
 
     }
 
