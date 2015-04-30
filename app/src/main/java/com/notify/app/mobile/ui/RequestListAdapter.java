@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.AlternatingColorListAdapter;
 import com.notify.app.mobile.core.Request;
+import com.parse.ParseUser;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,8 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
         setText(0, item.getServiceTitle());
         setText(2, item.getAddlInfo());
         setText(1, formatter.format(item.getCreatedAt()).toString());
-        setText(3, item.getCustEmail());
+        if(!ParseUser.getCurrentUser().getBoolean("isProvider") == false) {
+            setText(3, "Provider: " + item.getCustEmail());
+        }
     }
 }
