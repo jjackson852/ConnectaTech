@@ -13,33 +13,33 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/text" />
+                android:textColor="@color/text"
+                android:layout_weight="3"/>
 
             <TextView
-                android:id="@+id/tv_summary"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:ellipsize="end"
-                android:gravity="right"
                 android:singleLine="true"
+                android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_light" />
+                android:textColor="@color/text"
+                android:gravity="right"
+                android:layout_weight="1"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -47,30 +47,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <TextView
-                android:id="@+id/tv_date"
+                android:id="@+id/tv_summary"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
                 android:singleLine="true"
+                android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/text_light"
-                />
+                android:layout_weight="3"/>
 
             <TextView
                 android:id="@+id/tv_submitted_by"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ellipsize="end"
-                android:gravity="right"
                 android:singleLine="true"
+                android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/text_light" />
+                android:textColor="@color/text_light"
+                android:gravity="right"
+                android:layout_weight="1"/>
 
         </LinearLayout>
+
 
 
     </LinearLayout>
@@ -86,16 +85,104 @@
 
 </LinearLayout>
 
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<?xml version="1.0" encoding="utf-8"?>-->
 
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:orientation="horizontal"--><!--android:paddingBottom="5dp"--><!--android:paddingLeft="10dp"--><!--android:paddingRight="10dp"--><!--android:paddingTop="5dp" >-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingBottom="5dp"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:paddingRight="10dp"-->
+    <!--android:paddingTop="5dp">-->
 
-    <!--<LinearLayout--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_weight="1"--><!--android:orientation="vertical" >-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="vertical">-->
 
-    <!--<TextView--><!--android:id="@+id/tv_title"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:singleLine="true"--><!--android:textAppearance="?android:attr/textAppearanceMedium"--><!--android:textColor="@color/text" />-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
 
-    <!--<TextView--><!--android:id="@+id/tv_summary"--><!--android:layout_width="wrap_content"--><!--android:layout_height="match_parent"--><!--android:singleLine="true"--><!--android:ellipsize="end"--><!--android:textAppearance="?android:attr/textAppearanceSmall"--><!--android:textColor="@color/text_light"--><!--android:layout_weight="1" />--><!--</LinearLayout>-->
 
-    <!--<TextView--><!--android:id="@+id/tv_date"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:singleLine="true"--><!--android:ellipsize="end"--><!--android:textAppearance="?android:attr/textAppearanceSmall"--><!--android:textColor="@color/text_light"--><!--android:gravity="right"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_title"-->
+                <!--android:layout_width="180dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:singleLine="true"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:textColor="@color/text" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_summary"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="3"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="right"-->
+                <!--android:singleLine="true"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:textColor="@color/text_light" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_date"-->
+                <!--android:layout_width="160dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:ellipsize="end"-->
+                <!--android:singleLine="true"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:textColor="@color/text_light"-->
+                <!--/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_submitted_by"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="3"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="right"-->
+                <!--android:singleLine="true"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:textColor="@color/text_light" />-->
+
+        <!--</LinearLayout>-->
+
 
     <!--</LinearLayout>-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/tv_date"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:gravity="right"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:paddingLeft="15dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceMedium"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:textColor="@color/table_text_selector" />&ndash;&gt;-->
+
+<!--</LinearLayout>-->
+
+    <!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;&lt;!&ndash;android:paddingBottom="5dp"&ndash;&gt;&lt;!&ndash;android:paddingLeft="10dp"&ndash;&gt;&lt;!&ndash;android:paddingRight="10dp"&ndash;&gt;&lt;!&ndash;android:paddingTop="5dp" >&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_weight="1"&ndash;&gt;&lt;!&ndash;android:orientation="vertical" >&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;&lt;!&ndash;android:id="@+id/tv_title"&ndash;&gt;&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;&lt;!&ndash;android:singleLine="true"&ndash;&gt;&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceMedium"&ndash;&gt;&lt;!&ndash;android:textColor="@color/text" />&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;&lt;!&ndash;android:id="@+id/tv_summary"&ndash;&gt;&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;&lt;!&ndash;android:singleLine="true"&ndash;&gt;&lt;!&ndash;android:ellipsize="end"&ndash;&gt;&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceSmall"&ndash;&gt;&lt;!&ndash;android:textColor="@color/text_light"&ndash;&gt;&lt;!&ndash;android:layout_weight="1" />&ndash;&gt;&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;&lt;!&ndash;android:id="@+id/tv_date"&ndash;&gt;&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;&lt;!&ndash;android:singleLine="true"&ndash;&gt;&lt;!&ndash;android:ellipsize="end"&ndash;&gt;&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceSmall"&ndash;&gt;&lt;!&ndash;android:textColor="@color/text_light"&ndash;&gt;&lt;!&ndash;android:gravity="right"/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->

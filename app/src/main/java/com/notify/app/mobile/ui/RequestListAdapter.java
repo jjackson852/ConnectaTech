@@ -31,8 +31,8 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[]{R.id.tv_title, R.id.tv_summary,
-                R.id.tv_date, R.id.tv_submitted_by};
+        return new int[]{R.id.tv_title, R.id.tv_date,
+                R.id.tv_summary, R.id.tv_submitted_by};
     }
 
     @Override
