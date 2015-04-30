@@ -24,7 +24,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
@@ -50,18 +49,21 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text" />
-
+</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
@@ -87,18 +89,22 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pricing:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text" />
-
+</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+
             android:orientation="horizontal">
 
             <TextView
@@ -124,18 +130,22 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Category:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
@@ -161,14 +171,18 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date Posted:"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/text" />
-
+</LinearLayout>
 
         <TextView
             android:id="@+id/tv_submitted"

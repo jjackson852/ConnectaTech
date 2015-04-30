@@ -13,24 +13,49 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text" />
+
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/table_text_selector"
-                />
+            android:textColor="@color/table_text_light"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/text" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="15dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/table_text_light_selector"
             />
+</LinearLayout>
 
-    </LinearLayout>
 
 
 </ScrollView>

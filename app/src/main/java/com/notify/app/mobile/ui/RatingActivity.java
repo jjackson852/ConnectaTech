@@ -18,6 +18,8 @@ public class RatingActivity extends BootstrapActivity {
     protected TextView title;
     @InjectView(R.id.tv_content)
     protected TextView content;
+    @InjectView(R.id.tv_date)
+    protected TextView date;
     private Rating ratingItem;
 
     @Override
@@ -36,6 +38,7 @@ public class RatingActivity extends BootstrapActivity {
         setTitle(ratingItem.getTitle());
 
         title.setText(ratingItem.getTitle());
+       // date.setText(ratingItem.getCreatedAt().toString());
         content.setText(ratingItem.getDescription());
 
     }

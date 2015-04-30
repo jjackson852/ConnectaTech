@@ -1,6 +1,7 @@
 package com.notify.app.mobile.core;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Rating implements Serializable {
 //
@@ -12,6 +13,7 @@ public class Rating implements Serializable {
     private String providerInfo;
     private String rating;
     private String description;
+    private Date createdAt;
 
     public String getTitle() {
         return title;
@@ -43,5 +45,10 @@ public class Rating implements Serializable {
 
     public void setRating(final String rating) {
         this.rating = rating;
+    }
+
+    public Date getCreatedAt() {return createdAt;}
+
+    public void setCreatedAt(final Date createdAt) {this.createdAt = createdAt;
     }
 }
