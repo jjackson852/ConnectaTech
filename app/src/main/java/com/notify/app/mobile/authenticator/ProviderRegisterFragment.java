@@ -155,6 +155,7 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         user.put("firstName", regFNameText);
         user.put("lastName", regLNameText);
         user.put("zipCode", regZipCodeText);
+        user.put("state", spinner.getSelectedItem().toString());
         user.put("isProvider", true);
 
 
