@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class RequestActivity extends BootstrapActivity {
     AlertDialog.Builder alert;
     Intent requestIntent;
     int itemBeingEdited;
+    EditText edittext;
 
 
     private View.OnClickListener editReqAddlInfoListener = new View.OnClickListener() {
@@ -200,7 +202,7 @@ public class RequestActivity extends BootstrapActivity {
 
         alert = new AlertDialog.Builder(this);
 
-        final EditText edittext = new EditText(this);
+        edittext = new EditText(this);
         alert.setTitle("Edit Specifics");
 
         alert.setView(edittext);
@@ -226,6 +228,7 @@ public class RequestActivity extends BootstrapActivity {
 
                 finish();
                 startActivity(requestIntent);
+                ((ViewGroup)edittext.getParent()).removeView(edittext);
 
             }
         });
@@ -233,6 +236,7 @@ public class RequestActivity extends BootstrapActivity {
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
+                ((ViewGroup)edittext.getParent()).removeView(edittext);
 
             }
         });

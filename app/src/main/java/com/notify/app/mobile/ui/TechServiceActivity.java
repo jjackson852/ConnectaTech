@@ -112,6 +112,7 @@ public class TechServiceActivity extends BootstrapActivity {
             alert.show();
 
 //            ((ViewGroup)spinner.getParent()).removeView(spinner);
+//            ((ViewGroup)rl.getParent()).removeView(rl);
 
         }
     };
@@ -376,6 +377,12 @@ public class TechServiceActivity extends BootstrapActivity {
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // what ever you want to do with No option.
+                if(itemBeingEdited == 4){
+                    ((ViewGroup)rl.getParent()).removeView(rl);
+                }
+                else{
+                    ((ViewGroup)edittext.getParent()).removeView(edittext);
+                }
             }
         });
 
