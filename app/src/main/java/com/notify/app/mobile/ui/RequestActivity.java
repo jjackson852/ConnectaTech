@@ -16,6 +16,7 @@ import com.notify.app.mobile.bootstrapOrigin.core.User;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.core.Request;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -120,6 +121,15 @@ public class RequestActivity extends BootstrapActivity {
             Button editReqAddInfoButton = (Button) findViewById(R.id.b_cust_edit_req_desc);
             editReqAddInfoButton.setOnClickListener(editReqAddlInfoListener);
 
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
+            query.whereEqualTo("objectId", requestItem.getObjectId());
+
+            try {
+                List<ParseObject> serviceResults = query.find();
+                currentRequest = serviceResults.get(0);
+            } catch (com.parse.ParseException e) {
+                e.printStackTrace();
+            }
             generateAlertDialogs();
 
 
@@ -163,6 +173,50 @@ public class RequestActivity extends BootstrapActivity {
                     startActivity(Intent.createChooser(emailIntent, "Send via..."));
                 }
             });
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
+            query.whereEqualTo("objectId", requestItem.getObjectId());
+
+            try {
+                List<ParseObject> serviceResults = query.find();
+                currentRequest = serviceResults.get(0);
+            } catch (com.parse.ParseException e) {
+                e.printStackTrace();
+            }
+
+//            Button denyRequsetButton = (Button) findViewById(R.id.b_cust_deny_req);
+//            denyRequsetButton.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View arg0) {
+//
+//                    AlertDialog.Builder removeAlert  = new AlertDialog.Builder(RequestActivity.this);
+//
+//                    removeAlert.setTitle("Are you sure?");
+//
+//                    removeAlert.setPositiveButton("Yes",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    ParsePush push = new ParsePush();
+//                                    push.setChannel(currentRequest.getParseUser("submittedBy").getObjectId());
+//                                    push.setMessage(ParseUser.getCurrentUser().getUsername() + " was unable to accept your request.");
+//                                    push.sendInBackground();
+//                                    currentRequest.deleteInBackground();
+//                                    RequestActivity.this.finish();
+//
+//                                }
+//                            });
+//
+//                    removeAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int whichButton) {
+//                            // what ever you want to do with No option.
+//
+//                        }
+//                    });
+//
+//                    removeAlert.show();
+//                }
+//            });
             submitted.setText(requestItem.getCustEmail());
 //            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
 //            query.whereEqualTo("submittedBy", requestItem.getObjectId());
@@ -190,15 +244,6 @@ public class RequestActivity extends BootstrapActivity {
 
     protected void generateAlertDialogs() {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
-        query.whereEqualTo("objectId", requestItem.getObjectId());
-
-        try {
-            List<ParseObject> serviceResults = query.find();
-            currentRequest = serviceResults.get(0);
-        } catch (com.parse.ParseException e) {
-            e.printStackTrace();
-        }
 
         alert = new AlertDialog.Builder(this);
 

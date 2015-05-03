@@ -34,7 +34,7 @@ public class RatingListAdapter extends AlternatingColorListAdapter<Rating> {
     @Override
     protected int[] getChildViewIds() {
         return new int[]{R.id.tv_title, R.id.tv_summary,
-                R.id.tv_list_rating,R.id.tv_date};
+                R.id.ratingBar_list_view, R.id.tv_date};
     }
 
     @Override
@@ -43,7 +43,7 @@ public class RatingListAdapter extends AlternatingColorListAdapter<Rating> {
         Format formatter = new SimpleDateFormat("MM-dd-yyyy");
         setText(0, item.getTitle());
         setText(1, item.getDescription());
-        setText(2, item.getRating() + " out of 5");
+        ((RatingBar)view(2)).setRating(item.getRating());
         setText(3, formatter.format(item.getCreatedAt()).toString());
     }
 }

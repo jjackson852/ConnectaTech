@@ -80,6 +80,9 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
         regLNameText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_last_name)).getText()).toLowerCase();
         regPhoneNumberText = String.valueOf(phoneET.getText());
 
+        regFNameText = Character.toUpperCase(regFNameText.charAt(0)) + regFNameText.substring(1);
+        regLNameText = Character.toUpperCase(regLNameText.charAt(0)) + regLNameText.substring(1);
+
 
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");

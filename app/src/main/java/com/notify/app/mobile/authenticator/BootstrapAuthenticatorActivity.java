@@ -2,16 +2,19 @@ package com.notify.app.mobile.authenticator;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -41,6 +44,7 @@ import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.PushService;
+import com.parse.RequestPasswordResetCallback;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -63,6 +67,7 @@ import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static android.view.KeyEvent.ACTION_DOWN;
 import static android.view.KeyEvent.KEYCODE_ENTER;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
+import static com.notify.app.mobile.bootstrapOrigin.core.Constants.Extra.TECHSERVICE_ITEM;
 
 /**
  * Activity to authenticate the user against an API (example API on Parse.com)
@@ -173,6 +178,7 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
          */
         Button regNewCustButton = (Button) findViewById(id.b_regAsNewCust);
         Button regNewProvButton = (Button) findViewById(id.b_regAsNewProv);
+        TextView forgotPassTV = (TextView) findViewById(id.tv_forgotpass);
         regNewCustButton.setOnClickListener(regCustButtonListener);
         regNewProvButton.setOnClickListener(regProvButtonListener);
 
@@ -181,6 +187,47 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
         emailOrUsernameText.setAdapter(new ArrayAdapter<String>(this,
                 simple_dropdown_item_1line, userEmailAccounts()));
+
+        final AlertDialog.Builder passAlert  = new AlertDialog.Builder(BootstrapAuthenticatorActivity.this);
+        final EditText forgotPassET = new EditText(this);
+        passAlert.setView(forgotPassET);
+        passAlert.setTitle("Reset Password");
+        passAlert.setMessage("Please Enter your Email Address.");
+
+        passAlert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                ParseUser.requestPasswordResetInBackground(forgotPassET.getText().toString(),
+                        new RequestPasswordResetCallback() {
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    // An email was successfully sent with reset instructions.
+                                    Toast.makeText(getApplicationContext(), "A message has been sent to your email account.",Toast.LENGTH_LONG).show();
+                                } else {
+                                    // Something went wrong. Look at the ParseException to see what's up.
+                                    Toast.makeText(getApplicationContext(), e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+                ((ViewGroup)forgotPassET.getParent()).removeView(forgotPassET);
+            }
+        });
+
+        passAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                ((ViewGroup)forgotPassET.getParent()).removeView(forgotPassET);
+            }
+        });
+
+        forgotPassTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                passAlert.show();
+
+            }
+        });
 
         passwordText.setOnKeyListener(new OnKeyListener() {
 
@@ -373,7 +420,6 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
                 User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
                 token = loginResponse.getSessionToken();
-
                 return true;
             }
 
@@ -402,59 +448,59 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         authenticationTask.execute();
     }
 
-    public void handleLoginAsProvider(final View view) {
-        if (authenticationTask != null) {
-            return;
-        }
-
-//        if (requestNewAccount) {
-//            emailOrUsername = emailOrUsernameText.getText().toString().toLowerCase();
+//    public void handleLoginAsProvider(final View view) {
+//        if (authenticationTask != null) {
+//            return;
 //        }
-
-        emailOrUsername = Constants.Auth.PROVIDER_USERNAME.toLowerCase();
-
-//        password = passwordText.getText().toString();
-
-        password = Constants.Auth.PROVIDER_PASSWORD;
-
-        showProgress();
-
-        authenticationTask = new SafeAsyncTask<Boolean>() {
-            public Boolean call() throws Exception {
-
-                final String query = String.format("%s=%s&%s=%s",
-                        PARAM_USERNAME, emailOrUsername, PARAM_PASSWORD, password);
-
-                User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
-                token = loginResponse.getSessionToken();
-
-                return true;
-            }
-
-            @Override
-            protected void onException(final Exception e) throws RuntimeException {
-                // Retrofit Errors are handled inside of the {
-                if (!(e instanceof RetrofitError)) {
-                    final Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    if (cause != null) {
-//                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
-                    }
-                }
-            }
-
-            @Override
-            public void onSuccess(final Boolean authSuccess) {
-                onAuthenticationResult(authSuccess);
-            }
-
-            @Override
-            protected void onFinally() throws RuntimeException {
-                hideProgress();
-                authenticationTask = null;
-            }
-        };
-        authenticationTask.execute();
-    }
+//
+////        if (requestNewAccount) {
+////            emailOrUsername = emailOrUsernameText.getText().toString().toLowerCase();
+////        }
+//
+//        emailOrUsername = Constants.Auth.PROVIDER_USERNAME.toLowerCase();
+//
+////        password = passwordText.getText().toString();
+//
+//        password = Constants.Auth.PROVIDER_PASSWORD;
+//
+//        showProgress();
+//
+//        authenticationTask = new SafeAsyncTask<Boolean>() {
+//            public Boolean call() throws Exception {
+//
+//                final String query = String.format("%s=%s&%s=%s",
+//                        PARAM_USERNAME, emailOrUsername, PARAM_PASSWORD, password);
+//
+//                User loginResponse = bootstrapService.authenticate(emailOrUsername, password);
+//                token = loginResponse.getSessionToken();
+//
+//                return true;
+//            }
+//
+//            @Override
+//            protected void onException(final Exception e) throws RuntimeException {
+//                // Retrofit Errors are handled inside of the {
+//                if (!(e instanceof RetrofitError)) {
+//                    final Throwable cause = e.getCause() != null ? e.getCause() : e;
+//                    if (cause != null) {
+////                        Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onSuccess(final Boolean authSuccess) {
+//                onAuthenticationResult(authSuccess);
+//            }
+//
+//            @Override
+//            protected void onFinally() throws RuntimeException {
+//                hideProgress();
+//                authenticationTask = null;
+//            }
+//        };
+//        authenticationTask.execute();
+//    }
 
     /**
      * Called when response is received from the server for confirm credentials

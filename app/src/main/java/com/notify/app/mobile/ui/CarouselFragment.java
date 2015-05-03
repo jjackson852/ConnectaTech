@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.notify.app.mobile.R;
+import com.parse.ParseUser;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import butterknife.InjectView;
@@ -54,7 +55,12 @@ public class CarouselFragment extends Fragment {
         }
 
         indicator.setViewPager(pager);
-        pager.setCurrentItem(1);
+        if(ParseUser.getCurrentUser().getUsername().equals("demo@connectatech.org")){
+            pager.setCurrentItem(0);
+        }else{
+            pager.setCurrentItem(1);
+        }
+
 
     }
 }

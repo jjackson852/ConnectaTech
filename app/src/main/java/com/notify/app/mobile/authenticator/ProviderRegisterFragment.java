@@ -91,6 +91,8 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         regZipCodeText = String.valueOf(((EditText) view.findViewById(R.id.et_reg_zipcode)).getText());
 
         regZipCodeText = Character.toUpperCase(regZipCodeText.charAt(0)) + regZipCodeText.substring(1);
+        regFNameText = Character.toUpperCase(regFNameText.charAt(0)) + regFNameText.substring(1);
+        regLNameText = Character.toUpperCase(regLNameText.charAt(0)) + regLNameText.substring(1);
 
         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(getActivity());
         dlgAlert.setTitle("Invalid Input");

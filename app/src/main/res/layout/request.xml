@@ -162,6 +162,22 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <!--<Button-->
+            <!--android:id="@+id/b_cust_deny_req"-->
+            <!--style="@style/ShadowText"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_background_states"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="Deny Request"-->
+            <!--android:textColor="@color/text"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
+
         <!--<Button
             android:id="@+id/b_cust_email_req"
             style="@style/ShadowText"

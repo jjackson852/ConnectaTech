@@ -79,6 +79,7 @@
                 android:gravity="center"
                 android:onClick="handleLogin"
                 android:padding="10dp"
+                android:textStyle="bold"
                 android:text="@string/label_sign_in" />
 
             <LinearLayout
@@ -94,6 +95,7 @@
                     android:background="@drawable/button_background_states"
                     android:gravity="center"
                     android:padding="10dp"
+                    android:textStyle="bold"
                     android:text="@string/label_register_cust"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"/>
@@ -101,6 +103,7 @@
                 <Button
                     style="@style/ShadowText"
                     android:id="@+id/b_regAsNewProv"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_states"
                     android:gravity="center"
@@ -118,23 +121,36 @@
                 android:background="@drawable/button_background_states"
                 android:gravity="center"
                 android:onClick="handleLoginAsGuest"
+                android:textStyle="bold"
                 android:padding="10dp"
                 android:text="@string/label_sign_in_as_guest"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"/>
 
-            <Button
-                style="@style/ShadowText"
-                android:id="@+id/b_continueAsProvider"
+            <!--<Button-->
+                <!--style="@style/ShadowText"-->
+                <!--android:id="@+id/b_continueAsProvider"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@drawable/button_background_states"-->
+                <!--android:gravity="center"-->
+                <!--android:onClick="handleLoginAsProvider"-->
+                <!--android:padding="10dp"-->
+                <!--android:text="@string/label_sign_in_as_provider"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_weight="1" />-->
+
+            <TextView
+                android:id="@+id/tv_forgotpass"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button_background_states"
+                android:text="Forgot your password?"
+                android:clickable="true"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:onClick="handleLoginAsProvider"
-                android:padding="10dp"
-                android:text="@string/label_sign_in_as_provider"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/button_background_enabled_start"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

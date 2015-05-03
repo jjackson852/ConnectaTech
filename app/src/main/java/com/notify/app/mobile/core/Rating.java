@@ -11,7 +11,7 @@ public class Rating implements Serializable {
     private String content;
     private String objectId;
     private String providerInfo;
-    private String rating;
+    private Float rating;
     private String description;
     private Date createdAt;
 
@@ -39,11 +39,11 @@ public class Rating implements Serializable {
         this.objectId = objectId;
     }
 
-    public String getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(final String rating) {
+    public void setRating(final Float rating) {
         this.rating = rating;
     }
 

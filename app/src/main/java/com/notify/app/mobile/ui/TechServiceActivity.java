@@ -26,6 +26,7 @@ import com.notify.app.mobile.core.TechService;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 import java.text.DecimalFormat;
 import java.text.Format;
@@ -59,6 +60,7 @@ public class TechServiceActivity extends BootstrapActivity {
     int itemBeingEdited;
     Spinner spinner;
     private RelativeLayout rl;
+    AlertDialog.Builder guestAlert;
 
     private ParseObject currentTechService;
     private ParseUser parseProvider;
@@ -120,11 +122,19 @@ public class TechServiceActivity extends BootstrapActivity {
     private View.OnClickListener requestServListener = new View.OnClickListener() {
         public void onClick(View v) {
 
-            //Request the service.
-            navigateToRequestSubmission();
+            if (ParseUser.getCurrentUser().getUsername().equals("demo@connectatech.org")){
+                guestAlert.show();
+            }
+            else{
 
-            //Go back to login activity.
-            finish();
+                //Request the service.
+                navigateToRequestSubmission();
+
+                //Go back to login activity.
+                finish();
+
+            }
+
 
         }
     };
@@ -191,6 +201,16 @@ public class TechServiceActivity extends BootstrapActivity {
         if (isProvider == false) {
             setContentView(R.layout.techservice_cust);
 
+
+            guestAlert = new AlertDialog.Builder(TechServiceActivity.this);
+            guestAlert.setTitle("Please Register.");
+            guestAlert.setMessage("In order to request a service, you must first register as a customer.");
+
+            guestAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    // Do nothing
+                }
+            });
             /**
              * Attaches the Submit Request button listener to the xml button.
              */

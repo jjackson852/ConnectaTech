@@ -12,6 +12,7 @@ import com.notify.app.mobile.R;
 import com.notify.app.mobile.bootstrapOrigin.ui.CheckInsListFragment;
 import com.notify.app.mobile.bootstrapOrigin.ui.NewsListFragment;
 import com.notify.app.mobile.bootstrapOrigin.ui.UserListFragment;
+import com.parse.ParseUser;
 
 //import dagger.Module;
 
@@ -21,6 +22,7 @@ import com.notify.app.mobile.bootstrapOrigin.ui.UserListFragment;
 public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     private final Resources resources;
+    private Boolean isGuest = false;
 
     /**
      * Create pager adapter
@@ -35,26 +37,48 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        if(ParseUser.getCurrentUser().getUsername().equals("demo@connectatech.org")){
+            isGuest = true;
+            return 2;
+        }
+        else{
+            return 3;
+        }
     }
 
     @Override
     public Fragment getItem(final int position) {
         final Fragment result;
-        switch (position) {
-            case 0:
-                result = new RequestListFragment();
-                break;
-            case 1:
-                result = new UserListFragment();
-                break;
-            case 2:
-                result = new TechServiceListFragment();
-                break;
-            default:
-                result = null;
-                break;
+        if(isGuest == true){
+            switch (position) {
+                case 0:
+                    result = new UserListFragment();
+                    break;
+                case 1:
+                    result = new TechServiceListFragment();
+                    break;
+                default:
+                    result = null;
+                    break;
+            }
         }
+        else{
+            switch (position) {
+                case 0:
+                    result = new RequestListFragment();
+                    break;
+                case 1:
+                    result = new UserListFragment();
+                    break;
+                case 2:
+                    result = new TechServiceListFragment();
+                    break;
+                default:
+                    result = null;
+                    break;
+            }
+        }
+
         if (result != null) {
             result.setArguments(new Bundle()); //TODO do we need this?
         }
@@ -63,15 +87,27 @@ public class BootstrapPagerAdapter_Cust extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(final int position) {
-        switch (position) {
-            case 0:
-                return resources.getString(R.string.active_requests);
-            case 1:
-                return resources.getString(R.string.page_users);
-            case 2:
-                return resources.getString(R.string.title_browse_techservices);
-            default:
-                return null;
+        if(isGuest == true){
+            switch (position) {
+                case 0:
+                    return resources.getString(R.string.page_users);
+                case 1:
+                    return resources.getString(R.string.title_browse_techservices);
+                default:
+                    return null;
+            }
+        }else{
+            switch (position) {
+                case 0:
+                    return resources.getString(R.string.active_requests);
+                case 1:
+                    return resources.getString(R.string.page_users);
+                case 2:
+                    return resources.getString(R.string.title_browse_techservices);
+                default:
+                    return null;
+            }
         }
+
     }
 }
