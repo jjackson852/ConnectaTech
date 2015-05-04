@@ -105,6 +105,7 @@ public class RequestServiceActivity extends BootstrapActivity {
         ParseACL prw = new ParseACL();
         prw.setPublicReadAccess(true);
         prw.setWriteAccess(serviceRequested.getParseUser("createdBy"), true);
+        prw.setWriteAccess(ParseUser.getCurrentUser(), true);
 
         newRequest.put("addlInfo", String.valueOf(addlInfoText.getText()));
         newRequest.put("serviceTitle", serviceRequested.getString("title"));
