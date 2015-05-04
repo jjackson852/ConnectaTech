@@ -118,4 +118,5 @@ public class UserListFragment extends ItemListFragment<User> {
     protected SingleTypeAdapter<User> createAdapter(final List<User> items) {
         return new UserListAdapter(getActivity().getLayoutInflater(), items);
     }
+
 }

@@ -45,7 +45,7 @@ public class RequestListAdapter extends AlternatingColorListAdapter<Request> {
         setText(2, item.getAddlInfo());
         setText(1, formatter.format(item.getCreatedAt()).toString());
         if(!ParseUser.getCurrentUser().getBoolean("isProvider") == false) {
-            setText(3, "Provider: " + item.getCustEmail());
+            setText(3, "Customer: " + item.getCustUsername());
         }
     }
 }

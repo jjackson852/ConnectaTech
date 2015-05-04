@@ -67,6 +67,7 @@ public class UserActivity extends BootstrapActivity {
     RelativeLayout rl, r2;
     AlertDialog.Builder alert;
     private EditText ratingDescription;
+    AlertDialog.Builder guestAlert;
 
     private View.OnClickListener addRatingListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -86,6 +87,16 @@ public class UserActivity extends BootstrapActivity {
 
         setContentView(R.layout.user_view);
 
+        guestAlert = new AlertDialog.Builder(UserActivity.this);
+        guestAlert.setTitle("Please Register.");
+        guestAlert.setMessage("In order to rate a provider, you must first register as a customer.");
+
+        guestAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Do nothing
+            }
+        });
+
         if (getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
@@ -103,9 +114,13 @@ public class UserActivity extends BootstrapActivity {
         rateActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (ParseUser.getCurrentUser().getUsername().equals("demo@connectatech.org")){
+                    guestAlert.show();
+                }else{
 
-                alert.show();
+                    alert.show();
 
+                }
             }
         });
 
@@ -125,6 +140,16 @@ public class UserActivity extends BootstrapActivity {
 //
 //        final EditText input = new EditText(this);
 //        alert.setView(input);
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("objectId", user.getObjectId());
+
+        try {
+            List<ParseUser> results = userQuery.find();
+            parseProvider = results.get(0);
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+        }
+
 
 
         final Intent userIntent = new Intent(this, UserActivity.class);
@@ -132,8 +157,11 @@ public class UserActivity extends BootstrapActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //What ever you want to do with the value
                 float rating = ((RatingBar)rl.findViewById(R.id.ratingBar_alert_view)).getRating();
-                String ratingDesc = String.valueOf(((EditText) rl.findViewById(R.id.ratingBar_alert_editText)).getText());
+                EditText ratingDescET = (EditText) rl.findViewById(R.id.ratingBar_alert_editText);
+                String ratingDesc = String.valueOf(ratingDescET.getText());
+
                 String title = String.valueOf(((EditText) rl.findViewById(R.id.ratingBar_alert_editText_title)).getText());
+
                 newRating = new ParseObject("Rating");
                 newRating.put("provider", parseProvider);
                 newRating.put("submittedBy", ParseUser.getCurrentUser());
@@ -143,12 +171,25 @@ public class UserActivity extends BootstrapActivity {
                 newRating.put("title",  title);
                 newRating.saveInBackground();
 
+                HashMap<String, Object> params2 = new HashMap<String, Object>();
+                params2.put("providerID", user.getObjectId());
+                ParseCloud.callFunctionInBackground("modifyUser", params2, new FunctionCallback<String>() {
+                    public void done(String result, ParseException e) {
+                        if (e == null) {
+                            // ratings is 4.5
+                        }
+                    }
+                });
+
                 userIntent.putExtra(USER, user);
                 finish();
                 startActivity(userIntent);
                 ((ViewGroup)rl.getParent()).removeView(rl);
 //                ((ViewGroup)r2.getParent()).removeView(r2);
+
             }
+
+
         });
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -168,15 +209,7 @@ public class UserActivity extends BootstrapActivity {
 //        submitRatingButton.setOnClickListener(addRatingListener);
 //
 //
-        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-        userQuery.whereEqualTo("objectId", user.getObjectId());
 
-        try {
-            List<ParseUser> results = userQuery.find();
-            parseProvider = results.get(0);
-        } catch (com.parse.ParseException e) {
-            e.printStackTrace();
-        }
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("providerID", user.getObjectId());
@@ -203,7 +236,12 @@ public class UserActivity extends BootstrapActivity {
                         public boolean onTouch(View v, MotionEvent event) {
                             if (event.getAction() == MotionEvent.ACTION_UP) {
                                 // TODO perform your action here
-                                alert.show();
+                                if (ParseUser.getCurrentUser().getUsername().equals("demo@connectatech.org")){
+                                    guestAlert.show();
+                                }else{
+
+                                    alert.show();
+                                }
                             }
                             return true;
                         }});

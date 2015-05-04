@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.notify.app.mobile.R;
 import com.parse.ParseUser;
@@ -163,6 +164,9 @@ public class CustomerRegisterFragment extends Fragment implements View.OnClickLi
             public void done(com.parse.ParseException e) {
                 if (e == null) {
                     // Hooray! Let them use the app now.
+                    Toast.makeText(getActivity(),
+                            "Account Created Successfully.",
+                            Toast.LENGTH_LONG).show();
                 } else {
                     // Sign up didn't succeed. Look at the ParseException
                     // to figure out what went wrong

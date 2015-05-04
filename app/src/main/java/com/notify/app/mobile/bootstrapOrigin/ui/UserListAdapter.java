@@ -62,7 +62,7 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[]{R.id.iv_avatar, R.id.tv_name, R.id.tv_username2};
+        return new int[]{R.id.iv_avatar, R.id.tv_name, R.id.tv_username2, R.id.ratingBar_userlist_view};
     }
 
     @Override
@@ -97,31 +97,8 @@ public class UserListAdapter extends SingleTypeAdapter<User> {
 
         setText(1, user.getFirstName() + " " + user.getLastName());
         setText(2, user.getUsername());
+        ((RatingBar)view(3)).setRating(user.getAvgRating());
 
-//        HashMap<String, Object> params = new HashMap<String, Object>();
-//        params.put("providerID", user.getObjectId());
-//        ParseCloud.callFunctionInBackground("averageRating", params, new FunctionCallback<Map<String, Object>>() {
-//            public void done(Map<String, Object> ratings, ParseException e) {
-//                if (e == null) {
-//                    // ratings is 4.5 or such
-//
-//
-//                    try {
-//                        avgRating = Float.valueOf(ratings.get("avgRating").toString());
-//                    } catch (NumberFormatException ex) {
-//                        avgRating = 0.0f;
-//                    }
-//
-//
-//                } else {
-//
-//                }
-//
-//                ((RatingBar)view(3)).setRating(avgRating);
-//            }
-//
-//
-//        });
 
 
     }

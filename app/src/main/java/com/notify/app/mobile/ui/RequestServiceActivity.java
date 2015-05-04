@@ -10,6 +10,7 @@ import com.notify.app.mobile.R.id;
 import com.notify.app.mobile.R.layout;
 import com.notify.app.mobile.authenticator.RegisterActivity;
 import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
+import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
@@ -36,7 +37,7 @@ public class RequestServiceActivity extends BootstrapActivity {
 ////                                PushService.setDefaultPushCallback(BootstrapAuthenticatorActivity.this, MainActivity.class);
 ////            push.setChannel(String.valueOf(serviceRequested.getParseUser("createdBy")));
             push.setChannel(serviceRequested.getParseUser("createdBy").getObjectId());
-            push.setMessage("You have a new Request from "+ ParseUser.getCurrentUser().getUsername());
+            push.setMessage("You have a new Request from "+ ParseUser.getCurrentUser().getUsername()+".");
             push.sendInBackground();
 //            Toast.makeText(
 //                    getApplicationContext(),
@@ -101,6 +102,9 @@ public class RequestServiceActivity extends BootstrapActivity {
         addlInfoText = (EditText) findViewById(id.et_addl_request_info);
 
         ParseObject newRequest = new ParseObject("Request");
+        ParseACL prw = new ParseACL();
+        prw.setPublicReadAccess(true);
+        prw.setWriteAccess(serviceRequested.getParseUser("createdBy"), true);
 
         newRequest.put("addlInfo", String.valueOf(addlInfoText.getText()));
         newRequest.put("serviceTitle", serviceRequested.getString("title"));
@@ -110,6 +114,7 @@ public class RequestServiceActivity extends BootstrapActivity {
         newRequest.put("custPhoneNumber", ParseUser.getCurrentUser().getString("phoneNumber"));
         newRequest.put("custEmail", ParseUser.getCurrentUser().getEmail());
         newRequest.put("custUsername", ParseUser.getCurrentUser().getUsername());
+        newRequest.setACL(prw);
         //newRequest.put("category", serviceRequested.getCategory()); For Later Use
 
         newRequest.saveInBackground();

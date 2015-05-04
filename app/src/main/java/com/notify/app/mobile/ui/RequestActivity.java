@@ -184,40 +184,40 @@ public class RequestActivity extends BootstrapActivity {
                 e.printStackTrace();
             }
 
-//            Button denyRequsetButton = (Button) findViewById(R.id.b_cust_deny_req);
-//            denyRequsetButton.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View arg0) {
-//
-//                    AlertDialog.Builder removeAlert  = new AlertDialog.Builder(RequestActivity.this);
-//
-//                    removeAlert.setTitle("Are you sure?");
-//
-//                    removeAlert.setPositiveButton("Yes",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    ParsePush push = new ParsePush();
-//                                    push.setChannel(currentRequest.getParseUser("submittedBy").getObjectId());
-//                                    push.setMessage(ParseUser.getCurrentUser().getUsername() + " was unable to accept your request.");
-//                                    push.sendInBackground();
-//                                    currentRequest.deleteInBackground();
-//                                    RequestActivity.this.finish();
-//
-//                                }
-//                            });
-//
-//                    removeAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int whichButton) {
-//                            // what ever you want to do with No option.
-//
-//                        }
-//                    });
-//
-//                    removeAlert.show();
-//                }
-//            });
-            submitted.setText(requestItem.getCustEmail());
+            Button denyRequsetButton = (Button) findViewById(R.id.b_cust_deny_req);
+            denyRequsetButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+
+                    AlertDialog.Builder removeAlert  = new AlertDialog.Builder(RequestActivity.this);
+
+                    removeAlert.setTitle("Are you sure?");
+
+                    removeAlert.setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ParsePush push = new ParsePush();
+                                    push.setChannel(currentRequest.getParseUser("submittedBy").getObjectId());
+                                    push.setMessage(ParseUser.getCurrentUser().getUsername() + " was unable to accept your request.");
+                                    push.sendInBackground();
+                                    currentRequest.deleteInBackground();
+                                    RequestActivity.this.finish();
+
+                                }
+                            });
+
+                    removeAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // what ever you want to do with No option.
+
+                        }
+                    });
+
+                    removeAlert.show();
+                }
+            });
+            submitted.setText(requestItem.getCustUsername());
 //            ParseQuery<ParseObject> query = ParseQuery.getQuery("Request");
 //            query.whereEqualTo("submittedBy", requestItem.getObjectId());
 

@@ -21,7 +21,7 @@ public class User implements Serializable {
     protected String sessionToken;
     protected String gravatarId;
     protected String avatarUrl;
-    protected String rating;
+    protected Float avgRating;
     protected String bio;
     protected ParseFile imageFile;
     protected Date createdAt;
@@ -99,12 +99,12 @@ public class User implements Serializable {
 
     //Rating
 
-    public String getRating() {
-        return rating;
+    public Float getAvgRating() {
+        return avgRating;
     }
 
-    public void setRating(final String rating) {
-        this.rating = rating;
+    public void setAvgRating(final Float avgRating) {
+        this.avgRating = avgRating;
     }
 
     public String getGravatarId() {

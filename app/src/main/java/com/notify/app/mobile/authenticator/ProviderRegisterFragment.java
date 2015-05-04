@@ -11,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.notify.app.mobile.R;
+import com.parse.ParseACL;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -150,6 +152,10 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
     public void completeRegistration() {
 
         ParseUser user = new ParseUser();
+        ParseACL prw = new ParseACL();
+        prw.setPublicReadAccess(true);
+        prw.setPublicWriteAccess(true);
+
         user.setUsername(regUsernameText);
         user.setPassword(regPasswordText);
         user.setEmail(regEmailText);
@@ -159,6 +165,8 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
         user.put("zipCode", regZipCodeText);
         user.put("state", spinner.getSelectedItem().toString());
         user.put("isProvider", true);
+        user.put("avgRating", 0.0);
+        user.setACL(prw);
 
 
         user.signUpInBackground(new SignUpCallback() {
@@ -166,6 +174,9 @@ public class ProviderRegisterFragment extends Fragment implements View.OnClickLi
             public void done(com.parse.ParseException e) {
                 if (e == null) {
                     // Hooray! Let them use the app now.
+                    Toast.makeText(getActivity(),
+                            "Account Created Successfully.",
+                            Toast.LENGTH_LONG).show();
                 } else {
                     // Sign up didn't succeed. Look at the ParseException
                     // to figure out what went wrong
