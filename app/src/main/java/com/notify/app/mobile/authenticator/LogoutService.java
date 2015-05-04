@@ -7,6 +7,7 @@ import android.content.Context;
 
 import com.notify.app.mobile.bootstrapOrigin.core.BootstrapService;
 import com.notify.app.mobile.bootstrapOrigin.core.Constants;
+import com.notify.app.mobile.bootstrapOrigin.ui.BootstrapActivity;
 import com.notify.app.mobile.util.Ln;
 import com.notify.app.mobile.util.SafeAsyncTask;
 import com.parse.ParsePush;
@@ -73,6 +74,11 @@ public class LogoutService {
             ParseUser.unpinAllInBackground();
             BootstrapService.setServConstraint(null);
             ParsePush.unsubscribeInBackground(ParseUser.getCurrentUser().getObjectId());
+            BootstrapService.setServConstraint(null);
+            BootstrapService.setRatingConstraint(null);
+            BootstrapService.setProvidersConstraint(null);
+            BootstrapService.setReqConstraint(null);
+            BootstrapService.setRatingOrderConstraint(null);
 
 
         }

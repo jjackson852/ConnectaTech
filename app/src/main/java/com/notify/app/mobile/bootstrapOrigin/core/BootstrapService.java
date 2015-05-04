@@ -133,9 +133,6 @@ public class BootstrapService {
             setServConstraint("{\"createdBy\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ParseUser.getCurrentUser().getObjectId() + "\"}}");
         }
 
-        else{
-            curUserServConstraint = null;
-        }
         return getTechServService().getTechService(curUserServConstraint).getResults();
 
     }
