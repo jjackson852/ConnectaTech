@@ -1,3 +1,8 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -57,8 +62,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:rating="0.0"
         android:stepSize="0.50"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/select_image_button"
+        android:layout_below="@+id/provider_profile_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -145,3 +149,4 @@
 
 
 </RelativeLayout>
+</ScrollView>
